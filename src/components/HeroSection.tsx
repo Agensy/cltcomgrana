@@ -1,5 +1,5 @@
-import { Check, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
+import GlowButton from "@/components/ui/GlowButton";
 import heroBackground from "@/assets/hero-background.jpg";
 
 const HeroSection = () => {
@@ -64,15 +64,9 @@ const HeroSection = () => {
               Seu primeiro site vendido ou seu dinheiro de volta
             </p>
 
-            <Button
-              size="lg"
-              variant="hero"
-              onClick={scrollToForm}
-              className="group"
-            >
+            <GlowButton onClick={scrollToForm}>
               GARANTIR MINHA VAGA AGORA
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            </GlowButton>
           </div>
 
           {/* Right Content - Mock Transfer Notification */}
