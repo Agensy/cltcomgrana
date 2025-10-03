@@ -16,9 +16,8 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-cover bg-center opacity-70" style={{
       backgroundImage: `url(${heroBackground})`
     }} />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-transparent" />
 
-      <div className="container relative z-10 mx-auto px-4 py-20">
+      <div className="container relative z-10 mx-auto px-8 py-20">
         <div className="w-full lg:w-[60%]">
           {/* Content */}
           <div className="animate-fade-in">
@@ -27,12 +26,14 @@ const HeroSection = () => {
             </div>
 
             <h1 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
-              Crie e venda sites profissionais com{" "}
-              <span className="text-primary">I.A em minutos</span>{" "}
-              mesmo sem experiência e sem investimento
+              Crie e venda sites<br />
+              profissionais com <span className="text-primary">I.A em<br />
+              minutos</span> mesmo sem<br />
+              experiência e sem<br />
+              investimento
             </h1>
 
-            <ul className="space-y-2 mb-8">
+            <ul className="space-y-1 mb-8">
               {["Ferramenta exclusiva de I.A", "Agentes de vendas", "Sites prontos em minutos", "Crie sem experiência", "Venda de R$ 500 a R$ 2.000 por projeto"].map((item, index) => <li key={index} className="flex items-center gap-3 text-lg">
                   <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="text-zinc-300">{item}</span>
