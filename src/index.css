@@ -122,14 +122,14 @@ All colors MUST be HSL.
     position: relative;
   }
   
-  /* Ícones SVG com gradiente e glow */
+  /* Ícones SVG com cor laranja e glow */
   .icon-gradient-orange {
-    stroke: url(#orangeGradient);
+    color: #EB5F2E;
     filter: drop-shadow(0 0 8px rgba(235, 95, 46, 0.6)) drop-shadow(0 0 15px rgba(255, 140, 66, 0.4));
   }
   
   .fill-gradient-orange {
-    fill: url(#orangeGradient);
+    fill: #EB5F2E;
     filter: drop-shadow(0 0 8px rgba(235, 95, 46, 0.6)) drop-shadow(0 0 15px rgba(255, 140, 66, 0.4));
   }
 
