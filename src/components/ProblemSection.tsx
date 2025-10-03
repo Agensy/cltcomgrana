@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 const ProblemSection = () => {
   return <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Grid Overlay */}
@@ -23,15 +24,17 @@ const ProblemSection = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {["O salário não cobre todas as contas", "Você vive com medo de ser demitido", "Parece não ter tempo para aprender algo novo", "Falta confiança para transformar conhecimento em renda"].map((item, index) => <div key={index} className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/50 backdrop-blur-sm p-6 hover:border-primary/40 transition-all duration-300 hover:shadow-[0_0_20px_rgba(203,123,66,0.15)]">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 flex-shrink-0 border-2 border-primary flex items-center justify-center rounded-lg bg-primary/10">
-                    <X className="w-5 h-5 icon-gradient-orange" strokeWidth={3} />
-                  </div>
-                  <p className="text-zinc-300 font-medium leading-relaxed">{item}</p>
-                </div>
-              </div>)}
+          <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
+            {["O salário não cobre todas as contas", "Você vive com medo de ser demitido", "Parece não ter tempo para aprender algo novo", "Falta confiança para transformar conhecimento em renda"].map((item, index) => (
+              <Badge 
+                key={index} 
+                variant="outline" 
+                className="group px-4 py-3 text-base font-medium border-primary/30 bg-card/40 backdrop-blur-sm hover:border-primary/50 hover:bg-card/60 transition-all duration-300 hover:shadow-[0_0_15px_rgba(203,123,66,0.2)]"
+              >
+                <X className="w-4 h-4 icon-gradient-orange mr-2 flex-shrink-0" strokeWidth={3} />
+                <span className="text-zinc-300">{item}</span>
+              </Badge>
+            ))}
           </div>
         </div>
       </div>
