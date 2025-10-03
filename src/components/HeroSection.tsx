@@ -36,11 +36,11 @@ const HeroSection = () => {
             <ul className="space-y-1 mb-8">
               {["Ferramenta exclusiva de I.A", "Agentes de vendas", "Sites prontos em minutos", "Crie sem experiência", "Venda de R$ 500 a R$ 2.000 por projeto"].map((item, index) => <li key={index} className="flex items-center gap-3 text-lg">
                   <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-zinc-300">{item}</span>
+                  <span className="text-zinc-400">{item}</span>
                 </li>)}
             </ul>
 
-            <p className="mb-8 text-muted-foreground text-base">Seu primeiro site vendido em 07 dias ou seu dinheiro de volta.</p>
+            <p className="mb-8 text-muted-foreground text-lg">Seu primeiro site vendido em 07 dias ou seu dinheiro de volta.</p>
 
             <GlowButton onClick={scrollToForm}>
               GARANTIR MINHA VAGA AGORA
