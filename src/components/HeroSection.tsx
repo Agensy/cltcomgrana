@@ -22,7 +22,9 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="animate-fade-in">
-            <img src={logo} alt="CLT com Grana" className="w-32 mb-8" />
+            <div className="mb-8">
+              <img src={logo} alt="CLT com Grana" className="w-56" />
+            </div>
 
             <h1 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
               Crie e venda sites profissionais com{" "}
