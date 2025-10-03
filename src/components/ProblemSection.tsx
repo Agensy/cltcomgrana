@@ -22,14 +22,18 @@ const ProblemSection = () => {
               O problema não é você. O problema é depender só do sistema CLT.
             </p>
 
-            <ul className="space-y-1">
-              {["O salário não cobre todas as contas", "Você vive com medo de ser demitido", "Parece não ter tempo para aprender algo novo", "Falta confiança para transformar conhecimento em renda"].map((item, index) => <li key={index} className="flex items-center gap-3 text-lg">
-                    <div className="w-5 h-5 flex-shrink-0 border-2 border-primary flex items-center justify-center rounded-sm">
-                      <X className="w-3 h-3 icon-gradient-orange" strokeWidth={3} />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+              {["O salário não cobre todas as contas", "Você vive com medo de ser demitido", "Parece não ter tempo para aprender algo novo", "Falta confiança para transformar conhecimento em renda"].map((item, index) => (
+                <div key={index} className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/50 backdrop-blur-sm p-6 hover:border-primary/40 transition-all duration-300 hover:shadow-[0_0_20px_rgba(203,123,66,0.15)]">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 flex-shrink-0 border-2 border-primary flex items-center justify-center rounded-lg bg-primary/10">
+                      <X className="w-5 h-5 icon-gradient-orange" strokeWidth={3} />
+                    </div>
+                    <p className="text-zinc-300 font-medium leading-relaxed">{item}</p>
                   </div>
-                  <span className="text-zinc-400">{item}</span>
-                </li>)}
-            </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
