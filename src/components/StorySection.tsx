@@ -1,19 +1,29 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
+import { Sparkles, TrendingUp, Zap } from "lucide-react";
+import GlowButton from "@/components/ui/GlowButton";
 
 const StorySection = () => {
   const { ref, inView } = useInView({
     threshold: 0.3,
     triggerOnce: true
   });
+
+  const scrollToForm = () => {
+    const formElement = document.getElementById('lead-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Grid Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 
       <div className="container relative z-10 mx-auto px-4 md:px-8 py-20" ref={ref}>
-        <div className="w-full max-w-4xl mx-auto">
+        <div className="w-full max-w-6xl mx-auto">
           {/* Content */}
           <motion.div 
             className="text-center"
@@ -46,28 +56,71 @@ const StorySection = () => {
                 </p>
               </motion.div>
 
-              <div className="grid sm:grid-cols-3 gap-4 mt-8">
+              <div className="grid sm:grid-cols-3 gap-6 mt-8">
                 {[
-                  { value: 95, suffix: "%", label: "do trabalho feito pela I.A" },
-                  { value: 500, prefix: "R$ ", suffix: "-2k", label: "por projeto vendido" },
-                  { value: 7, suffix: " dias", label: "para primeiro resultado" }
-                ].map((stat, index) => (
-                  <motion.div 
-                    key={index}
-                    className="bg-card/30 border border-border rounded-lg p-4 text-center"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                  >
-                    <p className="text-3xl font-bold text-gradient-orange-glow mb-2">
-                      {stat.prefix}
-                      {inView && <CountUp end={stat.value} duration={2} />}
-                      {stat.suffix}
-                    </p>
-                    <p className="text-sm text-zinc-400">{stat.label}</p>
-                  </motion.div>
-                ))}
+                  { 
+                    icon: Sparkles,
+                    value: 95, 
+                    suffix: "%", 
+                    label: "do trabalho feito pela I.A",
+                    description: "A I.A cria o site completo"
+                  },
+                  { 
+                    icon: TrendingUp,
+                    value: 500, 
+                    prefix: "R$ ", 
+                    suffix: "-2k", 
+                    label: "por projeto vendido",
+                    description: "Valor médio por cliente"
+                  },
+                  { 
+                    icon: Zap,
+                    value: 7, 
+                    suffix: " dias", 
+                    label: "para primeiro resultado",
+                    description: "Seu primeiro cliente"
+                  }
+                ].map((stat, index) => {
+                  const Icon = stat.icon;
+                  return (
+                    <motion.div 
+                      key={index}
+                      className="group relative bg-gradient-to-br from-card/60 to-card/40 backdrop-blur-sm border border-primary/20 rounded-xl p-6 text-center hover:border-primary/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(203,123,66,0.15)]"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={inView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                    >
+                      <div className="flex justify-center mb-3">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <Icon className="w-6 h-6 icon-gradient-orange" strokeWidth={2} />
+                        </div>
+                      </div>
+                      <p className="text-4xl font-bold text-gradient-orange-glow mb-2">
+                        {stat.prefix}
+                        {inView && <CountUp end={stat.value} duration={2} />}
+                        {stat.suffix}
+                      </p>
+                      <p className="text-sm font-semibold text-gray-50 mb-1">{stat.label}</p>
+                      <p className="text-xs text-zinc-400">{stat.description}</p>
+                    </motion.div>
+                  );
+                })}
               </div>
+
+              {/* CTA Section */}
+              <motion.div 
+                className="text-center mt-12"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                <p className="text-lg md:text-xl text-zinc-300 mb-6">
+                  <span className="text-gradient-orange-glow font-semibold">Pare de adiar seus sonhos.</span> Comece hoje mesmo a construir sua renda extra com sites.
+                </p>
+                <GlowButton onClick={scrollToForm} className="text-lg px-8 py-6">
+                  Quero Aprender a Vender Sites
+                </GlowButton>
+              </motion.div>
             </div>
           </motion.div>
         </div>
