@@ -50,9 +50,7 @@ const HeroSection = () => {
                 </li>)}
             </ul>
 
-            <p className="text-xl mb-8 text-muted-foreground">
-              Seu primeiro site vendido ou seu dinheiro de volta
-            </p>
+            <p className="mb-8 text-muted-foreground text-base">Seu primeiro site vendido em 07 dias ou seu dinheiro de volta.</p>
 
             <GlowButton onClick={scrollToForm}>
               GARANTIR MINHA VAGA AGORA
