@@ -11,17 +11,17 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Dark Backgrounds */
-    --background: 0 0% 3.9%;
-    --dark-900: 0 0% 3.9%;
-    --dark-800: 0 0% 5.9%;
-    --dark-700: 0 0% 10.2%;
-    --dark-600: 0 0% 16.5%;
+    --background: 30 33% 99%;
+    --dark-900: 30 33% 99%;
+    --dark-800: 30 20% 96%;
+    --dark-700: 30 15% 92%;
+    --dark-600: 30 10% 85%;
 
     /* Text Colors */
-    --foreground: 0 0% 100%;
-    --gray-300: 0 0% 89.8%;
-    --gray-400: 0 0% 63.9%;
-    --gray-500: 0 0% 45.1%;
+    --foreground: 0 0% 10%;
+    --gray-300: 0 0% 30%;
+    --gray-400: 0 0% 45%;
+    --gray-500: 0 0% 60%;
 
     /* Primary (Laranja) */
     --primary-50: 16 100% 97%;
@@ -45,14 +45,14 @@ All colors MUST be HSL.
     --error: 0 72% 51%;
 
     /* UI Elements */
-    --card: 0 0% 7.8%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 97%;
+    --card-foreground: 0 0% 10%;
 
-    --popover: 0 0% 5.9%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 10%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 63.9%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 45%;
 
     --accent: 16 83% 55%;
     --accent-foreground: 0 0% 100%;
@@ -60,8 +60,8 @@ All colors MUST be HSL.
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
+    --border: 0 0% 85%;
+    --input: 0 0% 92%;
     --ring: 16 83% 55%;
 
     /* Border Radius */
@@ -73,13 +73,13 @@ All colors MUST be HSL.
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(16 83% 55%), hsl(20 83% 60%));
     --gradient-secondary: linear-gradient(135deg, hsl(160 84% 39%), hsl(165 84% 45%));
-    --gradient-overlay: linear-gradient(180deg, hsl(0 0% 3.9% / 0.95), hsl(0 0% 3.9%));
+    --gradient-overlay: linear-gradient(180deg, hsl(30 33% 99% / 0.95), hsl(30 33% 99%));
     
     /* Shadows & Glows */
-    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
-    --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.6);
-    --shadow-glow-orange: 0 0 40px rgba(235, 95, 46, 0.3);
-    --shadow-glow-blue: 0 0 40px rgba(37, 99, 235, 0.3);
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
+    --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.12);
+    --shadow-glow-orange: 0 0 40px rgba(235, 95, 46, 0.2);
+    --shadow-glow-blue: 0 0 40px rgba(37, 99, 235, 0.2);
 
     /* Transitions */
     --transition-default: 300ms ease-in-out;
