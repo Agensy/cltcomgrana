@@ -19,7 +19,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-transparent" />
 
       <div className="container relative z-10 mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto">
+        <div className="w-full lg:w-[60%]">
           {/* Content */}
           <div className="animate-fade-in">
             <div className="mb-8">
