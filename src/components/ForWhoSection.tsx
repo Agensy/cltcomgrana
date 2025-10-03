@@ -12,7 +12,7 @@ const ForWhoSection = () => {
           <div className="animate-fade-in space-y-12">
             <div>
               <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
-                <span className="text-primary">Para quem é</span> o CLT com Grana
+                <span className="text-gradient-orange-glow">Para quem é</span> o CLT com Grana
               </h2>
 
               <ul className="space-y-1">
@@ -34,7 +34,7 @@ const ForWhoSection = () => {
 
             <div>
               <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
-                <span className="text-primary">Para quem NÃO é</span>
+                <span className="text-gradient-orange-glow">Para quem NÃO é</span>
               </h2>
 
               <ul className="space-y-1">
@@ -46,7 +46,7 @@ const ForWhoSection = () => {
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-3 text-lg">
                     <div className="w-5 h-5 flex-shrink-0 border-2 border-primary flex items-center justify-center rounded-sm">
-                      <X className="w-3 h-3 text-primary" strokeWidth={3} />
+                      <X className="w-3 h-3 icon-gradient-orange" strokeWidth={3} />
                     </div>
                     <span className="text-zinc-400">{item}</span>
                   </li>

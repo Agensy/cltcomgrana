@@ -11,7 +11,7 @@ const BenefitsSection = () => {
           {/* Content */}
           <div className="animate-fade-in">
             <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
-              O que você <span className="text-primary">realmente ganha</span><br />
+              O que você <span className="text-gradient-orange-glow">realmente ganha</span><br />
               com o CLT com Grana
             </h2>
 
@@ -31,7 +31,7 @@ const BenefitsSection = () => {
                 "Suporte direto para tirar suas dúvidas"
               ].map((item, index) => (
                 <li key={index} className="flex items-center gap-3 text-lg">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                  <Check className="w-5 h-5 icon-gradient-orange flex-shrink-0" />
                   <span className="text-zinc-400">{item}</span>
                 </li>
               ))}

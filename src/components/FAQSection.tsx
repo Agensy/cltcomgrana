@@ -51,7 +51,7 @@ const FAQSection = () => {
           {/* Content */}
           <div className="animate-fade-in">
             <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
-              <span className="text-primary">Perguntas frequentes</span>
+              <span className="text-gradient-orange-glow">Perguntas frequentes</span>
             </h2>
 
             <p className="mb-8 text-lg text-zinc-300">

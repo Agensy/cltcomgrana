@@ -42,8 +42,8 @@ const BonusSection = () => {
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5 }}
               >
-                <Gift className="w-5 h-5 text-primary" />
-                <span className="text-primary font-semibold">Bônus Exclusivos</span>
+                <Gift className="w-5 h-5 icon-gradient-orange" />
+                <span className="text-gradient-orange font-semibold">Bônus Exclusivos</span>
               </motion.div>
               <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
                 <span className="text-gradient-orange-glow">Bônus exclusivos</span> para quem<br />
@@ -67,7 +67,7 @@ const BonusSection = () => {
                   <div className="flex items-start gap-3">
                     <div className="flex-1">
                       <p className="text-base text-zinc-300 mb-2">{bonus.text}</p>
-                      <p className="text-sm font-semibold text-primary">Valor: {bonus.value}</p>
+                      <p className="text-sm font-semibold text-gradient-orange">Valor: {bonus.value}</p>
                     </div>
                     <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-1" />
                   </div>
@@ -82,7 +82,7 @@ const BonusSection = () => {
               transition={{ duration: 0.5, delay: 0.9 }}
             >
               <p className="text-lg text-zinc-300 mb-2">Valor total dos bônus:</p>
-              <p className="text-4xl md:text-5xl font-bold text-primary mb-3">
+              <p className="text-4xl md:text-5xl font-bold text-gradient-orange-glow mb-3">
                 R$ {inView && <CountUp end={totalValue} duration={2} separator="." />}
               </p>
               <p className="text-xl text-secondary font-semibold">

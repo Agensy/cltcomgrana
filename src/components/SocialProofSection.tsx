@@ -79,7 +79,7 @@ const SocialProofSection = () => {
                 >
                   <div className="flex gap-1 mb-4">
                     {[...Array(proof.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                      <Star key={i} className="w-5 h-5 fill-gradient-orange icon-gradient-orange" />
                     ))}
                   </div>
                   
@@ -87,7 +87,7 @@ const SocialProofSection = () => {
                     <p className="text-xl font-bold text-zinc-200">{proof.name}</p>
                     <p className="text-sm text-zinc-500">{proof.age} • {proof.job}</p>
                     <div className="mt-2 inline-flex items-center gap-2 bg-primary/10 rounded-full px-3 py-1">
-                      <span className="text-primary font-semibold text-sm">{proof.result}</span>
+                      <span className="text-gradient-orange font-semibold text-sm">{proof.result}</span>
                     </div>
                   </div>
                   

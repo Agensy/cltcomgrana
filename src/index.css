@@ -121,6 +121,17 @@ All colors MUST be HSL.
     filter: drop-shadow(0 0 20px rgba(235, 95, 46, 0.5)) drop-shadow(0 0 40px rgba(255, 140, 66, 0.3));
     position: relative;
   }
+  
+  /* Ícones com gradiente e glow */
+  .icon-gradient-orange {
+    color: #EB5F2E;
+    filter: drop-shadow(0 0 8px rgba(235, 95, 46, 0.4)) drop-shadow(0 0 15px rgba(255, 140, 66, 0.2));
+  }
+  
+  .fill-gradient-orange {
+    fill: #EB5F2E;
+    filter: drop-shadow(0 0 8px rgba(235, 95, 46, 0.4)) drop-shadow(0 0 15px rgba(255, 140, 66, 0.2));
+  }
 
   /* Animações personalizadas */
   .animate-fade-in {

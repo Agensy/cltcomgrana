@@ -38,11 +38,11 @@ const StorySection = () => {
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <p className="text-xl md:text-2xl font-bold text-primary mb-3">
+                <p className="text-xl md:text-2xl font-bold text-gradient-orange-glow mb-3">
                   Mas e se eu te mostrar que a I.A já faz 95% do trabalho por você?
                 </p>
                 <p className="text-lg text-zinc-300">
-                  Hoje, milhares de empreendedores precisam de sites, mas não têm R$ 3.000 a R$ 5.000 para pagar uma agência. Eles pagariam com prazer R$ 500 a R$ 1.500 por um site profissional — <span className="text-primary font-semibold">e você pode ser quem entrega isso.</span>
+                  Hoje, milhares de empreendedores precisam de sites, mas não têm R$ 3.000 a R$ 5.000 para pagar uma agência. Eles pagariam com prazer R$ 500 a R$ 1.500 por um site profissional — <span className="text-gradient-orange-glow font-semibold">e você pode ser quem entrega isso.</span>
                 </p>
               </motion.div>
 
@@ -59,7 +59,7 @@ const StorySection = () => {
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                   >
-                    <p className="text-3xl font-bold text-primary mb-2">
+                    <p className="text-3xl font-bold text-gradient-orange-glow mb-2">
                       {stat.prefix}
                       {inView && <CountUp end={stat.value} duration={2} />}
                       {stat.suffix}

@@ -27,7 +27,7 @@ const FinalOfferSection = () => {
             </p>
 
             <div className="bg-card/50 border border-primary/30 rounded-lg p-8 mb-8">
-              <p className="text-3xl md:text-4xl font-bold text-primary mb-4">
+              <p className="text-3xl md:text-4xl font-bold text-gradient-orange-glow mb-4">
                 De R$ 997 por apenas 12x de R$ 47,28
               </p>
               <p className="text-xl text-zinc-400 mb-6">
@@ -44,7 +44,7 @@ const FinalOfferSection = () => {
                   "Garantia incondicional de 7 dias"
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-3 text-base">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                    <Check className="w-5 h-5 icon-gradient-orange flex-shrink-0" />
                     <span className="text-zinc-400">{item}</span>
                   </li>
                 ))}
@@ -60,7 +60,7 @@ const FinalOfferSection = () => {
             </div>
 
             <div className="bg-primary/10 border border-primary/30 rounded-lg p-6">
-              <p className="text-xl font-bold text-primary mb-2">
+              <p className="text-xl font-bold text-gradient-orange-glow mb-2">
                 GARANTIA DE 7 DIAS
               </p>
               <p className="text-zinc-400">

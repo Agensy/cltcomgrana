@@ -11,7 +11,7 @@ const BeforeAfterSection = () => {
           {/* Content */}
           <div className="animate-fade-in">
             <h2 className="text-4xl md:text-5xl mb-4 leading-tight font-bold lg:text-5xl text-center">
-              <span className="text-primary">Antes</span> e <span className="text-primary">depois</span> do CLT com Grana
+              <span className="text-gradient-orange-glow">Antes</span> e <span className="text-gradient-orange-glow">depois</span> do CLT com Grana
             </h2>
             
             <p className="text-lg text-zinc-300 text-center mb-12">
@@ -76,7 +76,7 @@ const BeforeAfterSection = () => {
             </div>
 
             <div className="mt-8 text-center">
-              <p className="text-xl md:text-2xl font-bold text-primary">
+              <p className="text-xl md:text-2xl font-bold text-gradient-orange-glow">
                 Essa transformação pode começar hoje mesmo!
               </p>
             </div>

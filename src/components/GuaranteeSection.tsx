@@ -23,10 +23,10 @@ const GuaranteeSection = () => {
           <div className="animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
               Tudo isso por menos que o valor do seu{" "}
-              <span className="text-primary">primeiro cliente</span>
+              <span className="text-gradient-orange-glow">primeiro cliente</span>
             </h2>
 
-            <h3 className="text-2xl font-bold text-primary mb-6">
+            <h3 className="text-2xl font-bold text-gradient-orange mb-6">
               Você recebe:
             </h3>
 
@@ -38,7 +38,7 @@ const GuaranteeSection = () => {
                 "Suporte e comunidade ativa",
               ].map((item, index) => (
                 <li key={index} className="flex items-center gap-3 text-lg">
-                  <Check className="w-6 h-6 text-primary flex-shrink-0" />
+                  <Check className="w-6 h-6 icon-gradient-orange flex-shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -50,7 +50,7 @@ const GuaranteeSection = () => {
                 <div className="absolute inset-0 border-4 border-primary rounded-full" />
                 <div className="absolute inset-2 border-2 border-primary/50 rounded-full" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-6xl font-black text-primary animate-glow-pulse">
+                  <span className="text-6xl font-black text-gradient-orange-glow animate-glow-pulse">
                     7
                   </span>
                 </div>

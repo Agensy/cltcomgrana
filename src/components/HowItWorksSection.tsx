@@ -64,7 +64,7 @@ const HowItWorksSection = () => {
                   >
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-primary" />
+                        <Icon className="w-6 h-6 icon-gradient-orange" />
                       </div>
                       <span className="text-4xl font-bold text-primary/30">{item.step}</span>
                     </div>

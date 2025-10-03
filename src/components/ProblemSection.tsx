@@ -12,7 +12,7 @@ const ProblemSection = () => {
           <div className="animate-fade-in">
             <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
               Você trabalha duro, mas sente que o<br />
-              salário <span className="text-primary">nunca é suficiente?</span>
+              salário <span className="text-gradient-orange-glow">nunca é suficiente?</span>
             </h2>
 
             <p className="mb-8 text-lg text-zinc-300">
@@ -32,8 +32,8 @@ const ProblemSection = () => {
                 "Falta confiança para transformar conhecimento em renda"
               ].map((item, index) => (
                 <li key={index} className="flex items-center gap-3 text-lg">
-                  <div className="w-5 h-5 flex-shrink-0 border-2 border-primary flex items-center justify-center rounded-sm">
-                    <X className="w-3 h-3 text-primary" strokeWidth={3} />
+                    <div className="w-5 h-5 flex-shrink-0 border-2 border-primary flex items-center justify-center rounded-sm">
+                      <X className="w-3 h-3 icon-gradient-orange" strokeWidth={3} />
                   </div>
                   <span className="text-zinc-400">{item}</span>
                 </li>

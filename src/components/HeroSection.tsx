@@ -62,7 +62,7 @@ const HeroSection = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
                 >
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                  <Check className="w-5 h-5 icon-gradient-orange flex-shrink-0" />
                   <span className="text-zinc-400">{item}</span>
                 </motion.li>
               ))}

@@ -18,7 +18,7 @@ const SolutionSection = () => {
           {/* Content */}
           <div className="animate-fade-in">
             <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
-              Apresento o <span className="text-primary">CLT com Grana</span>:<br />
+              Apresento o <span className="text-gradient-orange-glow">CLT com Grana</span>:<br />
               Seu caminho para renda extra em 7 dias
             </h2>
 
@@ -36,7 +36,7 @@ const SolutionSection = () => {
                 "Primeiro pagamento em até 7 dias ou seu dinheiro de volta"
               ].map((item, index) => (
                 <li key={index} className="flex items-center gap-3 text-lg">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                  <Check className="w-5 h-5 icon-gradient-orange flex-shrink-0" />
                   <span className="text-zinc-400">{item}</span>
                 </li>
               ))}
