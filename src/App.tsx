@@ -18,7 +18,7 @@ const App = () => (
             <stop offset="0%" style={{ stopColor: '#EB5F2E', stopOpacity: 1 }} />
             <stop offset="30%" style={{ stopColor: '#FF8C42', stopOpacity: 1 }} />
             <stop offset="70%" style={{ stopColor: '#FFD93D', stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: '#FFFACD', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#FF9F4A', stopOpacity: 1 }} />
           </linearGradient>
         </defs>
       </svg>

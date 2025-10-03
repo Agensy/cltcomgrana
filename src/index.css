@@ -114,7 +114,7 @@ All colors MUST be HSL.
   }
   
   .text-gradient-orange-glow {
-    background: linear-gradient(135deg, #EB5F2E 0%, #FF8C42 30%, #FFD93D 70%, #FFFACD 100%);
+    background: linear-gradient(135deg, #EB5F2E 0%, #FF8C42 30%, #FFD93D 70%, #FF9F4A 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
