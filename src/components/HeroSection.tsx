@@ -37,7 +37,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <h1 className="text-4xl md:text-5xl mb-6 leading-tight lg:text-6xl font-bold">
+            <h1 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
               Crie e venda sites profissionais com{" "}
               <span className="text-primary">I.A em minutos</span>{" "}
               mesmo sem experiência e sem investimento
