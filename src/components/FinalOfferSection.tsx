@@ -55,13 +55,13 @@ const FinalOfferSection = () => {
               </GlowButton>
 
               <p className="text-sm text-zinc-500">
-                ⚠️ Apenas 50 vagas disponíveis neste lote
+                Apenas 50 vagas disponíveis neste lote
               </p>
             </div>
 
             <div className="bg-primary/10 border border-primary/30 rounded-lg p-6">
               <p className="text-xl font-bold text-primary mb-2">
-                🎯 GARANTIA DE 7 DIAS
+                GARANTIA DE 7 DIAS
               </p>
               <p className="text-zinc-400">
                 Se você não vender seu primeiro site em 7 dias seguindo o método,<br />

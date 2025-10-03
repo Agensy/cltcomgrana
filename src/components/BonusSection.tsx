@@ -2,13 +2,13 @@ import { Check, Gift } from "lucide-react";
 
 const BonusSection = () => {
   const bonuses = [
-    { icon: "📝", text: "Templates de propostas comerciais prontos para usar", value: "R$ 197" },
-    { icon: "💬", text: "Scripts de vendas testados e aprovados", value: "R$ 147" },
-    { icon: "🎯", text: "Lista com 50+ nichos lucrativos para prospectar", value: "R$ 97" },
-    { icon: "👥", text: "Grupo exclusivo de alunos no WhatsApp", value: "R$ 297" },
-    { icon: "📧", text: "Suporte direto via e-mail por 90 dias", value: "R$ 397" },
-    { icon: "🔄", text: "Atualizações gratuitas da ferramenta de I.A", value: "R$ 497" },
-    { icon: "🏆", text: "Certificado de conclusão digital", value: "R$ 67" }
+    { text: "Templates de propostas comerciais prontos para usar", value: "R$ 197" },
+    { text: "Scripts de vendas testados e aprovados", value: "R$ 147" },
+    { text: "Lista com 50+ nichos lucrativos para prospectar", value: "R$ 97" },
+    { text: "Grupo exclusivo de alunos no WhatsApp", value: "R$ 297" },
+    { text: "Suporte direto via e-mail por 90 dias", value: "R$ 397" },
+    { text: "Atualizações gratuitas da ferramenta de I.A", value: "R$ 497" },
+    { text: "Certificado de conclusão digital", value: "R$ 67" }
   ];
 
   const totalValue = bonuses.reduce((sum, bonus) => {
@@ -45,7 +45,6 @@ const BonusSection = () => {
                   className="bg-card/30 border border-border hover:border-primary/40 rounded-lg p-4 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,102,0,0.1)] group"
                 >
                   <div className="flex items-start gap-3">
-                    <span className="text-3xl flex-shrink-0 group-hover:scale-110 transition-transform">{bonus.icon}</span>
                     <div className="flex-1">
                       <p className="text-base text-zinc-300 mb-2">{bonus.text}</p>
                       <p className="text-sm font-semibold text-primary">Valor: {bonus.value}</p>
@@ -60,7 +59,7 @@ const BonusSection = () => {
               <p className="text-lg text-zinc-300 mb-2">Valor total dos bônus:</p>
               <p className="text-4xl md:text-5xl font-bold text-primary mb-3">R$ {totalValue.toLocaleString('pt-BR')}</p>
               <p className="text-xl text-secondary font-semibold">
-                🎁 Tudo isso GRÁTIS para você!
+                Tudo isso GRÁTIS para você!
               </p>
             </div>
           </div>

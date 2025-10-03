@@ -21,12 +21,12 @@ const BeforeAfterSection = () => {
             <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
               {/* Antes */}
               <div className="bg-card/20 border-2 border-destructive/30 rounded-lg p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center">
-                    <TrendingDown className="w-6 h-6 text-destructive" />
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center">
+                      <TrendingDown className="w-6 h-6 text-destructive" />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-zinc-200">Antes</h3>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-zinc-200">😔 Antes</h3>
-                </div>
                 <ul className="space-y-3">
                   {[
                     "Dependência total do salário CLT",
@@ -54,7 +54,7 @@ const BeforeAfterSection = () => {
                     <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
                       <TrendingUp className="w-6 h-6 text-secondary" />
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-zinc-200">🚀 Depois</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold text-zinc-200">Depois</h3>
                   </div>
                   <ul className="space-y-3">
                     {[
@@ -77,7 +77,7 @@ const BeforeAfterSection = () => {
 
             <div className="mt-8 text-center">
               <p className="text-xl md:text-2xl font-bold text-primary">
-                ⏰ Essa transformação pode começar hoje mesmo!
+                Essa transformação pode começar hoje mesmo!
               </p>
             </div>
           </div>

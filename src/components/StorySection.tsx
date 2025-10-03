@@ -16,12 +16,12 @@ const StorySection = () => {
 
             <div className="space-y-6 text-left md:text-center">
               <p className="text-lg text-zinc-300">
-                💭 Eu sei que parece distante. Talvez você pense: "Não sei programar. Não tenho tempo. Como vou competir com profissionais?"
+                Eu sei que parece distante. Talvez você pense: "Não sei programar. Não tenho tempo. Como vou competir com profissionais?"
               </p>
 
               <div className="bg-primary/10 border border-primary/30 rounded-lg p-6 md:p-8">
                 <p className="text-xl md:text-2xl font-bold text-primary mb-3">
-                  ✨ Mas e se eu te mostrar que a I.A já faz 95% do trabalho por você?
+                  Mas e se eu te mostrar que a I.A já faz 95% do trabalho por você?
                 </p>
                 <p className="text-lg text-zinc-300">
                   Hoje, milhares de empreendedores precisam de sites, mas não têm R$ 3.000 a R$ 5.000 para pagar uma agência. Eles pagariam com prazer R$ 500 a R$ 1.500 por um site profissional — <span className="text-primary font-semibold">e você pode ser quem entrega isso.</span>

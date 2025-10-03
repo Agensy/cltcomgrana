@@ -67,7 +67,7 @@ const SocialProofSection = () => {
                     <p className="text-xl font-bold text-zinc-200">{proof.name}</p>
                     <p className="text-sm text-zinc-500">{proof.age} • {proof.job}</p>
                     <div className="mt-2 inline-flex items-center gap-2 bg-primary/10 rounded-full px-3 py-1">
-                      <span className="text-primary font-semibold text-sm">💰 {proof.result}</span>
+                      <span className="text-primary font-semibold text-sm">{proof.result}</span>
                     </div>
                   </div>
                   
@@ -80,7 +80,7 @@ const SocialProofSection = () => {
 
             <div className="bg-secondary/10 border border-secondary/30 rounded-lg p-6 max-w-3xl mx-auto text-center">
               <p className="text-lg text-zinc-300 mb-2">
-                <span className="text-secondary font-bold">✨ Mais de 500 alunos</span> já transformaram suas vidas com o CLT com Grana
+                <span className="text-secondary font-bold">Mais de 500 alunos</span> já transformaram suas vidas com o CLT com Grana
               </p>
               <p className="text-sm text-zinc-500">
                 *Resultados podem variar de acordo com dedicação e aplicação do método

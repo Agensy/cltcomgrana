@@ -6,22 +6,19 @@ const HowItWorksSection = () => {
       icon: Lightbulb,
       step: "01",
       title: "Aprenda o método",
-      description: "Acesse o curso completo com aulas práticas e diretas. Sem enrolação, só o que você precisa para começar.",
-      emoji: "🎓"
+      description: "Acesse o curso completo com aulas práticas e diretas. Sem enrolação, só o que você precisa para começar."
     },
     {
       icon: Zap,
       step: "02",
       title: "Use a ferramenta de I.A",
-      description: "Nossa ferramenta exclusiva cria prompts perfeitos e gera sites profissionais em minutos. Você só precisa seguir o passo a passo.",
-      emoji: "⚡"
+      description: "Nossa ferramenta exclusiva cria prompts perfeitos e gera sites profissionais em minutos. Você só precisa seguir o passo a passo."
     },
     {
       icon: DollarSign,
       step: "03",
       title: "Venda e fature",
-      description: "Siga o método para conseguir clientes, entregue sites profissionais e receba de R$ 500 a R$ 2.000 por projeto.",
-      emoji: "💰"
+      description: "Siga o método para conseguir clientes, entregue sites profissionais e receba de R$ 500 a R$ 2.000 por projeto."
     }
   ];
 
@@ -57,8 +54,8 @@ const HowItWorksSection = () => {
                       </div>
                       <span className="text-4xl font-bold text-primary/30">{item.step}</span>
                     </div>
-                    <h3 className="text-2xl font-bold mb-3 text-zinc-200 flex items-center gap-2">
-                      {item.emoji} {item.title}
+                    <h3 className="text-2xl font-bold mb-3 text-zinc-200">
+                      {item.title}
                     </h3>
                     <p className="text-base text-zinc-400 leading-relaxed">{item.description}</p>
                   </div>
@@ -68,7 +65,7 @@ const HowItWorksSection = () => {
 
             <div className="mt-12 text-center bg-secondary/10 border border-secondary/30 rounded-lg p-6">
               <p className="text-lg text-zinc-300">
-                <span className="text-secondary font-bold">✅ Simples assim:</span> Aprende → Cria → Vende → Fatura
+                <span className="text-secondary font-bold">Simples assim:</span> Aprende → Cria → Vende → Fatura
               </p>
             </div>
           </div>
