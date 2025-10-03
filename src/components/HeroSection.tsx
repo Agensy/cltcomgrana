@@ -46,7 +46,7 @@ const HeroSection = () => {
             <ul className="space-y-2 mb-8">
               {["Ferramenta exclusiva de Ia", "Agentes de vendas", "Sites prontos em minutos", "Crie sem experiência", "Venda de R$ 500 a R$ 2.000 por projeto"].map((item, index) => <li key={index} className="flex items-center gap-3 text-lg">
                   <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span>{item}</span>
+                  <span className="text-zinc-300">{item}</span>
                 </li>)}
             </ul>
 
