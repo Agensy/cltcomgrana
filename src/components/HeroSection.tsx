@@ -22,19 +22,7 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="animate-fade-in">
-            {/* Profile Badge */}
-            <div className="flex items-center gap-3 mb-8">
-              <img src={logo} alt="CLT com Grana" className="w-16 h-16 rounded-full object-cover" />
-              <div>
-                <div className="flex items-center gap-1">
-                  <span className="font-semibold">cltcomgrana</span>
-                  <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
-                    <Check className="w-3 h-3" />
-                  </div>
-                </div>
-                <span className="text-sm text-muted-foreground">@cltcomgrana</span>
-              </div>
-            </div>
+            <img src={logo} alt="CLT com Grana" className="w-32 mb-8" />
 
             <h1 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
               Crie e venda sites profissionais com{" "}
