@@ -1,22 +1,20 @@
 import { Check } from "lucide-react";
 import GlowButton from "@/components/ui/GlowButton";
 import heroBackground from "@/assets/hero-background.jpg";
-
 const HeroSection = () => {
   const scrollToForm = () => {
-    document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("lead-form")?.scrollIntoView({
+      behavior: "smooth"
+    });
   };
-
-  return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+  return <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Grid Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
       
       {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-40"
-        style={{ backgroundImage: `url(${heroBackground})` }}
-      />
+      <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{
+      backgroundImage: `url(${heroBackground})`
+    }} />
       <div className="absolute inset-0 bg-gradient-overlay" />
 
       <div className="container relative z-10 mx-auto px-4 py-20">
@@ -39,25 +37,17 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl mb-6 leading-tight lg:text-6xl font-bold">
               Crie e venda sites profissionais com{" "}
               <span className="text-primary">I.A em minutos</span>{" "}
               mesmo sem experiência e sem investimento
             </h1>
 
             <ul className="space-y-3 mb-8">
-              {[
-                "Ferramenta exclusiva de Ia",
-                "Agentes de vendas",
-                "Sites prontos em minutos",
-                "Crie sem experiência",
-                "Venda de R$ 500 a R$ 2.000 por projeto",
-              ].map((item, index) => (
-                <li key={index} className="flex items-center gap-3 text-lg">
+              {["Ferramenta exclusiva de Ia", "Agentes de vendas", "Sites prontos em minutos", "Crie sem experiência", "Venda de R$ 500 a R$ 2.000 por projeto"].map((item, index) => <li key={index} className="flex items-center gap-3 text-lg">
                   <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   <span>{item}</span>
-                </li>
-              ))}
+                </li>)}
             </ul>
 
             <p className="text-xl mb-8 text-muted-foreground">
@@ -87,8 +77,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
