@@ -1,6 +1,13 @@
 import { Star, TrendingUp } from "lucide-react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import CountUp from "react-countup";
 
 const SocialProofSection = () => {
+  const { ref, inView } = useInView({
+    threshold: 0.2,
+    triggerOnce: true
+  });
   const testimonials = [
     {
       name: "Carlos Silva",
@@ -33,15 +40,24 @@ const SocialProofSection = () => {
       {/* Grid Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 
-      <div className="container relative z-10 mx-auto px-4 md:px-8 py-20">
+      <div className="container relative z-10 mx-auto px-4 md:px-8 py-20" ref={ref}>
         <div className="w-full">
           {/* Content */}
-          <div className="animate-fade-in">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-secondary/10 border border-secondary/30 rounded-full px-6 py-3 mb-4">
+              <motion.div 
+                className="inline-flex items-center gap-2 bg-secondary/10 border border-secondary/30 rounded-full px-6 py-3 mb-4"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5 }}
+              >
                 <TrendingUp className="w-5 h-5 text-secondary" />
                 <span className="text-secondary font-semibold">Resultados Reais</span>
-              </div>
+              </motion.div>
               <h2 className="text-4xl md:text-5xl mb-4 leading-tight font-bold lg:text-5xl">
                 Veja os <span className="text-primary">resultados reais</span><br />
                 dos nossos alunos
@@ -53,9 +69,13 @@ const SocialProofSection = () => {
 
             <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
               {testimonials.map((proof, index) => (
-                <div 
+                <motion.div 
                   key={index} 
                   className="bg-card/30 border border-border hover:border-primary/40 rounded-lg p-6 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,102,0,0.1)] group"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                  whileHover={{ scale: 1.03, y: -5 }}
                 >
                   <div className="flex gap-1 mb-4">
                     {[...Array(proof.rating)].map((_, i) => (
@@ -74,19 +94,24 @@ const SocialProofSection = () => {
                   <p className="text-zinc-400 italic leading-relaxed">
                     "{proof.testimonial}"
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
 
-            <div className="bg-secondary/10 border border-secondary/30 rounded-lg p-6 max-w-3xl mx-auto text-center">
+            <motion.div 
+              className="bg-secondary/10 border border-secondary/30 rounded-lg p-6 max-w-3xl mx-auto text-center"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
               <p className="text-lg text-zinc-300 mb-2">
-                <span className="text-secondary font-bold">Mais de 500 alunos</span> já transformaram suas vidas com o CLT com Grana
+                <span className="text-secondary font-bold">Mais de <CountUp end={500} duration={2} enableScrollSpy scrollSpyOnce /> alunos</span> já transformaram suas vidas com o CLT com Grana
               </p>
               <p className="text-sm text-zinc-500">
                 *Resultados podem variar de acordo com dedicação e aplicação do método
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

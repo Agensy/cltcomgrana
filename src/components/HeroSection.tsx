@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import GlowButton from "@/components/ui/GlowButton";
 import heroBackground from "@/assets/hero-background.webp";
 import logo from "@/assets/logo-clt-com-grana.webp";
+import { motion } from "framer-motion";
 const HeroSection = () => {
   const scrollToForm = () => {
     document.getElementById("lead-form")?.scrollIntoView({
@@ -20,32 +21,72 @@ const HeroSection = () => {
       <div className="container relative z-10 mx-auto px-8 py-20">
         <div className="w-full lg:w-[60%]">
           {/* Content */}
-          <div className="animate-fade-in">
-            <div className="mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <motion.div 
+              className="mb-8"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <img src={logo} alt="CLT com Grana" className="w-56" />
-            </div>
+            </motion.div>
 
-            <h1 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
+            <motion.h1 
+              className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               Crie e venda sites<br />
               profissionais com <span className="text-primary">I.A em<br />
               minutos</span> mesmo sem<br />
               experiência e sem<br />
               investimento
-            </h1>
+            </motion.h1>
 
-            <ul className="space-y-1 mb-8">
-              {["Ferramenta exclusiva de I.A", "Agentes de vendas", "Sites prontos em minutos", "Crie sem experiência", "Venda de R$ 500 a R$ 2.000 por projeto"].map((item, index) => <li key={index} className="flex items-center gap-3 text-lg">
+            <motion.ul 
+              className="space-y-1 mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              {["Ferramenta exclusiva de I.A", "Agentes de vendas", "Sites prontos em minutos", "Crie sem experiência", "Venda de R$ 500 a R$ 2.000 por projeto"].map((item, index) => (
+                <motion.li 
+                  key={index} 
+                  className="flex items-center gap-3 text-lg"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
+                >
                   <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="text-zinc-400">{item}</span>
-                </li>)}
-            </ul>
+                </motion.li>
+              ))}
+            </motion.ul>
 
-            <p className="mb-8 text-lg text-zinc-300">Seu primeiro site vendido em 07 dias ou seu dinheiro de volta.</p>
+            <motion.p 
+              className="mb-8 text-lg text-zinc-300"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1.1 }}
+            >
+              Seu primeiro site vendido em 07 dias ou seu dinheiro de volta.
+            </motion.p>
 
-            <GlowButton onClick={scrollToForm}>
-              GARANTIR MINHA VAGA AGORA
-            </GlowButton>
-          </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.3 }}
+            >
+              <GlowButton onClick={scrollToForm}>
+                GARANTIR MINHA VAGA AGORA
+              </GlowButton>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>;
