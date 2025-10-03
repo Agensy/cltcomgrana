@@ -16,7 +16,7 @@ const ProblemSection = () => {
             </h2>
 
             <p className="mb-8 text-lg text-zinc-300">
-              Milhares de brasileiros vivem com o medo constante de perder o emprego,<br />
+              Milhares de brasileiros vivem com o medo constante de perder o emprego,
               contas acumulando e a sensação de que nunca sobra nada no final do mês.
             </p>
 
