@@ -122,15 +122,15 @@ All colors MUST be HSL.
     position: relative;
   }
   
-  /* Ícones com gradiente e glow */
+  /* Ícones SVG com gradiente e glow */
   .icon-gradient-orange {
-    color: #EB5F2E;
-    filter: drop-shadow(0 0 8px rgba(235, 95, 46, 0.4)) drop-shadow(0 0 15px rgba(255, 140, 66, 0.2));
+    stroke: url(#orangeGradient);
+    filter: drop-shadow(0 0 8px rgba(235, 95, 46, 0.6)) drop-shadow(0 0 15px rgba(255, 140, 66, 0.4));
   }
   
   .fill-gradient-orange {
-    fill: #EB5F2E;
-    filter: drop-shadow(0 0 8px rgba(235, 95, 46, 0.4)) drop-shadow(0 0 15px rgba(255, 140, 66, 0.2));
+    fill: url(#orangeGradient);
+    filter: drop-shadow(0 0 8px rgba(235, 95, 46, 0.6)) drop-shadow(0 0 15px rgba(255, 140, 66, 0.4));
   }
 
   /* Animações personalizadas */
@@ -166,6 +166,13 @@ All colors MUST be HSL.
   .delay-400 {
     animation-delay: 400ms;
   }
+}
+
+/* Definição do gradiente SVG global */
+svg.gradient-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
 }
 
 @keyframes fadeIn {
