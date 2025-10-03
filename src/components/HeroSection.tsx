@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 import GlowButton from "@/components/ui/GlowButton";
-import heroBackground from "@/assets/hero-background.jpg";
+import heroBackground from "@/assets/hero-background.webp";
 import logo from "@/assets/logo-clt-com-grana.webp";
 const HeroSection = () => {
   const scrollToForm = () => {
@@ -13,10 +13,10 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
       
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{
+      <div className="absolute inset-0 bg-cover bg-center opacity-70" style={{
       backgroundImage: `url(${heroBackground})`
     }} />
-      <div className="absolute inset-0 bg-gradient-overlay" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-transparent" />
 
       <div className="container relative z-10 mx-auto px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
