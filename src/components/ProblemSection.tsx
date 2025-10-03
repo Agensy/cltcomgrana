@@ -11,7 +11,7 @@ const ProblemSection = () => {
           {/* Content */}
           <div className="animate-fade-in">
             <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
-              Você trabalha duro, mas sente que o<br />
+              Você trabalha duro, mas sente que o
               salário <span className="text-gradient-orange-glow">nunca é suficiente?</span>
             </h2>
 
