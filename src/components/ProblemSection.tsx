@@ -18,22 +18,20 @@ const ProblemSection = () => {
               contas acumulando e a sensação de que nunca sobra nada no final do mês.
             </p>
 
-            <p className="mb-12 text-gray-50 text-xl md:text-2xl font-semibold">
+            <p className="mb-12 text-gray-50 text-xl font-semibold md:text-2xl">
               O problema não é você. O problema é depender só do sistema CLT.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {["O salário não cobre todas as contas", "Você vive com medo de ser demitido", "Parece não ter tempo para aprender algo novo", "Falta confiança para transformar conhecimento em renda"].map((item, index) => (
-              <div key={index} className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/50 backdrop-blur-sm p-6 hover:border-primary/40 transition-all duration-300 hover:shadow-[0_0_20px_rgba(203,123,66,0.15)]">
+            {["O salário não cobre todas as contas", "Você vive com medo de ser demitido", "Parece não ter tempo para aprender algo novo", "Falta confiança para transformar conhecimento em renda"].map((item, index) => <div key={index} className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/50 backdrop-blur-sm p-6 hover:border-primary/40 transition-all duration-300 hover:shadow-[0_0_20px_rgba(203,123,66,0.15)]">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 flex-shrink-0 border-2 border-primary flex items-center justify-center rounded-lg bg-primary/10">
                     <X className="w-5 h-5 icon-gradient-orange" strokeWidth={3} />
                   </div>
                   <p className="text-zinc-300 font-medium leading-relaxed">{item}</p>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </div>
