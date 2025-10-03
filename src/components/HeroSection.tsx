@@ -19,8 +19,8 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-transparent" />
 
       <div className="container relative z-10 mx-auto px-4 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
+        <div className="max-w-4xl mx-auto">
+          {/* Content */}
           <div className="animate-fade-in">
             <div className="mb-8">
               <img src={logo} alt="CLT com Grana" className="w-56" />
@@ -44,23 +44,6 @@ const HeroSection = () => {
             <GlowButton onClick={scrollToForm}>
               GARANTIR MINHA VAGA AGORA
             </GlowButton>
-          </div>
-
-          {/* Right Content - Mock Transfer Notification */}
-          <div className="hidden lg:flex justify-center animate-float">
-            <div className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-6 shadow-card max-w-md">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <p className="text-sm text-muted-foreground mb-1">há 1 dia</p>
-                  <h3 className="font-bold text-xl">Transferência recebida</h3>
-                </div>
-              </div>
-              <p className="text-muted-foreground mb-2">
-                Você recebeu uma transferência de{" "}
-                <span className="font-bold text-secondary">R$2.500,00</span> de
-              </p>
-              <p className="font-semibold">MM GROUP</p>
-            </div>
           </div>
         </div>
       </div>

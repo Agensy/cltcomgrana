@@ -3,9 +3,9 @@
   overflow: hidden;
   border-radius: 999px;
   position: relative;
-  width: 100%;
+  width: fit-content;
   max-width: 400px;
-  margin: auto;
+  margin: 0;
   --animation-speed: 2s;
 }
 
@@ -143,6 +143,8 @@
   border-radius: 100px;
   box-shadow: 23.9px 19.78px 82.49px 0px #00000094;
   flex-wrap: nowrap;
+  overflow: hidden;
+  width: fit-content;
 }
 
 /* ===== Botão em si (texto) ===== */
@@ -169,6 +171,7 @@
     -2.08px 4.15px 38.22px 0px #0f0f0f,
     -5.2px -4px 12.3px -10.4px #ffe5bc57 inset;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 /* Pseudo-elemento para o fundo com zoom e opacidade */
