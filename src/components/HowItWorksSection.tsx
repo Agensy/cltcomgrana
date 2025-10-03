@@ -42,7 +42,7 @@ const HowItWorksSection = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl text-center">
-              Como funciona o <span className="text-primary">CLT com Grana</span><br />
+              Como funciona o <span className="text-gradient-orange-glow">CLT com Grana</span><br />
               em 3 passos simples
             </h2>
 

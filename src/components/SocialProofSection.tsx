@@ -59,7 +59,7 @@ const SocialProofSection = () => {
                 <span className="text-secondary font-semibold">Resultados Reais</span>
               </motion.div>
               <h2 className="text-4xl md:text-5xl mb-4 leading-tight font-bold lg:text-5xl">
-                Veja os <span className="text-primary">resultados reais</span><br />
+                Veja os <span className="text-gradient-orange-glow">resultados reais</span><br />
                 dos nossos alunos
               </h2>
               <p className="text-lg text-zinc-300 max-w-2xl mx-auto">

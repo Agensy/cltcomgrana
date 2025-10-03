@@ -46,7 +46,7 @@ const BonusSection = () => {
                 <span className="text-primary font-semibold">Bônus Exclusivos</span>
               </motion.div>
               <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
-                <span className="text-primary">Bônus exclusivos</span> para quem<br />
+                <span className="text-gradient-orange-glow">Bônus exclusivos</span> para quem<br />
                 começar agora
               </h2>
               <p className="text-lg text-zinc-300">

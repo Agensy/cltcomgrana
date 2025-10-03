@@ -18,7 +18,7 @@ const FinalOfferSection = () => {
           {/* Content */}
           <div className="animate-fade-in text-center">
             <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
-              Sua <span className="text-primary">última chance</span> de<br />
+              Sua <span className="text-gradient-orange-glow">última chance</span> de<br />
               garantir sua vaga
             </h2>
 

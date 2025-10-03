@@ -104,6 +104,24 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* Gradiente de texto laranja brilhante */
+  .text-gradient-orange {
+    background: linear-gradient(135deg, #FF8C42 0%, #FFD93D 50%, #FFF5E1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+  }
+  
+  .text-gradient-orange-glow {
+    background: linear-gradient(135deg, #EB5F2E 0%, #FF8C42 30%, #FFD93D 70%, #FFFACD 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(235, 95, 46, 0.5)) drop-shadow(0 0 40px rgba(255, 140, 66, 0.3));
+    position: relative;
+  }
+
   /* Animações personalizadas */
   .animate-fade-in {
     animation: fadeIn 600ms ease-out forwards;
