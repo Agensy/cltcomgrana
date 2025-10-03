@@ -42,7 +42,7 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               Crie e venda sites<br />
-              profissionais com <span className="text-gradient-orange-glow">I.A em<br />
+              profissionais com <span className="text-gradient-orange-glow">I.A em
               minutos</span> mesmo sem<br />
               experiência e sem<br />
               investimento
