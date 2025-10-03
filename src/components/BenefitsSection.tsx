@@ -1,6 +1,6 @@
-import { X } from "lucide-react";
+import { Check } from "lucide-react";
 
-const ProblemSection = () => {
+const BenefitsSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Grid Overlay */}
@@ -11,30 +11,27 @@ const ProblemSection = () => {
           {/* Content */}
           <div className="animate-fade-in">
             <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
-              Você trabalha duro, mas sente que o<br />
-              salário <span className="text-primary">nunca é suficiente?</span>
+              O que você <span className="text-primary">realmente ganha</span><br />
+              com o CLT com Grana
             </h2>
 
             <p className="mb-8 text-lg text-zinc-300">
-              Milhares de brasileiros vivem com o medo constante de perder o emprego,<br />
-              contas acumulando e a sensação de que nunca sobra nada no final do mês.
-            </p>
-
-            <p className="mb-8 text-lg text-zinc-400">
-              O problema não é você. O problema é depender só do sistema CLT.
+              Não é só sobre criar sites. É sobre transformar sua vida financeira.
             </p>
 
             <ul className="space-y-1">
               {[
-                "O salário não cobre todas as contas",
-                "Você vive com medo de ser demitido",
-                "Parece não ter tempo para aprender algo novo",
-                "Falta confiança para transformar conhecimento em renda"
+                "Renda extra de R$ 2.000 a R$ 5.000 por mês",
+                "Trabalhe de casa, no seu horário",
+                "Sem precisar programar ou entender de tecnologia",
+                "Sem gastar com anúncios ou redes sociais",
+                "Sem contratar equipe ou pagar designers",
+                "Sites entregues em minutos, não em semanas",
+                "Método validado por centenas de alunos",
+                "Suporte direto para tirar suas dúvidas"
               ].map((item, index) => (
                 <li key={index} className="flex items-center gap-3 text-lg">
-                  <div className="w-5 h-5 flex-shrink-0 border-2 border-primary flex items-center justify-center rounded-sm">
-                    <X className="w-3 h-3 text-primary" strokeWidth={3} />
-                  </div>
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="text-zinc-400">{item}</span>
                 </li>
               ))}
@@ -46,4 +43,4 @@ const ProblemSection = () => {
   );
 };
 
-export default ProblemSection;
+export default BenefitsSection;
