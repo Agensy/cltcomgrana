@@ -21,26 +21,39 @@ const HeroSection = () => {
       <div className="container relative z-10 mx-auto px-8 py-20">
         <div className="w-full lg:w-[60%]">
           {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <motion.div 
-              className="mb-8"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
+          <motion.div initial={{
+          opacity: 0,
+          y: 30
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.6,
+          ease: "easeOut"
+        }}>
+            <motion.div className="mb-8" initial={{
+            opacity: 0,
+            scale: 0.9
+          }} animate={{
+            opacity: 1,
+            scale: 1
+          }} transition={{
+            duration: 0.5,
+            delay: 0.2
+          }}>
               <img src={logo} alt="CLT com Grana" className="w-56" />
             </motion.div>
 
-            <motion.h1 
-              className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
+            <motion.h1 initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            duration: 0.5,
+            delay: 0.3
+          }} className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-6xl">
               Crie e venda sites<br />
               profissionais com <span className="text-gradient-orange-glow">I.A em
               minutos</span> mesmo sem<br />
@@ -48,40 +61,50 @@ const HeroSection = () => {
               investimento
             </motion.h1>
 
-            <motion.ul 
-              className="space-y-1 mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              {["Ferramenta exclusiva de I.A", "Agentes de vendas", "Sites prontos em minutos", "Crie sem experiência", "Venda de R$ 500 a R$ 2.000 por projeto"].map((item, index) => (
-                <motion.li 
-                  key={index} 
-                  className="flex items-center gap-3 text-lg"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
-                >
+            <motion.ul className="space-y-1 mb-8" initial={{
+            opacity: 0
+          }} animate={{
+            opacity: 1
+          }} transition={{
+            duration: 0.5,
+            delay: 0.5
+          }}>
+              {["Ferramenta exclusiva de I.A", "Agentes de vendas", "Sites prontos em minutos", "Crie sem experiência", "Venda de R$ 500 a R$ 2.000 por projeto"].map((item, index) => <motion.li key={index} className="flex items-center gap-3 text-lg" initial={{
+              opacity: 0,
+              x: -20
+            }} animate={{
+              opacity: 1,
+              x: 0
+            }} transition={{
+              duration: 0.3,
+              delay: 0.6 + index * 0.1
+            }}>
                   <Check className="w-5 h-5 icon-gradient-orange flex-shrink-0" />
                   <span className="text-zinc-400">{item}</span>
-                </motion.li>
-              ))}
+                </motion.li>)}
             </motion.ul>
 
-            <motion.p 
-              className="mb-8 text-lg text-zinc-300"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.1 }}
-            >
+            <motion.p className="mb-8 text-lg text-zinc-300" initial={{
+            opacity: 0
+          }} animate={{
+            opacity: 1
+          }} transition={{
+            duration: 0.5,
+            delay: 1.1
+          }}>
               Seu primeiro site vendido em 07 dias ou seu dinheiro de volta.
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.3 }}
-            >
+            <motion.div initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            duration: 0.5,
+            delay: 1.3
+          }}>
               <GlowButton onClick={scrollToForm}>
                 GARANTIR MINHA VAGA AGORA
               </GlowButton>
