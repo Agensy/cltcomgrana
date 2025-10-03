@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import GlowButton from "@/components/ui/GlowButton";
 import heroBackground from "@/assets/hero-background.jpg";
+import logo from "@/assets/logo-clt-com-grana.webp";
 const HeroSection = () => {
   const scrollToForm = () => {
     document.getElementById("lead-form")?.scrollIntoView({
@@ -22,10 +23,8 @@ const HeroSection = () => {
           {/* Left Content */}
           <div className="animate-fade-in">
             {/* Profile Badge */}
-            <div className="flex items-center gap-2 mb-8">
-              <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center font-bold text-sm">
-                CG
-              </div>
+            <div className="flex items-center gap-3 mb-8">
+              <img src={logo} alt="CLT com Grana" className="w-16 h-16 rounded-full object-cover" />
               <div>
                 <div className="flex items-center gap-1">
                   <span className="font-semibold">cltcomgrana</span>
