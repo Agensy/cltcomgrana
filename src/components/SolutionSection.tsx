@@ -3,6 +3,7 @@ import GlowButton from "@/components/ui/GlowButton";
 import solutionBg from "@/assets/solution-background.webp";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import CountUp from "react-countup";
 
 const SolutionSection = () => {
   const { ref, inView } = useInView({
@@ -71,10 +72,60 @@ const SolutionSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
+            className="text-center"
           >
-            <h2 className="text-4xl md:text-5xl mb-16 leading-tight font-bold lg:text-5xl text-center">
-              COMO FUNCIONA O <span className="text-gradient-orange-glow">CLT COM GRANA</span>
+            {/* Header Section */}
+            <h2 className="text-4xl md:text-5xl mb-8 leading-tight font-bold lg:text-5xl text-white">
+              E se você pudesse <span className="text-gradient-orange-glow px-3 py-1 rounded">faturar de R$ 500 a R$ 2.000</span> vendendo sites, mesmo sem experiência?
             </h2>
+
+            <div className="space-y-6 text-left md:text-center mb-16">
+              <p className="text-lg text-zinc-300">
+                Eu sei que parece distante. Talvez você pense: "Não sei programar. Não tenho tempo. Como vou competir com profissionais?"
+              </p>
+
+              <motion.div 
+                className="bg-gradient-to-br from-zinc-900 to-zinc-800 border border-primary/30 rounded-lg p-6 md:p-8 shadow-lg max-w-3xl mx-auto"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <p className="text-xl md:text-2xl font-bold text-gradient-orange-glow mb-3">
+                  Mas e se eu te mostrar que a I.A já faz 95% do trabalho por você?
+                </p>
+                <p className="text-lg text-zinc-200">
+                  Hoje, milhares de empreendedores precisam de sites, mas não têm R$ 3.000 a R$ 5.000 para pagar uma agência. Eles pagariam com prazer R$ 500 a R$ 1.500 por um site profissional — <span className="text-gradient-orange-glow font-semibold">e você pode ser quem entrega isso.</span>
+                </p>
+              </motion.div>
+
+              <div className="grid sm:grid-cols-3 gap-4 mt-8 max-w-3xl mx-auto">
+                {[
+                  { value: 95, suffix: "%", label: "do trabalho feito pela I.A" },
+                  { value: 500, prefix: "R$ ", suffix: "-2k", label: "por projeto vendido" },
+                  { value: 7, suffix: " dias", label: "para primeiro resultado" }
+                ].map((stat, index) => (
+                  <motion.div 
+                    key={index}
+                    className="bg-gradient-to-br from-zinc-900 to-zinc-800 border border-primary/30 rounded-lg p-4 text-center shadow-lg hover:shadow-xl transition-shadow"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                  >
+                    <p className="text-3xl font-bold text-gradient-orange-glow mb-2">
+                      {stat.prefix}
+                      {inView && <CountUp end={stat.value} duration={2} />}
+                      {stat.suffix}
+                    </p>
+                    <p className="text-sm text-zinc-300">{stat.label}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* How It Works Section */}
+            <h3 className="text-3xl md:text-4xl mb-12 leading-tight font-bold text-center">
+              Como funciona o <span className="text-gradient-orange-glow">CLT com Grana</span>
+            </h3>
 
             {/* Steps */}
             <div className="space-y-8 max-w-3xl mx-auto">
