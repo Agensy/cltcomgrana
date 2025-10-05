@@ -21,7 +21,7 @@ const GuaranteeSection = () => {
 
           {/* Right - Content */}
           <div className="animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-black mb-6 leading-tight">
               Tudo isso por menos que o valor do seu{" "}
               <span className="text-gradient-orange-glow">primeiro cliente</span>
             </h2>

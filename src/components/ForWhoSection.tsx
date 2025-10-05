@@ -36,7 +36,7 @@ const ForWhoSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl mb-4 leading-tight font-bold lg:text-6xl">
+          <h2 className="text-4xl md:text-5xl lg:text-5xl mb-4 leading-tight font-bold">
             Descubra se o <span className="text-gradient-orange-glow">CLT com Grana</span> é para você
           </h2>
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto">

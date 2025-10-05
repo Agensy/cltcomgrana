@@ -33,7 +33,7 @@ const ProblemSection = () => {
         <div className="w-full max-w-6xl mx-auto">
           {/* Content */}
           <div className="animate-fade-in text-center mb-16">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight font-bold">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl mb-6 leading-tight font-bold">
               Você trabalha duro, mas sente que o
               salário <span className="text-gradient-orange-glow">nunca é suficiente?</span>
             </h2>

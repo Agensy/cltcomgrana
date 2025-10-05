@@ -28,7 +28,7 @@ const SolutionSection = () => {
         <div className="w-full max-w-4xl mx-auto text-center">
           {/* Content */}
           <div className="animate-fade-in">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight font-bold">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl mb-8 leading-tight font-bold">
               Apresento o <span className="text-gradient-orange-glow">CLT com Grana</span>
             </h2>
             
