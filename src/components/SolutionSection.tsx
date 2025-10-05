@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 import GlowButton from "@/components/ui/GlowButton";
-import solutionBg from "@/assets/solution-background.jpg";
+import solutionBg from "@/assets/solution-background.webp";
 
 const SolutionSection = () => {
   const scrollToForm = () => {
