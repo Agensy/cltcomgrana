@@ -3,24 +3,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-
 const LeadForm = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    phone: ""
   });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!formData.name || !formData.email || !formData.phone) {
       toast({
         title: "Erro",
         description: "Por favor, preencha todos os campos.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
@@ -28,17 +28,19 @@ const LeadForm = () => {
     // Success message
     toast({
       title: "Sucesso!",
-      description: "Seus dados foram enviados. Em breve entraremos em contato!",
+      description: "Seus dados foram enviados. Em breve entraremos em contato!"
     });
 
     // Reset form
-    setFormData({ name: "", email: "", phone: "" });
+    setFormData({
+      name: "",
+      email: "",
+      phone: ""
+    });
   };
-
-  return (
-    <section id="lead-form" className="relative overflow-hidden">
+  return <section id="lead-form" className="relative overflow-hidden">
       {/* Glowing Background */}
-      <div className="absolute inset-0 bg-gradient-radial from-secondary/10 via-transparent to-transparent" />
+      
       
       <div className="container relative z-10 mx-auto px-4 md:px-8 py-8 md:py-[75px] max-w-xl">
         <div className="bg-card/80 backdrop-blur-xl border border-border rounded-3xl p-8 md:p-12 shadow-glow-green">
@@ -54,32 +56,20 @@ const LeadForm = () => {
               <Label htmlFor="name" className="text-sm font-medium">
                 Nome Completo
               </Label>
-              <Input
-                id="name"
-                type="text"
-                placeholder="Thiago Finch"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-                className="h-12 bg-input/50 border-border focus:border-primary transition-colors"
-              />
+              <Input id="name" type="text" placeholder="Thiago Finch" value={formData.name} onChange={e => setFormData({
+              ...formData,
+              name: e.target.value
+            })} className="h-12 bg-input/50 border-border focus:border-primary transition-colors" />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium">
                 Seu melhor e-mail
               </Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="exemplo@gmail.com"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                className="h-12 bg-input/50 border-border focus:border-primary transition-colors"
-              />
+              <Input id="email" type="email" placeholder="exemplo@gmail.com" value={formData.email} onChange={e => setFormData({
+              ...formData,
+              email: e.target.value
+            })} className="h-12 bg-input/50 border-border focus:border-primary transition-colors" />
             </div>
 
             <div className="space-y-2">
@@ -91,32 +81,19 @@ const LeadForm = () => {
                   <span className="text-xl">🇧🇷</span>
                   <span className="text-sm font-medium">+55</span>
                 </div>
-                <Input
-                  id="phone"
-                  type="tel"
-                  placeholder="(11) 9 9999-0123"
-                  value={formData.phone}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
-                  }
-                  className="flex-1 h-12 bg-input/50 border-border focus:border-primary transition-colors"
-                />
+                <Input id="phone" type="tel" placeholder="(11) 9 9999-0123" value={formData.phone} onChange={e => setFormData({
+                ...formData,
+                phone: e.target.value
+              })} className="flex-1 h-12 bg-input/50 border-border focus:border-primary transition-colors" />
               </div>
             </div>
 
-            <Button
-              type="submit"
-              variant="secondary"
-              size="lg"
-              className="w-full uppercase font-bold text-base"
-            >
+            <Button type="submit" variant="secondary" size="lg" className="w-full uppercase font-bold text-base">
               COMPRAR ACESSO EXCLUSIVO AO FURION
             </Button>
           </form>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default LeadForm;
