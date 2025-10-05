@@ -26,11 +26,11 @@ const Index = () => {
         <HowItWorksSection />
         <BeforeAfterSection />
         <BonusSection />
+        <FinalOfferSection />
         <BenefitsSection />
         <FAQSection />
         <GuaranteeSection />
         <SocialProofSection />
-        <FinalOfferSection />
         <LeadForm />
       </BackgroundWrapper>
     </main>
