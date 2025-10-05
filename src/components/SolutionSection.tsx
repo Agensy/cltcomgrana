@@ -21,32 +21,36 @@ const SolutionSection = () => {
     {
       icon: Briefcase,
       number: "01",
-      title: "As empresas precisam de site. Agora.",
-      description: "Tem loja, salão, oficina, clínica... tudo sem site.\nElas estão perdendo cliente por isso."
+      title: "Identifique empresas sem site na sua região",
+      description: "Lojas, salões, oficinas, clínicas... milhares de negócios ainda não têm presença online e estão perdendo clientes todos os dias para a concorrência.",
+      connector: "Depois de identificar quem precisa..."
     },
     {
       icon: Sparkles,
       number: "02",
-      title: "Você aprende a montar o site em minutos.",
-      description: "A ferramenta já faz tudo.\nVocê só escreve o que quer e ela monta."
+      title: "Crie sites profissionais em minutos com I.A",
+      description: "Não precisa programar nada. Você conversa com a ferramenta, descreve o que o cliente precisa, e a I.A monta o site completo automaticamente.",
+      connector: "Com o site pronto..."
     },
     {
       icon: List,
       number: "03",
-      title: "Você só precisa seguir o passo a passo.",
-      description: "Se você sabe mexer no WhatsApp, você já consegue fazer isso."
+      title: "Personalize seguindo nosso método simples",
+      description: "Se você sabe usar WhatsApp, consegue fazer isso. Nosso passo a passo mostra exatamente como ajustar cores, textos e imagens para cada cliente.",
+      connector: "Agora é hora de apresentar..."
     },
     {
       icon: DollarSign,
       number: "04",
-      title: "Entrega o site e recebe pelo Pix.",
-      description: "Clientes pagam de R$500 a R$2.000 por site feito.\nVocê pode fazer em casa, no seu tempo livre."
+      title: "Venda e receba de R$500 a R$2.000 por projeto",
+      description: "Apresente o site pronto, feche o negócio e receba pelo Pix. Trabalhe no seu ritmo, de casa, e escolha quantos projetos quer fazer por mês.",
+      connector: "E se não funcionar?"
     },
     {
       icon: Shield,
       number: "05",
-      title: "Se não vender seu primeiro site em 7 dias, devolvemos seu dinheiro.",
-      description: "Simples assim. Sem enrolação."
+      title: "Garantia de 7 dias ou seu dinheiro de volta",
+      description: "Se você seguir o método e não conseguir vender seu primeiro site em 7 dias, devolvemos 100% do seu investimento. Sem perguntas, sem burocracia."
     }
   ];
 
@@ -128,44 +132,69 @@ const SolutionSection = () => {
             </h3>
 
             {/* Steps */}
-            <div className="space-y-8 max-w-3xl mx-auto">
+            <div className="space-y-6 max-w-4xl mx-auto">
               {steps.map((step, index) => {
                 const Icon = step.icon;
                 const isLast = index === steps.length - 1;
                 
                 return (
                   <div key={index} className="relative">
-                    {/* Connector Line */}
+                    {/* Connector Line with Animation */}
                     {!isLast && (
-                      <div className="absolute left-6 top-20 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 to-primary/10 translate-y-2" />
+                      <div className="absolute left-8 md:left-10 top-[88px] h-[calc(100%-40px)] w-px overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/50 to-transparent" />
+                        <motion.div 
+                          className="absolute inset-0 bg-gradient-to-b from-transparent via-primary to-transparent h-20"
+                          animate={{ y: [0, 60, 0] }}
+                          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                      </div>
                     )}
                     
                     <motion.div
-                      className="relative bg-card/40 border border-border hover:border-primary/50 rounded-xl p-6 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,102,0,0.15)] cursor-pointer"
+                      className="relative bg-gradient-to-br from-zinc-900/90 to-zinc-800/50 border border-primary/20 hover:border-primary/50 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,102,0,0.2)] group backdrop-blur-sm"
                       initial={{ opacity: 0, x: -30 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                      whileHover={{ scale: 1.02, x: 10 }}
+                      whileHover={{ scale: 1.02, x: 8 }}
                     >
-                      <div className="flex gap-6">
-                        {/* Icon Circle */}
+                      {/* Glow effect on hover */}
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      
+                      <div className="relative flex gap-5 md:gap-6">
+                        {/* Icon Circle with Pulse */}
                         <div className="flex-shrink-0">
-                          <div className="w-12 h-12 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center">
-                            <Icon className="w-6 h-6 icon-gradient-orange" />
+                          <div className="relative w-16 h-16 md:w-20 md:h-20">
+                            <div className="absolute inset-0 rounded-full bg-primary/20 blur-xl group-hover:bg-primary/30 transition-all duration-500" />
+                            <div className="relative w-full h-full rounded-full bg-gradient-to-br from-primary/20 to-primary/10 border-2 border-primary/40 flex items-center justify-center group-hover:border-primary/60 transition-all duration-500">
+                              <Icon className="w-7 h-7 md:w-9 md:h-9 icon-gradient-orange group-hover:scale-110 transition-transform duration-500" />
+                            </div>
                           </div>
                         </div>
 
                         {/* Content */}
                         <div className="flex-1 pt-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className="text-sm font-bold text-primary">{step.number}</span>
-                            <h3 className="text-xl md:text-2xl font-bold text-zinc-100">
-                              {step.title}
-                            </h3>
+                          <div className="flex items-start gap-3 mb-3">
+                            <span className="text-xs md:text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/30">
+                              PASSO {step.number}
+                            </span>
                           </div>
-                          <p className="text-base text-zinc-400 leading-relaxed whitespace-pre-line">
+                          <h3 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight group-hover:text-gradient-orange-glow transition-all duration-300">
+                            {step.title}
+                          </h3>
+                          <p className="text-base md:text-lg text-zinc-300 leading-relaxed mb-4">
                             {step.description}
                           </p>
+                          
+                          {/* Connector Text */}
+                          {!isLast && step.connector && (
+                            <div className="flex items-center gap-2 mt-5 pt-4 border-t border-primary/10">
+                              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                              <p className="text-sm text-primary/80 font-medium italic">
+                                {step.connector}
+                              </p>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </motion.div>
