@@ -33,7 +33,7 @@ const StorySection = () => {
               </p>
 
               <motion.div 
-                className="bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/30 rounded-lg p-6 md:p-8 shadow-lg"
+                className="bg-gradient-to-br from-zinc-900 to-zinc-800 border border-primary/30 rounded-lg p-6 md:p-8 shadow-lg"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -41,7 +41,7 @@ const StorySection = () => {
                 <p className="text-xl md:text-2xl font-bold text-gradient-orange-glow mb-3">
                   Mas e se eu te mostrar que a I.A já faz 95% do trabalho por você?
                 </p>
-                <p className="text-lg text-zinc-700">
+                <p className="text-lg text-zinc-200">
                   Hoje, milhares de empreendedores precisam de sites, mas não têm R$ 3.000 a R$ 5.000 para pagar uma agência. Eles pagariam com prazer R$ 500 a R$ 1.500 por um site profissional — <span className="text-gradient-orange-glow font-semibold">e você pode ser quem entrega isso.</span>
                 </p>
               </motion.div>
