@@ -32,30 +32,30 @@ const ProblemSection = () => {
       <div className="container relative z-10 mx-auto px-4 md:px-8 py-20">
         <div className="w-full max-w-6xl mx-auto">
           {/* Content */}
-          <div className="animate-fade-in text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight font-bold">
+          <div className="animate-fade-in text-center mb-16">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight font-bold">
               Você trabalha duro, mas sente que o
               salário <span className="text-gradient-orange-glow">nunca é suficiente?</span>
             </h2>
 
-            <p className="text-lg md:text-xl text-zinc-300 max-w-4xl mx-auto">
+            <p className="mb-6 text-lg md:text-xl text-zinc-300 max-w-4xl mx-auto">
               Milhares de brasileiros vivem com o medo constante de perder o emprego,
               contas acumulando e a sensação de que nunca sobra nada no final do mês.
             </p>
 
-            <p className="text-gray-50 text-xl font-semibold md:text-2xl">
+            <p className="mb-3 text-gray-50 text-xl font-semibold md:text-2xl">
               O problema não é você. O problema é depender só do sistema CLT.
             </p>
           </div>
 
           {/* Problem Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 max-w-5xl mx-auto">
             {problems.map((problem, index) => {
               const Icon = problem.icon;
               return (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-card/60 to-card/40 backdrop-blur-sm border border-primary/20 rounded-xl p-6 hover:border-primary/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(203,123,66,0.15)] animate-fade-in"
+                  className="group relative bg-gradient-to-br from-card/60 to-card/40 backdrop-blur-sm border border-primary/20 rounded-xl p-6 hover:border-primary/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(203,123,66,0.15)] animate-fade-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="flex items-start gap-4">
@@ -63,7 +63,7 @@ const ProblemSection = () => {
                       <Icon className="w-6 h-6 icon-gradient-orange" strokeWidth={2} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-bold text-gray-50 group-hover:text-gradient-orange-glow transition-all duration-300">
+                      <h3 className="text-lg font-bold text-gray-50 mb-2 group-hover:text-gradient-orange-glow transition-all duration-300">
                         {problem.title}
                       </h3>
                       <p className="text-zinc-300 text-sm leading-relaxed">

@@ -3,11 +3,11 @@ import guaranteeVisual from "@/assets/guarantee-visual.jpg";
 
 const GuaranteeSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative py-20 overflow-hidden">
       {/* Grid Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.05)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.05)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       
-      <div className="container relative z-10 mx-auto px-4 md:px-8 py-20">
+      <div className="container relative z-10 mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Image */}
           <div className="relative animate-fade-in">
@@ -21,16 +21,16 @@ const GuaranteeSection = () => {
 
           {/* Right - Content */}
           <div className="animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-black leading-tight">
+            <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
               Tudo isso por menos que o valor do seu{" "}
               <span className="text-gradient-orange-glow">primeiro cliente</span>
             </h2>
 
-            <h3 className="text-2xl font-bold text-gradient-orange">
+            <h3 className="text-2xl font-bold text-gradient-orange mb-6">
               Você recebe:
             </h3>
 
-            <ul className="space-y-4">
+            <ul className="space-y-4 mb-10">
               {[
                 "Curso completo passo a passo",
                 "Scripts de vendas prontos",
@@ -45,8 +45,8 @@ const GuaranteeSection = () => {
             </ul>
 
             {/* Guarantee Badge */}
-            <div className="flex flex-col items-center justify-center bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-8">
-              <div className="relative w-32 h-32">
+            <div className="flex flex-col items-center justify-center bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-8 mb-6">
+              <div className="relative w-32 h-32 mb-4">
                 <div className="absolute inset-0 border-4 border-primary rounded-full" />
                 <div className="absolute inset-2 border-2 border-primary/50 rounded-full" />
                 <div className="absolute inset-0 flex items-center justify-center">

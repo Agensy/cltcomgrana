@@ -34,9 +34,9 @@ const ForWhoSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl leading-tight font-bold lg:text-6xl">
+          <h2 className="text-4xl md:text-5xl mb-4 leading-tight font-bold lg:text-6xl">
             Descubra se o <span className="text-gradient-orange-glow">CLT com Grana</span> é para você
           </h2>
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
@@ -52,7 +52,7 @@ const ForWhoSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-gradient-to-br from-primary/10 to-secondary/5 border-2 border-primary/30 rounded-xl p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,102,0,0.2)]"
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
                 <Check className="w-6 h-6 icon-gradient-orange" strokeWidth={3} />
               </div>
@@ -84,7 +84,7 @@ const ForWhoSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 border-2 border-zinc-700/50 rounded-xl p-8 hover:border-zinc-600/50 transition-all duration-300"
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-full bg-zinc-700/30 flex items-center justify-center">
                 <X className="w-6 h-6 text-zinc-400" strokeWidth={3} />
               </div>
@@ -116,7 +116,7 @@ const ForWhoSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center"
+          className="mt-12 text-center"
         >
           <p className="text-lg text-zinc-300 max-w-3xl mx-auto bg-secondary/10 border border-secondary/30 rounded-lg p-6">
             <span className="text-secondary font-bold">Se você se encaixa no lado esquerdo,</span> o CLT com Grana foi feito para você. É hora de transformar sua vida financeira.

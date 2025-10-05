@@ -10,18 +10,18 @@ const BeforeAfterSection = () => {
         <div className="w-full">
           {/* Content */}
           <div className="animate-fade-in">
-            <h2 className="text-4xl md:text-5xl leading-tight font-bold lg:text-5xl text-center">
+            <h2 className="text-4xl md:text-5xl mb-4 leading-tight font-bold lg:text-5xl text-center">
               <span className="text-gradient-orange-glow">Antes</span> e <span className="text-gradient-orange-glow">depois</span> do CLT com Grana
             </h2>
             
-            <p className="text-lg text-zinc-300 text-center">
+            <p className="text-lg text-zinc-300 text-center mb-12">
               Veja a transformação que milhares de pessoas já viveram
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
               {/* Antes */}
               <div className="bg-card/20 border-2 border-destructive/30 rounded-lg p-6 md:p-8">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 mb-6">
                     <div className="w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center">
                       <TrendingDown className="w-6 h-6 text-destructive" />
                     </div>
@@ -50,7 +50,7 @@ const BeforeAfterSection = () => {
               <div className="bg-card/20 border-2 border-secondary/50 rounded-lg p-6 md:p-8 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl"></div>
                 <div className="relative">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 mb-6">
                     <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
                       <TrendingUp className="w-6 h-6 text-secondary" />
                     </div>
@@ -75,7 +75,7 @@ const BeforeAfterSection = () => {
               </div>
             </div>
 
-            <div className="text-center">
+            <div className="mt-8 text-center">
               <p className="text-xl md:text-2xl font-bold text-gradient-orange-glow">
                 Essa transformação pode começar hoje mesmo!
               </p>

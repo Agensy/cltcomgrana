@@ -36,16 +36,16 @@ const LeadForm = () => {
   };
 
   return (
-    <section id="lead-form" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Grid Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+    <section id="lead-form" className="relative py-20 overflow-hidden">
+      {/* Glowing Background */}
+      <div className="absolute inset-0 bg-gradient-radial from-secondary/10 via-transparent to-transparent" />
       
-      <div className="container relative z-10 mx-auto px-4 md:px-8 py-20 max-w-xl">
+      <div className="container relative z-10 mx-auto px-4 max-w-xl">
         <div className="bg-card/80 backdrop-blur-xl border border-border rounded-3xl p-8 md:p-12 shadow-glow-green">
-          <h2 className="text-2xl md:text-3xl font-bold text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
             Preencha o formulário abaixo
           </h2>
-          <p className="text-center text-muted-foreground">
+          <p className="text-center text-muted-foreground mb-8">
             Garanta seu acesso exclusivo ao FURION
           </p>
 
