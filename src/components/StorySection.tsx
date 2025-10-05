@@ -9,7 +9,7 @@ const StorySection = () => {
     triggerOnce: true
   });
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 

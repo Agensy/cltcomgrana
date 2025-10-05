@@ -10,7 +10,7 @@ const SolutionSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img 
