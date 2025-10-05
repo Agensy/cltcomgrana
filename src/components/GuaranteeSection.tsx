@@ -21,16 +21,16 @@ const GuaranteeSection = () => {
 
           {/* Right - Content */}
           <div className="animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-black leading-tight">
               Tudo isso por menos que o valor do seu{" "}
               <span className="text-gradient-orange-glow">primeiro cliente</span>
             </h2>
 
-            <h3 className="text-2xl font-bold text-gradient-orange mb-6">
+            <h3 className="text-2xl font-bold text-gradient-orange">
               Você recebe:
             </h3>
 
-            <ul className="space-y-4 mb-10">
+            <ul className="space-y-4">
               {[
                 "Curso completo passo a passo",
                 "Scripts de vendas prontos",
@@ -45,8 +45,8 @@ const GuaranteeSection = () => {
             </ul>
 
             {/* Guarantee Badge */}
-            <div className="flex flex-col items-center justify-center bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-8 mb-6">
-              <div className="relative w-32 h-32 mb-4">
+            <div className="flex flex-col items-center justify-center bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-8">
+              <div className="relative w-32 h-32">
                 <div className="absolute inset-0 border-4 border-primary rounded-full" />
                 <div className="absolute inset-2 border-2 border-primary/50 rounded-full" />
                 <div className="absolute inset-0 flex items-center justify-center">

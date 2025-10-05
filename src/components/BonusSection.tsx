@@ -35,9 +35,9 @@ const BonusSection = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center mb-12">
+            <div className="text-center">
               <motion.div 
-                className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-6 py-3 mb-4"
+                className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-6 py-3"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5 }}
@@ -45,7 +45,7 @@ const BonusSection = () => {
                 <Gift className="w-5 h-5 icon-gradient-orange" />
                 <span className="text-gradient-orange font-semibold">Bônus Exclusivos</span>
               </motion.div>
-              <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
+              <h2 className="text-4xl md:text-5xl leading-tight font-bold lg:text-5xl">
                 <span className="text-gradient-orange-glow">Bônus exclusivos</span> para quem<br />
                 começar agora
               </h2>
@@ -54,7 +54,7 @@ const BonusSection = () => {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4 mb-8">
+            <div className="grid sm:grid-cols-2 gap-4">
               {bonuses.map((bonus, index) => (
                 <motion.div 
                   key={index} 
@@ -66,7 +66,7 @@ const BonusSection = () => {
                 >
                   <div className="flex items-start gap-3">
                     <div className="flex-1">
-                      <p className="text-base text-zinc-300 mb-2">{bonus.text}</p>
+                      <p className="text-base text-zinc-300">{ bonus.text}</p>
                       <p className="text-sm font-semibold text-gradient-orange">Valor: {bonus.value}</p>
                     </div>
                     <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-1" />
@@ -81,8 +81,8 @@ const BonusSection = () => {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.9 }}
             >
-              <p className="text-lg text-zinc-300 mb-2">Valor total dos bônus:</p>
-              <p className="text-4xl md:text-5xl font-bold text-gradient-orange-glow mb-3">
+              <p className="text-lg text-zinc-300">Valor total dos bônus:</p>
+              <p className="text-4xl md:text-5xl font-bold text-gradient-orange-glow">
                 R$ {inView && <CountUp end={totalValue} duration={2} separator="." />}
               </p>
               <p className="text-xl text-secondary font-semibold">

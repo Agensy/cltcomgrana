@@ -28,20 +28,20 @@ const SolutionSection = () => {
         <div className="w-full max-w-4xl mx-auto text-center">
           {/* Content */}
           <div className="animate-fade-in">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight font-bold">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight font-bold">
               Apresento o <span className="text-gradient-orange-glow">CLT com Grana</span>
             </h2>
             
-            <p className="text-2xl md:text-3xl font-semibold mb-6 text-gray-100">
+            <p className="text-2xl md:text-3xl font-semibold text-gray-100">
               Seu caminho para renda extra em 7 dias
             </p>
 
-            <p className="mb-10 text-lg md:text-xl text-zinc-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-zinc-300 max-w-3xl mx-auto leading-relaxed">
               Um curso prático aliado a uma ferramenta exclusiva de I.A que cria sites
               profissionais em minutos — mesmo que você nunca tenha feito um na vida.
             </p>
 
-            <div className="relative bg-gradient-to-br from-zinc-900/90 to-zinc-800/90 backdrop-blur-sm border border-primary/30 rounded-2xl p-8 md:p-10 mb-10 shadow-2xl max-w-2xl mx-auto overflow-hidden">
+            <div className="relative bg-gradient-to-br from-zinc-900/90 to-zinc-800/90 backdrop-blur-sm border border-primary/30 rounded-2xl p-8 md:p-10 shadow-2xl max-w-2xl mx-auto overflow-hidden">
               {/* Dot Pattern Overlay */}
               <div 
                 className="absolute inset-0 opacity-30"
@@ -63,7 +63,7 @@ const SolutionSection = () => {
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <Check className="w-5 h-5 icon-gradient-orange" strokeWidth={3} />
                     </div>
-                    <span className="text-zinc-200 pt-0.5">{item}</span>
+                    <span className="text-zinc-200">{ item}</span>
                   </li>
                 ))}
               </ul>

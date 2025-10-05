@@ -48,9 +48,9 @@ const SocialProofSection = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center mb-12">
+            <div className="text-center">
               <motion.div 
-                className="inline-flex items-center gap-2 bg-secondary/10 border border-secondary/30 rounded-full px-6 py-3 mb-4"
+                className="inline-flex items-center gap-2 bg-secondary/10 border border-secondary/30 rounded-full px-6 py-3"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5 }}
@@ -58,7 +58,7 @@ const SocialProofSection = () => {
                 <TrendingUp className="w-5 h-5 text-secondary" />
                 <span className="text-secondary font-semibold">Resultados Reais</span>
               </motion.div>
-              <h2 className="text-4xl md:text-5xl mb-4 leading-tight font-bold lg:text-5xl">
+              <h2 className="text-4xl md:text-5xl leading-tight font-bold lg:text-5xl">
                 Veja os <span className="text-gradient-orange-glow">resultados reais</span><br />
                 dos nossos alunos
               </h2>
@@ -67,7 +67,7 @@ const SocialProofSection = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {testimonials.map((proof, index) => (
                 <motion.div 
                   key={index} 
@@ -77,16 +77,16 @@ const SocialProofSection = () => {
                   transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                   whileHover={{ scale: 1.03, y: -5 }}
                 >
-                  <div className="flex gap-1 mb-4">
+                  <div className="flex gap-1">
                     {[...Array(proof.rating)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 fill-gradient-orange icon-gradient-orange" />
                     ))}
                   </div>
                   
-                  <div className="mb-4">
+                  <div>
                     <p className="text-xl font-bold text-zinc-200">{proof.name}</p>
                     <p className="text-sm text-zinc-500">{proof.age} • {proof.job}</p>
-                    <div className="mt-2 inline-flex items-center gap-2 bg-primary/10 rounded-full px-3 py-1">
+                    <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-3 py-1">
                       <span className="text-gradient-orange font-semibold text-sm">{proof.result}</span>
                     </div>
                   </div>
@@ -104,7 +104,7 @@ const SocialProofSection = () => {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <p className="text-lg text-zinc-300 mb-2">
+              <p className="text-lg text-zinc-300">
                 <span className="text-secondary font-bold">Mais de <CountUp end={500} duration={2} enableScrollSpy scrollSpyOnce /> alunos</span> já transformaram suas vidas com o CLT com Grana
               </p>
               <p className="text-sm text-zinc-500">

@@ -21,8 +21,8 @@ const StorySection = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl mb-8 leading-tight font-bold lg:text-5xl text-zinc-900">
-              E se você pudesse <span className="bg-black text-gradient-orange-glow px-3 py-1 rounded">faturar de R$ 500 a
+            <h2 className="text-4xl md:text-5xl leading-tight font-bold lg:text-5xl text-zinc-900">
+              E se você pudesse <span className="inline-block bg-black px-4 py-2 rounded-lg text-gradient-orange-glow">faturar de R$ 500 a
               R$ 2.000</span> vendendo sites, mesmo sem<br />
               experiência?
             </h2>
@@ -38,7 +38,7 @@ const StorySection = () => {
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <p className="text-xl md:text-2xl font-bold text-gradient-orange-glow mb-3">
+                <p className="text-xl md:text-2xl font-bold text-gradient-orange-glow">
                   Mas e se eu te mostrar que a I.A já faz 95% do trabalho por você?
                 </p>
                 <p className="text-lg text-zinc-200">
@@ -46,7 +46,7 @@ const StorySection = () => {
                 </p>
               </motion.div>
 
-              <div className="grid sm:grid-cols-3 gap-4 mt-8">
+              <div className="grid sm:grid-cols-3 gap-4">
                 {[
                   { value: 95, suffix: "%", label: "do trabalho feito pela I.A" },
                   { value: 500, prefix: "R$ ", suffix: "-2k", label: "por projeto vendido" },
@@ -59,7 +59,7 @@ const StorySection = () => {
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                   >
-                    <p className="text-3xl font-bold text-gradient-orange-glow mb-2">
+                    <p className="text-3xl font-bold text-gradient-orange-glow">
                       {stat.prefix}
                       {inView && <CountUp end={stat.value} duration={2} />}
                       {stat.suffix}

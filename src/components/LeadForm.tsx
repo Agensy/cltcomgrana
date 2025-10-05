@@ -42,10 +42,10 @@ const LeadForm = () => {
       
       <div className="container relative z-10 mx-auto px-4 md:px-8 py-20 max-w-xl">
         <div className="bg-card/80 backdrop-blur-xl border border-border rounded-3xl p-8 md:p-12 shadow-glow-green">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
+          <h2 className="text-2xl md:text-3xl font-bold text-center">
             Preencha o formulário abaixo
           </h2>
-          <p className="text-center text-muted-foreground mb-8">
+          <p className="text-center text-muted-foreground">
             Garanta seu acesso exclusivo ao FURION
           </p>
 

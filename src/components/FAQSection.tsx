@@ -50,11 +50,11 @@ const FAQSection = () => {
         <div className="w-full lg:w-[60%]">
           {/* Content */}
           <div className="animate-fade-in">
-            <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
+            <h2 className="text-4xl md:text-5xl leading-tight font-bold lg:text-5xl">
               <span className="text-gradient-orange-glow">Perguntas frequentes</span>
             </h2>
 
-            <p className="mb-8 text-lg text-zinc-300">
+            <p className="text-lg text-zinc-300">
               Tire suas dúvidas sobre o CLT com Grana
             </p>
 

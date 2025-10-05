@@ -17,24 +17,24 @@ const FinalOfferSection = () => {
         <div className="w-full max-w-3xl mx-auto">
           {/* Content */}
           <div className="animate-fade-in text-center">
-            <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
+            <h2 className="text-4xl md:text-5xl leading-tight font-bold lg:text-5xl">
               Sua <span className="text-gradient-orange-glow">última chance</span> de<br />
               garantir sua vaga
             </h2>
 
-            <p className="mb-8 text-lg text-zinc-300">
+            <p className="text-lg text-zinc-300">
               Esta oferta é limitada e as vagas podem encerrar a qualquer momento
             </p>
 
-            <div className="bg-card/50 border border-primary/30 rounded-lg p-8 mb-8">
-              <p className="text-3xl md:text-4xl font-bold text-gradient-orange-glow mb-4">
+            <div className="bg-card/50 border border-primary/30 rounded-lg p-8">
+              <p className="text-3xl md:text-4xl font-bold text-gradient-orange-glow">
                 De R$ 997 por apenas 12x de R$ 47,28
               </p>
-              <p className="text-xl text-zinc-400 mb-6">
+              <p className="text-xl text-zinc-400">
                 ou R$ 497 à vista
               </p>
 
-              <ul className="space-y-1 mb-8 text-left max-w-md mx-auto">
+              <ul className="space-y-1 text-left max-w-md mx-auto">
                 {[
                   "Curso completo CLT com Grana",
                   "Ferramenta exclusiva de I.A (acesso vitalício)",
@@ -50,7 +50,7 @@ const FinalOfferSection = () => {
                 ))}
               </ul>
 
-              <GlowButton onClick={scrollToForm} className="mb-4">
+              <GlowButton onClick={scrollToForm}>
                 GARANTIR MINHA VAGA AGORA
               </GlowButton>
 
@@ -60,7 +60,7 @@ const FinalOfferSection = () => {
             </div>
 
             <div className="bg-primary/10 border border-primary/30 rounded-lg p-6">
-              <p className="text-xl font-bold text-gradient-orange-glow mb-2">
+              <p className="text-xl font-bold text-gradient-orange-glow">
                 GARANTIA DE 7 DIAS
               </p>
               <p className="text-zinc-400">

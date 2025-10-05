@@ -41,12 +41,12 @@ const HowItWorksSection = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl text-center">
+            <h2 className="text-4xl md:text-5xl leading-tight font-bold lg:text-5xl text-center">
               Como funciona o <span className="text-gradient-orange-glow">CLT com Grana</span><br />
               em 3 passos simples
             </h2>
 
-            <p className="mb-12 text-lg text-zinc-300 text-center">
+            <p className="text-lg text-zinc-300 text-center">
               Um método direto e prático para você começar a faturar em até 7 dias.
             </p>
 
@@ -62,13 +62,13 @@ const HowItWorksSection = () => {
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                     whileHover={{ scale: 1.03, y: -5 }}
                   >
-                    <div className="flex items-center gap-3 mb-4">
+                    <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                         <Icon className="w-6 h-6 icon-gradient-orange" />
                       </div>
                       <span className="text-4xl font-bold text-primary/30">{item.step}</span>
                     </div>
-                    <h3 className="text-2xl font-bold mb-3 text-zinc-200">
+                    <h3 className="text-2xl font-bold text-zinc-200">
                       {item.title}
                     </h3>
                     <p className="text-base text-zinc-400 leading-relaxed">{item.description}</p>
@@ -78,7 +78,7 @@ const HowItWorksSection = () => {
             </div>
 
             <motion.div 
-              className="mt-12 text-center bg-secondary/10 border border-secondary/30 rounded-lg p-6"
+              className="text-center bg-secondary/10 border border-secondary/30 rounded-lg p-6"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.6 }}

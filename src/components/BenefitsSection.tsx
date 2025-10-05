@@ -20,12 +20,12 @@ const BenefitsSection = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
+          <h2 className="text-4xl md:text-5xl leading-tight font-bold lg:text-5xl">
             O que você <span className="text-gradient-orange-glow">realmente ganha</span><br />
             com o CLT com Grana
           </h2>
 
-          <p className="mb-8 text-lg text-zinc-300">
+          <p className="text-lg text-zinc-300">
             Não é só sobre criar sites. É sobre transformar sua vida financeira.
           </p>
 
