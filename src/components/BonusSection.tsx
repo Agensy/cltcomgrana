@@ -1,7 +1,8 @@
-import { Check, Gift } from "lucide-react";
+import { Check, Gift, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
+import { Badge } from "@/components/ui/badge";
 
 const BonusSection = () => {
   const { ref, inView } = useInView({
@@ -97,16 +98,18 @@ const BonusSection = () => {
             </div>
 
             <motion.div 
-              className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 border border-primary/40 rounded-lg p-6 md:p-8 text-center"
+              className="flex flex-col items-center justify-center gap-3"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.9 }}
             >
-              <p className="text-lg text-zinc-300 mb-2">Valor total dos bônus:</p>
-              <p className="text-4xl md:text-5xl font-bold text-gradient-orange-glow mb-3">
-                R$ {inView && <CountUp end={totalValue} duration={2} separator="." />}
-              </p>
-              <p className="text-xl text-secondary font-semibold">
+              <Badge className="bg-gradient-to-r from-primary via-orange-500 to-primary border-2 border-primary/50 px-6 py-3 text-base md:text-lg shadow-[0_0_30px_rgba(255,102,0,0.3)] hover:shadow-[0_0_40px_rgba(255,102,0,0.5)] transition-all duration-300">
+                <Sparkles className="w-5 h-5 mr-2" />
+                <span className="font-bold">
+                  Valor total: R$ {inView && <CountUp end={totalValue} duration={2} separator="." />}
+                </span>
+              </Badge>
+              <p className="text-xl text-secondary font-semibold animate-pulse">
                 Tudo isso GRÁTIS para você!
               </p>
             </motion.div>
