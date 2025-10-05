@@ -1,13 +1,16 @@
 import { Check } from "lucide-react";
-import { useState } from "react";
 import GlowButton from "@/components/ui/GlowButton";
-import CheckoutDialog from "@/components/CheckoutDialog";
 import heroBackground from "@/assets/hero-background.webp";
 import logo from "@/assets/logo-clt-com-grana.webp";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const scrollToOffer = () => {
+    const offerSection = document.getElementById('final-offer');
+    if (offerSection) {
+      offerSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Grid Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
@@ -104,15 +107,13 @@ const HeroSection = () => {
             duration: 0.5,
             delay: 1.3
           }}>
-              <GlowButton onClick={() => setDialogOpen(true)}>
+              <GlowButton onClick={scrollToOffer}>
                 GARANTIR MINHA VAGA AGORA
               </GlowButton>
             </motion.div>
           </motion.div>
         </div>
       </div>
-
-      <CheckoutDialog open={dialogOpen} onOpenChange={setDialogOpen} />
     </section>;
 };
 export default HeroSection;
