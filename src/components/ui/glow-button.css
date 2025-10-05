@@ -7,6 +7,7 @@
   max-width: 400px;
   margin: 0;
   --animation-speed: 2s;
+  contain: layout style paint;
 }
 
 .glowbox-active .glowbox-animations,
@@ -20,8 +21,11 @@
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 95%;
+  height: 95%;
   z-index: 1;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .glowbox-animations:before,
