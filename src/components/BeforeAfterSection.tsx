@@ -2,12 +2,19 @@ import { Check, X, TrendingDown, TrendingUp, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
+import Autoplay from "embla-carousel-autoplay";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { useRef } from "react";
 
 const BeforeAfterSection = () => {
   const { ref, inView } = useInView({
     threshold: 0.2,
     triggerOnce: true
   });
+
+  const plugin = useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: true })
+  );
 
   const testimonials = [
     {
@@ -133,45 +140,55 @@ const BeforeAfterSection = () => {
                   <TrendingUp className="w-5 h-5 text-secondary" />
                   <span className="text-secondary font-semibold">Resultados Reais</span>
                 </motion.div>
-                <h3 className="text-3xl md:text-4xl mb-4 leading-tight font-bold">
+                <h2 className="text-4xl md:text-5xl mb-4 leading-tight font-bold">
                   Veja os <span className="text-gradient-orange-glow">resultados reais</span><br />
                   dos nossos alunos
-                </h3>
+                </h2>
                 <p className="text-lg text-zinc-300 max-w-2xl mx-auto">
                   Centenas de pessoas já estão faturando com o método CLT com Grana
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
-                {testimonials.map((proof, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="bg-card/30 border border-border hover:border-primary/40 rounded-lg p-6 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,102,0,0.1)] group"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                    whileHover={{ scale: 1.03, y: -5 }}
-                  >
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(proof.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 fill-gradient-orange icon-gradient-orange" />
-                      ))}
-                    </div>
-                    
-                    <div className="mb-4">
-                      <p className="text-xl font-bold text-zinc-200">{proof.name}</p>
-                      <p className="text-sm text-zinc-500">{proof.age} • {proof.job}</p>
-                      <div className="mt-2 inline-flex items-center gap-2 bg-primary/10 rounded-full px-3 py-1">
-                        <span className="text-gradient-orange font-semibold text-sm">{proof.result}</span>
-                      </div>
-                    </div>
-                    
-                    <p className="text-zinc-400 italic leading-relaxed">
-                      "{proof.testimonial}"
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                plugins={[plugin.current]}
+                className="w-full max-w-6xl mx-auto mb-8"
+              >
+                <CarouselContent>
+                  {testimonials.map((proof, index) => (
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                      <motion.div 
+                        className="bg-card/30 border border-border hover:border-primary/40 rounded-lg p-6 h-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,102,0,0.1)] group"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                        whileHover={{ scale: 1.03, y: -5 }}
+                      >
+                        <div className="flex gap-1 mb-4">
+                          {[...Array(proof.rating)].map((_, i) => (
+                            <Star key={i} className="w-5 h-5 fill-gradient-orange icon-gradient-orange" />
+                          ))}
+                        </div>
+                        
+                        <div className="mb-4">
+                          <p className="text-xl font-bold text-zinc-200">{proof.name}</p>
+                          <p className="text-sm text-zinc-500">{proof.age} • {proof.job}</p>
+                          <div className="mt-2 inline-flex items-center gap-2 bg-primary/10 rounded-full px-3 py-1">
+                            <span className="text-gradient-orange font-semibold text-sm">{proof.result}</span>
+                          </div>
+                        </div>
+                        
+                        <p className="text-zinc-400 italic leading-relaxed">
+                          "{proof.testimonial}"
+                        </p>
+                      </motion.div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
 
               <motion.div 
                 className="bg-secondary/10 border border-secondary/30 rounded-lg p-6 max-w-3xl mx-auto text-center"
