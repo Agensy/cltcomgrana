@@ -64,7 +64,7 @@ const StorySection = () => {
                 ].map((stat, index) => (
                   <motion.div 
                     key={index}
-                    className="bg-white/80 border border-primary/20 rounded-lg p-4 text-center shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-gradient-to-br from-zinc-900 to-zinc-800 border border-primary/30 rounded-lg p-4 text-center shadow-lg hover:shadow-xl transition-shadow"
                     initial={{ opacity: 0, y: 20 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
@@ -74,7 +74,7 @@ const StorySection = () => {
                       {inView && <CountUp end={stat.value} duration={2} />}
                       {stat.suffix}
                     </p>
-                    <p className="text-sm text-zinc-600">{stat.label}</p>
+                    <p className="text-sm text-zinc-300">{stat.label}</p>
                   </motion.div>
                 ))}
               </div>
