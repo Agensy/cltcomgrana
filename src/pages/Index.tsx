@@ -9,7 +9,6 @@ import BeforeAfterSection from "@/components/BeforeAfterSection";
 import BonusSection from "@/components/BonusSection";
 import FAQSection from "@/components/FAQSection";
 import GuaranteeSection from "@/components/GuaranteeSection";
-import SocialProofSection from "@/components/SocialProofSection";
 import FinalOfferSection from "@/components/FinalOfferSection";
 import LeadForm from "@/components/LeadForm";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
@@ -30,7 +29,6 @@ const Index = () => {
         <BenefitsSection />
         <FAQSection />
         <GuaranteeSection />
-        <SocialProofSection />
         <LeadForm />
       </BackgroundWrapper>
     </main>
