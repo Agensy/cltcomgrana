@@ -9,12 +9,36 @@ const BonusSection = () => {
     triggerOnce: true
   });
   const bonuses = [
-    { text: "Propostas prontas pra fechar cliente - Modelos já prontos pra copiar e mandar no WhatsApp", value: "R$ 197" },
-    { text: "Agente de Vendas treinado pra você copiar - Scripts e respostas personalizadas pra convencer qualquer cliente", value: "R$ 297" },
-    { text: "Modelo de Contrato simples e direto - Pra você entregar com segurança e profissionalismo", value: "R$ 147" },
-    { text: "Suporte direto no WhatsApp - Teve dúvida? travou? Manda no nosso suporte e resolva rapidamente", value: "R$ 397" },
-    { text: "Futuras Atualizações - Sempre que o método melhorar, você recebe sem pagar nada", value: "R$ 497" },
-    { text: "Aula ao vivo tira-dúvidas - Encontro online pra resolver tudo com você, ao vivo", value: "R$ 267" }
+    { 
+      title: "Propostas prontas pra fechar cliente", 
+      description: "Modelos já prontos pra copiar e mandar no WhatsApp", 
+      value: "R$ 197" 
+    },
+    { 
+      title: "Agente de Vendas treinado pra você copiar", 
+      description: "Scripts e respostas personalizadas pra convencer qualquer cliente", 
+      value: "R$ 297" 
+    },
+    { 
+      title: "Modelo de Contrato simples e direto", 
+      description: "Pra você entregar com segurança e profissionalismo", 
+      value: "R$ 147" 
+    },
+    { 
+      title: "Suporte direto no WhatsApp", 
+      description: "Teve dúvida? travou? Manda no nosso suporte e resolva rapidamente", 
+      value: "R$ 397" 
+    },
+    { 
+      title: "Futuras Atualizações", 
+      description: "Sempre que o método melhorar, você recebe sem pagar nada", 
+      value: "R$ 497" 
+    },
+    { 
+      title: "Aula ao vivo tira-dúvidas", 
+      description: "Encontro online pra resolver tudo com você, ao vivo", 
+      value: "R$ 267" 
+    }
   ];
 
   const totalValue = bonuses.reduce((sum, bonus) => {
@@ -62,7 +86,8 @@ const BonusSection = () => {
                 >
                   <div className="flex items-start gap-3">
                     <div className="flex-1">
-                      <p className="text-base text-zinc-300 mb-2">{bonus.text}</p>
+                      <p className="text-base font-bold text-zinc-200 mb-1">{bonus.title}</p>
+                      <p className="text-sm text-zinc-400 mb-2">{bonus.description}</p>
                       <p className="text-sm font-semibold text-gradient-orange">Valor: {bonus.value}</p>
                     </div>
                     <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-1" />
