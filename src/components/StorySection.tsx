@@ -22,8 +22,7 @@ const StorySection = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl mb-8 leading-tight font-bold lg:text-5xl text-zinc-900">
-              E se você pudesse <span className="inline-block bg-black px-3 py-1 rounded text-gradient-orange-glow">faturar de R$ 500 a
-              R$ 2.000</span> vendendo sites, mesmo sem<br />
+              E se você pudesse <span className="inline-block bg-black px-4 py-2 rounded-lg"><span className="text-gradient-orange-glow-highlight">faturar de R$ 500 a R$ 2.000</span></span> vendendo sites, mesmo sem<br />
               experiência?
             </h2>
 
