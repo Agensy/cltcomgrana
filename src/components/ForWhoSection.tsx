@@ -29,7 +29,7 @@ const ForWhoSection = () => {
       {/* Grid Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 
-      <div className="container relative z-10 mx-auto px-4 md:px-8 py-16 md:py-24">
+      <div className="container relative z-10 mx-auto px-4 md:px-8 py-8 md:py-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
