@@ -13,7 +13,7 @@ import FinalOfferSection from "@/components/FinalOfferSection";
 import LeadForm from "@/components/LeadForm";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
 
-const IndexVariantB = () => {
+const Index = () => {
   return (
     <main className="min-h-screen bg-background">
       <HeroSection />
@@ -35,4 +35,4 @@ const IndexVariantB = () => {
   );
 };
 
-export default IndexVariantB;
+export default Index;
