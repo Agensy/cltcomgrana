@@ -90,7 +90,7 @@ const HowItWorksSection = () => {
 
             {/* Benefits Section */}
             <motion.div
-              className="mt-16"
+              className="mt-16 text-center max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.8 }}
@@ -104,7 +104,7 @@ const HowItWorksSection = () => {
                 Não é só sobre criar sites. É sobre transformar sua vida financeira.
               </p>
 
-              <ul className="space-y-1">
+              <ul className="space-y-1 text-left inline-block">
                 {[
                   "Renda extra de R$ 2.000 a R$ 5.000 por mês",
                   "Trabalhe de casa, no seu horário",
