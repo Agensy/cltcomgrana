@@ -41,8 +41,17 @@ const SolutionSection = () => {
               profissionais em minutos — mesmo que você nunca tenha feito um na vida.
             </p>
 
-            <div className="bg-gradient-to-br from-zinc-900/90 to-zinc-800/90 backdrop-blur-sm border border-primary/30 rounded-2xl p-8 md:p-10 mb-10 shadow-2xl max-w-2xl mx-auto">
-              <ul className="space-y-4">
+            <div className="relative bg-gradient-to-br from-zinc-900/90 to-zinc-800/90 backdrop-blur-sm border border-primary/30 rounded-2xl p-8 md:p-10 mb-10 shadow-2xl max-w-2xl mx-auto overflow-hidden">
+              {/* Dot Pattern Overlay */}
+              <div 
+                className="absolute inset-0 opacity-30"
+                style={{
+                  backgroundImage: 'radial-gradient(circle, rgba(203, 123, 66, 0.3) 1px, transparent 1px)',
+                  backgroundSize: '20px 20px'
+                }}
+              />
+              
+              <ul className="space-y-4 relative z-10">
                 {[
                   "Ferramenta de I.A exclusiva com prompts perfeitos",
                   "Sites prontos para vender em minutos, não em semanas",
