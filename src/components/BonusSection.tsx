@@ -9,13 +9,12 @@ const BonusSection = () => {
     triggerOnce: true
   });
   const bonuses = [
-    { text: "Templates de propostas comerciais prontos para usar", value: "R$ 197" },
-    { text: "Scripts de vendas testados e aprovados", value: "R$ 147" },
-    { text: "Lista com 50+ nichos lucrativos para prospectar", value: "R$ 97" },
-    { text: "Grupo exclusivo de alunos no WhatsApp", value: "R$ 297" },
-    { text: "Suporte direto via e-mail por 90 dias", value: "R$ 397" },
-    { text: "Atualizações gratuitas da ferramenta de I.A", value: "R$ 497" },
-    { text: "Certificado de conclusão digital", value: "R$ 67" }
+    { text: "Propostas prontas pra fechar cliente - Modelos já prontos pra copiar e mandar no WhatsApp", value: "R$ 197" },
+    { text: "Agente de Vendas treinado pra você copiar - Scripts e respostas personalizadas pra convencer qualquer cliente", value: "R$ 297" },
+    { text: "Modelo de Contrato simples e direto - Pra você entregar com segurança e profissionalismo", value: "R$ 147" },
+    { text: "Suporte direto no WhatsApp - Teve dúvida? travou? Manda no nosso suporte e resolva rapidamente", value: "R$ 397" },
+    { text: "Futuras Atualizações - Sempre que o método melhorar, você recebe sem pagar nada", value: "R$ 497" },
+    { text: "Aula ao vivo tira-dúvidas - Encontro online pra resolver tudo com você, ao vivo", value: "R$ 267" }
   ];
 
   const totalValue = bonuses.reduce((sum, bonus) => {
