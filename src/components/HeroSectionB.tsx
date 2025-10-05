@@ -85,12 +85,13 @@ const HeroSectionB = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.1 }}
+              className="space-y-4"
             >
-              <GlowButton onClick={scrollToForm}>
-                🔶 Quero começar agora e faturar com sites
+              <GlowButton onClick={scrollToForm} className="w-full md:w-auto min-w-[400px]">
+                QUERO COMEÇAR AGORA E FATURAR COM SITES
               </GlowButton>
-              <p className="mt-4 text-sm text-zinc-400">
-                🕒 Vagas limitadas – próxima turma fecha em 72h
+              <p className="text-sm text-zinc-400">
+                Vagas limitadas – próxima turma fecha em 72h
               </p>
             </motion.div>
 
@@ -98,11 +99,13 @@ const HeroSectionB = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 1.3 }}
-              className="mt-8 p-4 bg-zinc-900/50 border border-zinc-800 rounded-lg"
+              className="mt-8 inline-block"
             >
-              <p className="text-zinc-300 italic">
-                💬 "Consegui meu primeiro cliente em 6 dias, sem saber nada de tecnologia." — <span className="text-gradient-orange-glow font-semibold">Aluno João M.</span>
-              </p>
+              <div className="px-4 py-2 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 border border-orange-500/30 rounded-full">
+                <p className="text-sm text-zinc-300">
+                  "Consegui meu primeiro cliente em 6 dias, sem saber nada de tecnologia." — <span className="text-gradient-orange-glow font-semibold">Aluno João M.</span>
+                </p>
+              </div>
             </motion.div>
           </motion.div>
         </div>
