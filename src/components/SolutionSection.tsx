@@ -138,7 +138,7 @@ const SolutionSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-primary/20 to-primary/10 rounded-full" />
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {steps.map((step, index) => {
                   const Icon = step.icon;
                   const isLast = index === steps.length - 1;
@@ -148,7 +148,7 @@ const SolutionSection = () => {
                     <div key={index} className="relative">
                       {/* Animated Progress Line */}
                       {!isLast && (
-                        <div className="absolute left-8 md:left-10 top-[88px] h-[calc(100%-40px)] w-1 overflow-hidden hidden sm:block">
+                        <div className="absolute left-6 md:left-7 top-[62px] h-[calc(100%-30px)] w-0.5 overflow-hidden hidden sm:block">
                           <motion.div 
                             className="absolute inset-0 bg-gradient-to-b from-primary via-primary/70 to-primary/30 rounded-full"
                             initial={{ scaleY: 0 }}
@@ -157,7 +157,7 @@ const SolutionSection = () => {
                             style={{ transformOrigin: "top" }}
                           />
                           <motion.div 
-                            className="absolute inset-0 w-full h-24 bg-gradient-to-b from-orange-400/50 via-primary to-transparent blur-sm"
+                            className="absolute inset-0 w-full h-16 bg-gradient-to-b from-orange-400/50 via-primary to-transparent blur-sm"
                             animate={{ y: ["0%", "100%", "0%"] }}
                             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
                           />
@@ -165,69 +165,69 @@ const SolutionSection = () => {
                       )}
                       
                       <motion.div
-                        className="relative bg-gradient-to-br from-zinc-900/95 to-zinc-800/60 border-2 border-primary/30 hover:border-primary/60 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,102,0,0.25)] group backdrop-blur-sm"
+                        className="relative bg-gradient-to-br from-zinc-900/95 to-zinc-800/60 border border-primary/30 hover:border-primary/60 rounded-xl p-4 md:p-5 transition-all duration-500 hover:shadow-[0_0_35px_rgba(255,102,0,0.25)] group backdrop-blur-sm"
                         initial={{ opacity: 0, x: -40, scale: 0.95 }}
                         animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
                         transition={{ duration: 0.6, delay: 0.2 + index * 0.15, ease: "easeOut" }}
-                        whileHover={{ scale: 1.03, x: 12, transition: { duration: 0.3 } }}
+                        whileHover={{ scale: 1.02, x: 8, transition: { duration: 0.3 } }}
                       >
                         {/* Progress Indicator */}
-                        <div className="absolute top-4 right-4 text-xs font-bold text-primary/40 group-hover:text-primary/60 transition-colors">
+                        <div className="absolute top-3 right-3 text-[10px] font-bold text-primary/40 group-hover:text-primary/60 transition-colors">
                           {Math.round(progress)}%
                         </div>
 
                         {/* Glow effect on hover */}
-                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
                         
-                        <div className="relative flex gap-5 md:gap-7">
+                        <div className="relative flex gap-3 md:gap-4">
                           {/* Icon Circle with Multiple Layers */}
                           <div className="flex-shrink-0">
-                            <div className="relative w-16 h-16 md:w-20 md:h-20">
+                            <div className="relative w-12 h-12 md:w-14 md:h-14">
                               {/* Outer glow ring */}
                               <motion.div 
-                                className="absolute inset-0 rounded-full bg-primary/30 blur-2xl"
+                                className="absolute inset-0 rounded-full bg-primary/30 blur-xl"
                                 animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
                                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                               />
                               {/* Inner circle */}
-                              <div className="relative w-full h-full rounded-full bg-gradient-to-br from-primary/30 via-primary/20 to-zinc-900/50 border-2 border-primary/50 flex items-center justify-center group-hover:border-primary/80 transition-all duration-500 shadow-[inset_0_2px_10px_rgba(255,102,0,0.3)]">
-                                <Icon className="w-7 h-7 md:w-9 md:h-9 icon-gradient-orange group-hover:scale-125 transition-transform duration-500" />
+                              <div className="relative w-full h-full rounded-full bg-gradient-to-br from-primary/30 via-primary/20 to-zinc-900/50 border-2 border-primary/50 flex items-center justify-center group-hover:border-primary/80 transition-all duration-500 shadow-[inset_0_2px_8px_rgba(255,102,0,0.3)]">
+                                <Icon className="w-5 h-5 md:w-6 md:h-6 icon-gradient-orange group-hover:scale-125 transition-transform duration-500" />
                               </div>
                               {/* Step number badge */}
-                              <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-primary border-2 border-zinc-900 flex items-center justify-center text-xs font-bold text-white shadow-lg">
+                              <div className="absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-full bg-primary border-2 border-zinc-900 flex items-center justify-center text-[10px] font-bold text-white shadow-lg">
                                 {index + 1}
                               </div>
                             </div>
                           </div>
 
                           {/* Content */}
-                          <div className="flex-1 pt-1">
-                            <div className="flex items-start gap-3 mb-3">
-                              <span className="text-xs md:text-sm font-bold text-white bg-primary/20 px-3 py-1.5 rounded-full border border-primary/50 shadow-[0_0_10px_rgba(255,102,0,0.3)]">
+                          <div className="flex-1 pt-0.5">
+                            <div className="flex items-start gap-2 mb-2">
+                              <span className="text-[10px] md:text-xs font-bold text-white bg-primary/20 px-2 py-1 rounded-full border border-primary/50 shadow-[0_0_8px_rgba(255,102,0,0.3)]">
                                 ETAPA {step.number}
                               </span>
                             </div>
-                            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 leading-tight group-hover:text-gradient-orange-glow transition-all duration-300">
+                            <h3 className="text-base md:text-lg lg:text-xl font-bold text-white mb-2 leading-tight group-hover:text-gradient-orange-glow transition-all duration-300">
                               {step.title}
                             </h3>
-                            <p className="text-base md:text-lg text-zinc-300 leading-relaxed mb-4 group-hover:text-zinc-200 transition-colors">
+                            <p className="text-sm md:text-base text-zinc-300 leading-relaxed mb-2 group-hover:text-zinc-200 transition-colors">
                               {step.description}
                             </p>
                             
                             {/* Connector Text with Arrow */}
                             {!isLast && step.connector && (
-                              <div className="flex items-center gap-3 mt-6 pt-5 border-t border-primary/20">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shadow-[0_0_10px_rgba(255,102,0,0.8)]" />
-                                  <div className="w-8 h-0.5 bg-gradient-to-r from-primary to-transparent" />
+                              <div className="flex items-center gap-2 mt-3 pt-3 border-t border-primary/20">
+                                <div className="flex items-center gap-1.5">
+                                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
+                                  <div className="w-6 h-0.5 bg-gradient-to-r from-primary to-transparent" />
                                 </div>
-                                <p className="text-sm md:text-base text-primary/90 font-semibold italic flex-1">
+                                <p className="text-xs md:text-sm text-primary/90 font-semibold italic flex-1">
                                   {step.connector}
                                 </p>
                                 <motion.svg 
-                                  className="w-5 h-5 text-primary"
-                                  animate={{ y: [0, 5, 0] }}
+                                  className="w-4 h-4 text-primary"
+                                  animate={{ y: [0, 4, 0] }}
                                   transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                                   fill="none" 
                                   viewBox="0 0 24 24" 
