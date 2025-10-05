@@ -24,7 +24,7 @@ const BonusSection = () => {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="container relative z-10 mx-auto px-4 md:px-8 py-8 md:py-12" ref={ref}>
+      <div className="container relative z-10 mx-auto px-4 md:px-8 py-8 md:py-[75px]" ref={ref}>
         <div className="w-full max-w-4xl mx-auto">
           {/* Content */}
           <motion.div

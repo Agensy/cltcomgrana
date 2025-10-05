@@ -21,8 +21,8 @@ const BackgroundWrapper = ({ children }: BackgroundWrapperProps) => {
         <div className="absolute inset-0 bg-background/60" />
       </div>
       
-      {/* Content with spacing */}
-      <div className="relative space-y-8 md:space-y-[75px]">
+      {/* Content */}
+      <div className="relative">
         {children}
       </div>
     </div>

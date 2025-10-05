@@ -43,7 +43,7 @@ const FAQSection = () => {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="container relative z-10 mx-auto px-4 md:px-8 py-8 md:py-12">
+      <div className="container relative z-10 mx-auto px-4 md:px-8 py-8 md:py-[75px]">
         <div className="w-full lg:w-[60%]">
           {/* Content */}
           <div className="animate-fade-in">
