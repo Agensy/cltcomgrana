@@ -36,11 +36,11 @@ const LeadForm = () => {
   };
 
   return (
-    <section id="lead-form" className="relative py-20 overflow-hidden">
+    <section id="lead-form" className="relative overflow-hidden">
       {/* Glowing Background */}
       <div className="absolute inset-0 bg-gradient-radial from-secondary/10 via-transparent to-transparent" />
       
-      <div className="container relative z-10 mx-auto px-4 max-w-xl">
+      <div className="container relative z-10 mx-auto px-4 md:px-8 py-8 md:py-12 max-w-xl">
         <div className="bg-card/80 backdrop-blur-xl border border-border rounded-3xl p-8 md:p-12 shadow-glow-green">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
             Preencha o formulário abaixo

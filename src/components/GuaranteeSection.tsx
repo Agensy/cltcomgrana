@@ -3,11 +3,11 @@ import guaranteeVisual from "@/assets/guarantee-visual.jpg";
 
 const GuaranteeSection = () => {
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section className="relative overflow-hidden">
       {/* Grid Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.05)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.05)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       
-      <div className="container relative z-10 mx-auto px-4">
+      <div className="container relative z-10 mx-auto px-4 md:px-8 py-8 md:py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Image */}
           <div className="relative animate-fade-in">
