@@ -87,7 +87,7 @@ const HeroSectionB = () => {
               transition={{ duration: 0.5, delay: 1.1 }}
               className="space-y-4"
             >
-              <GlowButton onClick={scrollToForm} className="w-full md:w-auto min-w-[400px]">
+              <GlowButton onClick={scrollToForm} className="w-full md:w-auto md:min-w-[500px] px-8">
                 QUERO COMEÇAR AGORA E FATURAR COM SITES
               </GlowButton>
               <p className="text-sm text-zinc-400">
