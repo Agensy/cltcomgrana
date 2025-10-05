@@ -8,16 +8,14 @@ interface BackgroundWrapperProps {
 const BackgroundWrapper = ({ children }: BackgroundWrapperProps) => {
   return (
     <div className="relative">
-      {/* Unified Background - Optimized for scroll performance */}
-      <div className="absolute inset-0 will-change-auto">
+      {/* Unified Background - Ultra optimized */}
+      <div className="fixed inset-0 -z-10">
         <div 
           className="w-full h-full bg-cover bg-center opacity-30"
           style={{
-            backgroundImage: `url(${mainBg})`,
-            backgroundAttachment: 'fixed'
+            backgroundImage: `url(${mainBg})`
           }}
         />
-        {/* Simplified overlay */}
         <div className="absolute inset-0 bg-background/60" />
       </div>
       

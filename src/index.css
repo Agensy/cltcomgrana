@@ -96,20 +96,7 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    /* Scroll performance optimizations */
-    scroll-behavior: smooth;
     overflow-x: hidden;
-  }
-
-  /* Optimize scrolling performance */
-  * {
-    scroll-behavior: smooth;
-  }
-
-  /* GPU acceleration for better performance */
-  section {
-    transform: translateZ(0);
-    backface-visibility: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
