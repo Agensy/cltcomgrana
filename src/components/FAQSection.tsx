@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import faqBackground from "@/assets/faq-background.webp";
 
 const FAQSection = () => {
   const faqs = [
@@ -43,6 +44,14 @@ const FAQSection = () => {
 
   return (
     <section className="relative overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${faqBackground})` }}
+      />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-background/80" />
+      
       <div className="container relative z-10 mx-auto px-4 md:px-8 py-8 md:py-[75px]">
         <div className="w-full lg:w-[60%]">
           {/* Content */}
