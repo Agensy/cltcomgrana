@@ -1,5 +1,5 @@
 import { DollarSign, AlertTriangle, Clock, TrendingDown } from "lucide-react";
-import GlowButton from "@/components/ui/GlowButton";
+
 const ProblemSection = () => {
   const problems = [
     {
@@ -23,13 +23,6 @@ const ProblemSection = () => {
       description: "Falta confiança para transformar conhecimento em renda"
     }
   ];
-
-  const scrollToForm = () => {
-    const formElement = document.getElementById('lead-form');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -83,15 +76,6 @@ const ProblemSection = () => {
             })}
           </div>
 
-          {/* CTA Section */}
-          <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <p className="text-lg md:text-xl text-zinc-300 mb-6 max-w-2xl mx-auto">
-              <span className="text-gradient-orange-glow font-semibold">Está na hora de mudar isso.</span> Descubra como transformar seu conhecimento em uma fonte de renda extra.
-            </p>
-            <GlowButton onClick={scrollToForm} className="text-lg px-8 py-6">
-              Quero Sair da CLT com Grana
-            </GlowButton>
-          </div>
         </div>
       </div>
     </section>
