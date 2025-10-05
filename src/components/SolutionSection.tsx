@@ -69,13 +69,9 @@ const SolutionSection = () => {
               </ul>
             </div>
 
-            <div className="flex justify-center">
-              <div className="overflow-hidden rounded-full p-1">
-                <GlowButton onClick={scrollToForm} className="text-lg px-10 py-6">
-                  QUERO FATURAR EM 7 DIAS
-                </GlowButton>
-              </div>
-            </div>
+            <GlowButton onClick={scrollToForm}>
+              QUERO FATURAR EM 7 DIAS
+            </GlowButton>
           </div>
         </div>
       </div>
