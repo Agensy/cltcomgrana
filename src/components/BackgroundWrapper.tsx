@@ -20,7 +20,7 @@ const BackgroundWrapper = ({ children }: BackgroundWrapperProps) => {
       </div>
       
       {/* Content with spacing */}
-      <div className="relative space-y-8 md:space-y-15">
+      <div className="relative space-y-8 md:space-y-[75px]">
         {children}
       </div>
     </div>
