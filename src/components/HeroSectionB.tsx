@@ -1,15 +1,13 @@
 import { Check } from "lucide-react";
+import { useState } from "react";
 import GlowButton from "@/components/ui/GlowButton";
+import CheckoutDialog from "@/components/CheckoutDialog";
 import heroBackground from "@/assets/hero-background.webp";
 import logo from "@/assets/logo-clt-com-grana.webp";
 import { motion } from "framer-motion";
 
 const HeroSectionB = () => {
-  const scrollToForm = () => {
-    document.getElementById("lead-form")?.scrollIntoView({
-      behavior: "smooth"
-    });
-  };
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -87,7 +85,7 @@ const HeroSectionB = () => {
               transition={{ duration: 0.5, delay: 1.1 }}
               className="space-y-4"
             >
-              <GlowButton onClick={scrollToForm} className="w-full md:w-auto md:min-w-[500px] px-8">
+              <GlowButton onClick={() => setDialogOpen(true)} className="w-full md:w-auto md:min-w-[500px] px-8">
                 QUERO COMEÇAR AGORA E FATURAR COM SITES
               </GlowButton>
               <p className="text-sm text-zinc-400">
@@ -110,6 +108,8 @@ const HeroSectionB = () => {
           </motion.div>
         </div>
       </div>
+
+      <CheckoutDialog open={dialogOpen} onOpenChange={setDialogOpen} />
     </section>
   );
 };

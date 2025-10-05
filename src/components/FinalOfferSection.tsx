@@ -1,5 +1,6 @@
 import { Check, Shield, Clock, Users, TrendingUp, Sparkles, ArrowRight, Zap } from "lucide-react";
 import GlowButton from "@/components/ui/GlowButton";
+import CheckoutDialog from "@/components/CheckoutDialog";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -12,6 +13,7 @@ const FinalOfferSection = () => {
   });
 
   const [spots, setSpots] = useState(47);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,12 +21,6 @@ const FinalOfferSection = () => {
     }, 8000);
     return () => clearInterval(interval);
   }, []);
-
-  const scrollToForm = () => {
-    document.getElementById("lead-form")?.scrollIntoView({
-      behavior: "smooth"
-    });
-  };
 
   const benefits = [
     { icon: Zap, text: "Curso completo CLT com Grana" },
@@ -135,7 +131,7 @@ const FinalOfferSection = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.9 }}
             >
-              <GlowButton onClick={scrollToForm}>
+              <GlowButton onClick={() => setDialogOpen(true)}>
                 GARANTIR MINHA VAGA AGORA
               </GlowButton>
               
@@ -172,6 +168,8 @@ const FinalOfferSection = () => {
 
         </div>
       </div>
+
+      <CheckoutDialog open={dialogOpen} onOpenChange={setDialogOpen} />
     </section>
   );
 };
