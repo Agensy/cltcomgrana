@@ -1,4 +1,4 @@
-import { Lightbulb, Zap, DollarSign } from "lucide-react";
+import { Lightbulb, Zap, DollarSign, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -86,6 +86,41 @@ const HowItWorksSection = () => {
               <p className="text-lg text-zinc-300">
                 <span className="text-secondary font-bold">Simples assim:</span> Aprende → Cria → Vende → Fatura
               </p>
+            </motion.div>
+
+            {/* Benefits Section */}
+            <motion.div
+              className="mt-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
+                O que você <span className="text-gradient-orange-glow">realmente ganha</span><br />
+                com o CLT com Grana
+              </h2>
+
+              <p className="mb-8 text-lg text-zinc-300">
+                Não é só sobre criar sites. É sobre transformar sua vida financeira.
+              </p>
+
+              <ul className="space-y-1">
+                {[
+                  "Renda extra de R$ 2.000 a R$ 5.000 por mês",
+                  "Trabalhe de casa, no seu horário",
+                  "Sem precisar programar ou entender de tecnologia",
+                  "Sem gastar com anúncios ou redes sociais",
+                  "Sem contratar equipe ou pagar designers",
+                  "Sites entregues em minutos, não em semanas",
+                  "Método validado por centenas de alunos",
+                  "Suporte direto para tirar suas dúvidas"
+                ].map((item, index) => (
+                  <li key={index} className="flex items-center gap-3 text-lg">
+                    <Check className="w-5 h-5 icon-gradient-orange flex-shrink-0" />
+                    <span className="text-zinc-400">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           </motion.div>
         </div>
