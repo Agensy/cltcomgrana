@@ -130,17 +130,21 @@ const FinalOfferSection = () => {
 
             {/* CTA Button */}
             <motion.div
+              className="flex flex-col items-center mt-8 mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.9 }}
             >
-              <GlowButton onClick={scrollToForm} className="w-full text-lg py-7 mb-4 group">
+              <GlowButton 
+                onClick={scrollToForm} 
+                className="max-w-md w-full text-base md:text-lg py-5 md:py-6 px-8 mb-3 group"
+              >
                 GARANTIR MINHA VAGA AGORA
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </GlowButton>
               
-              <div className="flex items-center justify-center gap-2 text-sm text-zinc-500">
-                <Shield className="w-4 h-4" />
+              <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-zinc-500 mt-2">
+                <Shield className="w-4 h-4 flex-shrink-0" />
                 <span>Pagamento 100% seguro e criptografado</span>
               </div>
             </motion.div>
