@@ -28,10 +28,10 @@ const FinalOfferSection = () => {
 
   const benefits = [
     { icon: Zap, text: "Curso completo CLT com Grana" },
-    { icon: Sparkles, text: "Ferramenta exclusiva de I.A (acesso vitalício)" },
+    { icon: Sparkles, text: "Ferramenta exclusiva de I.A" },
     { icon: TrendingUp, text: "Todos os bônus inclusos (R$ 1.802)" },
     { icon: Users, text: "Suporte direto no WhatsApp" },
-    { icon: Clock, text: "Atualizações gratuitas vitalícias" },
+    { icon: Clock, text: "Atualizações gratuitas" },
     { icon: Shield, text: "Garantia incondicional de 7 dias" }
   ];
 
@@ -95,12 +95,12 @@ const FinalOfferSection = () => {
               <div className="relative inline-block">
                 <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full" />
                 <p className="relative text-5xl md:text-6xl font-black text-gradient-orange-glow mb-2">
-                  12x R$ 47,28
+                  12x R$ 9,45
                 </p>
               </div>
               
               <p className="text-xl md:text-2xl text-secondary font-semibold mb-1">
-                ou R$ 497 à vista
+                ou R$ 99 à vista
               </p>
               <Badge className="bg-green-500/20 border-green-500/50 text-green-400 mt-2">
                 Economia de 82%
