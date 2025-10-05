@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo-clt-com-grana.webp";
 
 const Footer = () => {
@@ -11,6 +12,16 @@ const Footer = () => {
             <p>
               ESTE SITE NÃO É do FACEBOOK: Este site não faz parte do site do Facebook ou do Facebook Inc. Além disso, este site NÃO é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial independente da FACEBOOK, Inc.. Usamos pixels / cookies de remarketing do Google neste site para nos comunicarmos novamente com as pessoas que visitam nosso site e garantir que possamos alcançá-las no futuro com mensagens e informações relevantes. O Google mostra nossos anúncios em sites de terceiros na Internet para ajudar a comunicar nossa mensagem e alcançar as pessoas certas que mostraram interesse em nossas informações no passado.
             </p>
+          </div>
+
+          <div className="flex gap-6 text-sm">
+            <Link to="/termos-de-uso" className="text-muted-foreground hover:text-primary transition-colors">
+              Termos de Uso
+            </Link>
+            <span className="text-muted-foreground">•</span>
+            <Link to="/politica-de-privacidade" className="text-muted-foreground hover:text-primary transition-colors">
+              Política de Privacidade
+            </Link>
           </div>
         </div>
       </div>

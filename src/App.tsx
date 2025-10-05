@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import IndexA from "./pages/CLTCOMGRANA-A/Index";
 import IndexB from "./pages/CLTCOMGRANA-B/Index";
 import NotFound from "./pages/NotFound";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +32,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<IndexA />} />
           <Route path="/variant-b" element={<IndexB />} />
+          <Route path="/termos-de-uso" element={<TermsOfService />} />
+          <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
