@@ -100,7 +100,7 @@ const FinalOfferSection = () => {
               </div>
               
               <p className="text-xl md:text-2xl text-secondary font-semibold mb-1">
-                ou R$ 99 à vista
+                ou R$ 97 à vista
               </p>
               <Badge className="bg-green-500/20 border-green-500/50 text-green-400 mt-2">
                 Economia de 82%
