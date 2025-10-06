@@ -71,7 +71,7 @@ const HeroSection = () => {
             duration: 0.5,
             delay: 0.5
           }}>
-              {["Ferramenta exclusiva de I.A", "Agentes de vendas", "Sites prontos em minutos", "Crie sem experiência", "Venda de R$ 500 a R$ 2.000 por projeto"].map((item, index) => <motion.li key={index} className="flex items-center gap-3 text-lg" initial={{
+              {["Sites prontos em minutos com I.A fácil de usar", "Passo a passo simplificado e detalhado", "Faça de R$ 500 a R$ 2.000 por projeto"].map((item, index) => <motion.li key={index} className="flex items-center gap-3 text-lg" initial={{
               opacity: 0,
               x: -20
             }} animate={{

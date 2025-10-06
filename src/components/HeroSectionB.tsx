@@ -65,9 +65,9 @@ const HeroSectionB = () => {
               transition={{ duration: 0.5, delay: 0.7 }}
             >
               {[
-                "Sites prontos em minutos com ferramenta de I.A exclusiva",
-                "Trabalhe de casa no seu tempo, sem depender de ninguém",
-                "Primeiro pagamento em até 7 dias — ou seu dinheiro de volta"
+                "Sites prontos em minutos com I.A fácil de usar",
+                "Passo a passo simplificado e detalhado",
+                "Faça de R$ 500 a R$ 2.000 por projeto"
               ].map((item, index) => (
                 <motion.li
                   key={index}
