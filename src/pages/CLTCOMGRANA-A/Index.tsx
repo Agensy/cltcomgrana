@@ -9,7 +9,6 @@ import BonusSection from "@/components/BonusSection";
 import FAQSection from "@/components/FAQSection";
 import GuaranteeSection from "@/components/GuaranteeSection";
 import FinalOfferSection from "@/components/FinalOfferSection";
-import LeadForm from "@/components/LeadForm";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
 import Footer from "@/components/Footer";
 
@@ -28,7 +27,6 @@ const Index = () => {
         <BenefitsSection />
         <FAQSection />
         <GuaranteeSection />
-        <LeadForm />
       </BackgroundWrapper>
       <Footer />
     </main>
