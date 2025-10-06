@@ -2,8 +2,11 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { useState } from "react";
 import testimonial1 from "@/assets/testimonial-1.png";
 import testimonial2 from "@/assets/testimonial-2.jpeg";
 import testimonial3 from "@/assets/testimonial-3.jpeg";
@@ -26,6 +29,19 @@ const TestimonialsSection = () => {
     threshold: 0.1,
   });
 
+  const [api, setApi] = useState<any>();
+  const [current, setCurrent] = useState(0);
+
+  useState(() => {
+    if (!api) return;
+
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  });
+
   return (
     <section className="py-20 px-4" ref={ref}>
       <div className="container mx-auto">
@@ -45,6 +61,7 @@ const TestimonialsSection = () => {
         </motion.div>
 
         <Carousel
+          setApi={setApi}
           opts={{
             align: "start",
             loop: true,
@@ -77,7 +94,25 @@ const TestimonialsSection = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
         </Carousel>
+
+        {/* Dots Navigation */}
+        <div className="flex justify-center gap-2 mt-8">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => api?.scrollTo(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === current
+                  ? "w-8 bg-primary"
+                  : "w-2 bg-white/30 hover:bg-white/50"
+              }`}
+              aria-label={`Ir para depoimento ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
