@@ -50,9 +50,10 @@ const App = () => (
       <BrowserRouter>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
-            <Route path="/" element={<IndexA />} />
+            <Route path="/" element={<ProjectA_LP1 />} />
             
             {/* Project A Routes */}
+            <Route path="/cltcomgrana-a" element={<IndexA />} />
             <Route path="/a/lp1" element={<ProjectA_LP1 />} />
             <Route path="/a/lp2" element={<ProjectA_LP2 />} />
             <Route path="/a/lp3" element={<ProjectA_LP3 />} />
