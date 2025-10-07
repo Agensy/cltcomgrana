@@ -150,7 +150,7 @@ const SocialProofSection = () => {
                       >
                         <div className="flex gap-1 mb-4">
                           {[...Array(proof.rating)].map((_, i) => (
-                            <Star key={i} className="w-5 h-5 fill-gradient-orange icon-gradient-orange" />
+                            <Star key={i} className="w-5 h-5 fill-current icon-gradient-orange" />
                           ))}
                         </div>
                         

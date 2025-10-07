@@ -129,43 +129,9 @@ All colors MUST be HSL.
     filter: drop-shadow(0 0 8px rgba(203, 123, 66, 0.6)) drop-shadow(0 0 15px rgba(235, 140, 80, 0.4));
   }
   
-  .fill-gradient-orange {
-    fill: #CB7B42;
-    filter: drop-shadow(0 0 8px rgba(203, 123, 66, 0.6)) drop-shadow(0 0 15px rgba(235, 140, 80, 0.4));
-  }
-
   /* Animações personalizadas */
   .animate-fade-in {
     animation: fadeIn 600ms ease-out forwards;
-  }
-  
-  .animate-slide-up {
-    animation: slideUp 500ms ease-out forwards;
-  }
-  
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-  
-  .animate-pulse-slow {
-    animation: pulse-slow 3s ease-in-out infinite;
-  }
-
-  /* Delays para animações sequenciais */
-  .delay-100 {
-    animation-delay: 100ms;
-  }
-  
-  .delay-200 {
-    animation-delay: 200ms;
-  }
-  
-  .delay-300 {
-    animation-delay: 300ms;
-  }
-  
-  .delay-400 {
-    animation-delay: 400ms;
   }
 }
 
@@ -182,34 +148,5 @@ svg.gradient-defs {
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes pulse-slow {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
   }
 }

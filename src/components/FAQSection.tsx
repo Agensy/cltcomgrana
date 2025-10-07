@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import faqBackground from "@/assets/faq-background.webp";
+import faqBackground from "@/assets/faq-background-optimized.jpg";
 
 const FAQSection = () => {
   const faqs = [

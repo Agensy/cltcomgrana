@@ -3,20 +3,30 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import IndexA from "./pages/CLTCOMGRANA-A/Index";
-import NotFound from "./pages/NotFound";
-import TermsOfService from "./pages/TermsOfService";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+import { Suspense, lazy } from "react";
 
-// Project A Pages
-import ProjectA_LP1 from "./pages/ProjectA/LP1";
-import ProjectA_LP2 from "./pages/ProjectA/LP2";
-import ProjectA_LP3 from "./pages/ProjectA/LP3";
+// Lazy loading dos componentes para code splitting
+const IndexA = lazy(() => import("./pages/CLTCOMGRANA-A/Index"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 
-// Project B Pages
-import ProjectB_LP1 from "./pages/ProjectB/LP1";
-import ProjectB_LP2 from "./pages/ProjectB/LP2";
-import ProjectB_LP3 from "./pages/ProjectB/LP3";
+// Project A Pages - Lazy loading
+const ProjectA_LP1 = lazy(() => import("./pages/ProjectA/LP1"));
+const ProjectA_LP2 = lazy(() => import("./pages/ProjectA/LP2"));
+const ProjectA_LP3 = lazy(() => import("./pages/ProjectA/LP3"));
+
+// Project B Pages - Lazy loading
+const ProjectB_LP1 = lazy(() => import("./pages/ProjectB/LP1"));
+const ProjectB_LP2 = lazy(() => import("./pages/ProjectB/LP2"));
+const ProjectB_LP3 = lazy(() => import("./pages/ProjectB/LP3"));
+
+// Componente de loading
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-orange-500"></div>
+  </div>
+);
 
 const queryClient = new QueryClient();
 
@@ -38,24 +48,26 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<IndexA />} />
-          
-          {/* Project A Routes */}
-          <Route path="/a/lp1" element={<ProjectA_LP1 />} />
-          <Route path="/a/lp2" element={<ProjectA_LP2 />} />
-          <Route path="/a/lp3" element={<ProjectA_LP3 />} />
-          
-          {/* Project B Routes */}
-          <Route path="/b/lp1" element={<ProjectB_LP1 />} />
-          <Route path="/b/lp2" element={<ProjectB_LP2 />} />
-          <Route path="/b/lp3" element={<ProjectB_LP3 />} />
-          
-          <Route path="/termos-de-uso" element={<TermsOfService />} />
-          <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            <Route path="/" element={<IndexA />} />
+            
+            {/* Project A Routes */}
+            <Route path="/a/lp1" element={<ProjectA_LP1 />} />
+            <Route path="/a/lp2" element={<ProjectA_LP2 />} />
+            <Route path="/a/lp3" element={<ProjectA_LP3 />} />
+            
+            {/* Project B Routes */}
+            <Route path="/b/lp1" element={<ProjectB_LP1 />} />
+            <Route path="/b/lp2" element={<ProjectB_LP2 />} />
+            <Route path="/b/lp3" element={<ProjectB_LP3 />} />
+            
+            <Route path="/termos-de-uso" element={<TermsOfService />} />
+            <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
+
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

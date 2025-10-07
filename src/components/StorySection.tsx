@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
-import storyBg from "@/assets/story-background.webp";
+import storyBg from "@/assets/story-background-optimized.jpg";
 const StorySection = () => {
   const {
     ref,

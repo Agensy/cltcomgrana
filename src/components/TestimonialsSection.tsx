@@ -7,11 +7,11 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { useState } from "react";
-import testimonial1 from "@/assets/testimonial-1.png";
-import testimonial2 from "@/assets/testimonial-2.jpeg";
-import testimonial3 from "@/assets/testimonial-3.jpeg";
-import testimonial4 from "@/assets/testimonial-4.png";
-import testimonial5 from "@/assets/testimonial-5.png";
+import testimonial1 from "@/assets/testimonial-1-optimized.jpg";
+import testimonial2 from "@/assets/testimonial-2-optimized.jpg";
+import testimonial3 from "@/assets/testimonial-3-optimized.jpg";
+import testimonial4 from "@/assets/testimonial-4-optimized.jpg";
+import testimonial5 from "@/assets/testimonial-5-optimized.jpg";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 

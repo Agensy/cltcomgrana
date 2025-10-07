@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 import GlowButton from "@/components/ui/GlowButton";
-import heroBackground from "@/assets/hero-background.webp";
+import heroBackground from "@/assets/hero-background-optimized.jpg";
 import heroMobile from "@/assets/hero-mobile.webp";
 import logo from "@/assets/logo-clt-com-grana.webp";
 import { motion } from "framer-motion";

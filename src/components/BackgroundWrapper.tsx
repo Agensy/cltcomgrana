@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import mainBg from "@/assets/main-background.webp";
+import mainBg from "@/assets/main-background-optimized.jpg";
 
 interface BackgroundWrapperProps {
   children: ReactNode;
