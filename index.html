@@ -7,13 +7,65 @@
     <title>CLT Com Grana - Criador de Sites com IA</title>
     <meta name="description" content="Crie e venda sites profissionais com I.A em minutos mesmo sem experiência e sem investimento. Garantia de 7 dias ou seu dinheiro de volta." />
     <meta name="author" content="FURION" />
-    <!-- Preconnect para domínios críticos -->
+    <!-- Preconnect e DNS-prefetch para domínios críticos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://zeph.com.br">
+    <link rel="dns-prefetch" href="https://cdn.utmify.com.br">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
     
-    <!-- Fontes otimizadas com display=swap -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Preload do módulo principal para reduzir tempo de carregamento -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    
+    <!-- Preload das fontes críticas para reduzir bloqueio de renderização -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- CSS crítico inline para melhorar LCP -->
+    <style>
+      /* Fontes de fallback para evitar FOUT (Flash of Unstyled Text) */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.5;
+      }
+      
+      /* CSS crítico para o carregamento inicial */
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Spinner de carregamento otimizado */
+      .loading-spinner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid #ffffff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Prevenção de layout shift */
+      * {
+        box-sizing: border-box;
+      }
+    </style>
 
     <meta property="og:title" content="FURION - Crie Sites Profissionais com IA" />
     <meta property="og:description" content="Crie e venda sites profissionais com I.A em minutos mesmo sem experiência e sem investimento. Garantia de 7 dias." />
@@ -23,6 +75,34 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@cltcomgrana" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Utmify Pixel Script -->
+    <script>
+      window.pixelId = "68e562a4c37ceae05c2d9a64";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+    
+    <!-- Meta Ads Pixel -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1148863280512739');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+           src="https://www.facebook.com/tr?id=1148863280512739&ev=PageView&noscript=1"/>
+    </noscript>
   </head>
 
   <body>
