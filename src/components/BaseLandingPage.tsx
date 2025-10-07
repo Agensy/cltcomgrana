@@ -1,5 +1,6 @@
-import HeroSection from "@/components/HeroSectionB";
+import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
+import StorySection from "@/components/StorySection";
 import SolutionSection from "@/components/SolutionSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import ForWhoSection from "@/components/ForWhoSection";
@@ -8,22 +9,28 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import BonusSection from "@/components/BonusSection";
 import FAQSection from "@/components/FAQSection";
 import GuaranteeSection from "@/components/GuaranteeSection";
-import FinalOfferSection from "@/components/FinalOfferSection";
+import DynamicFinalOfferSection from "@/components/DynamicFinalOfferSection";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
 import Footer from "@/components/Footer";
+import { VariationConfig } from "@/config/variations";
 
-const Index = () => {
+interface BaseLandingPageProps {
+  config: VariationConfig;
+}
+
+const BaseLandingPage = ({ config }: BaseLandingPageProps) => {
   return (
     <main className="min-h-screen bg-background">
       <HeroSection />
       <BackgroundWrapper>
         <ProblemSection />
+        <StorySection />
         <SolutionSection />
         <ForWhoSection />
         <HowItWorksSection />
         <TestimonialsSection />
         <BonusSection />
-        <FinalOfferSection />
+        <DynamicFinalOfferSection config={config} />
         <BenefitsSection />
         <FAQSection />
         <GuaranteeSection />
@@ -33,4 +40,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default BaseLandingPage;
