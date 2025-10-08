@@ -28,9 +28,9 @@ const ThankYouB = () => {
 
             {/* Steps */}
             <div className="space-y-6 mb-10">
-              {/* Step 1 */}
-              <div className="flex gap-4 items-start p-6 rounded-2xl bg-gradient-to-r from-primary/10 via-orange-500/5 to-emerald-500/10 border border-primary/20 hover:border-primary/40 transition-all hover:scale-[1.02]">
-                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-emerald-500 flex items-center justify-center shadow-lg">
+              {/* Step 1 - Laranja/Amarelo */}
+              <div className="flex gap-4 items-start p-6 rounded-2xl bg-gradient-to-r from-primary/10 via-orange-500/5 to-yellow-500/10 border border-primary/20 hover:border-primary/40 transition-all hover:scale-[1.02]">
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-primary via-orange-500 to-yellow-500 flex items-center justify-center shadow-lg">
                   <Mail className="w-7 h-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="flex-1">
@@ -46,9 +46,9 @@ const ThankYouB = () => {
                 </div>
               </div>
 
-              {/* Step 2 */}
-              <div className="flex gap-4 items-start p-6 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-green-500/5 to-primary/10 border border-emerald-500/20 hover:border-emerald-500/40 transition-all hover:scale-[1.02]">
-                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg">
+              {/* Step 2 - Verde/Esmeralda */}
+              <div className="flex gap-4 items-start p-6 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-green-500/5 to-teal-500/10 border border-emerald-500/20 hover:border-emerald-500/40 transition-all hover:scale-[1.02]">
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 via-green-500 to-teal-500 flex items-center justify-center shadow-lg">
                   <Users className="w-7 h-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="flex-1">
