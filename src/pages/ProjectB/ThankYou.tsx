@@ -105,7 +105,7 @@ const ThankYouB = () => {
                       <Button 
                         size="lg" 
                         className="group/btn bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white border-0 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300 hover:-translate-y-0.5"
-                        onClick={() => window.open('https://chat.whatsapp.com/sua-comunidade', '_blank')}
+                        onClick={() => window.open('https://chat.whatsapp.com/HjJi3LGvqx63EulE9KVNMS', '_blank')}
                       >
                         <Users className="w-5 h-5 mr-2" />
                         Entrar na Comunidade
