@@ -15,11 +15,13 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const ProjectA_LP1 = lazy(() => import("./pages/ProjectA/LP1"));
 const ProjectA_LP2 = lazy(() => import("./pages/ProjectA/LP2"));
 const ProjectA_LP3 = lazy(() => import("./pages/ProjectA/LP3"));
+const ProjectA_ThankYou = lazy(() => import("./pages/ProjectA/ThankYou"));
 
 // Project B Pages - Lazy loading
 const ProjectB_LP1 = lazy(() => import("./pages/ProjectB/LP1"));
 const ProjectB_LP2 = lazy(() => import("./pages/ProjectB/LP2"));
 const ProjectB_LP3 = lazy(() => import("./pages/ProjectB/LP3"));
+const ProjectB_ThankYou = lazy(() => import("./pages/ProjectB/ThankYou"));
 
 // Componente de loading
 const LoadingSpinner = () => (
@@ -57,11 +59,13 @@ const App = () => (
             <Route path="/a/lp1" element={<ProjectA_LP1 />} />
             <Route path="/a/lp2" element={<ProjectA_LP2 />} />
             <Route path="/a/lp3" element={<ProjectA_LP3 />} />
+            <Route path="/a/obrigado" element={<ProjectA_ThankYou />} />
             
             {/* Project B Routes */}
             <Route path="/b/lp1" element={<ProjectB_LP1 />} />
             <Route path="/b/lp2" element={<ProjectB_LP2 />} />
             <Route path="/b/lp3" element={<ProjectB_LP3 />} />
+            <Route path="/b/obrigado" element={<ProjectB_ThankYou />} />
             
             <Route path="/termos-de-uso" element={<TermsOfService />} />
             <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
