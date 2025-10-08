@@ -34,9 +34,12 @@ const ThankYouB = () => {
                   <Mail className="w-7 h-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-foreground mb-2">
-                    1. Verifique seu Email
-                  </h3>
+                  <div className="mb-3">
+                    <span className="text-sm font-black text-primary tracking-wider">#PASSO 1</span>
+                    <h3 className="text-xl font-bold text-foreground mt-1">
+                      Verifique seu Email
+                    </h3>
+                  </div>
                   <p className="text-muted-foreground leading-relaxed">
                     Enviamos um email com todos os detalhes do seu acesso ao curso. Confira sua caixa de entrada e também o spam!
                   </p>
@@ -49,9 +52,12 @@ const ThankYouB = () => {
                   <Users className="w-7 h-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-foreground mb-2">
-                    2. Entre na Comunidade
-                  </h3>
+                  <div className="mb-3">
+                    <span className="text-sm font-black text-primary tracking-wider">#PASSO 2</span>
+                    <h3 className="text-xl font-bold text-foreground mt-1">
+                      Entre na Comunidade
+                    </h3>
+                  </div>
                   <p className="text-muted-foreground mb-4 leading-relaxed">
                     Junte-se à Comunidade Criador de Sites com IA para receber avisos importantes e atualizações exclusivas!
                   </p>
