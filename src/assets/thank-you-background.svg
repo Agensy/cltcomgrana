@@ -1,0 +1,145 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg-gradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#bg-gradient)"/>
+  
+  <!-- Floating particles -->
+  <circle cx="200" cy="150" r="2" fill="#3b82f6" opacity="0.6">
+    <animate attributeName="cy" values="150;130;150" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="1700" cy="200" r="1.5" fill="#10b981" opacity="0.5">
+    <animate attributeName="cy" values="200;180;200" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="300" cy="800" r="1" fill="#f59e0b" opacity="0.4">
+    <animate attributeName="cy" values="800;820;800" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="1600" cy="900" r="2.5" fill="#8b5cf6" opacity="0.3">
+    <animate attributeName="cy" values="900;880;900" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Robotic hand (left side) -->
+  <g transform="translate(100, 300)" filter="url(#glow)">
+    <!-- Forearm -->
+    <rect x="0" y="200" width="80" height="200" rx="40" fill="#4a5568" stroke="#718096" stroke-width="2"/>
+    <rect x="10" y="210" width="60" height="20" rx="10" fill="#2d3748"/>
+    <rect x="10" y="240" width="60" height="20" rx="10" fill="#2d3748"/>
+    <rect x="10" y="270" width="60" height="20" rx="10" fill="#2d3748"/>
+    
+    <!-- Wrist joint -->
+    <circle cx="40" cy="200" r="25" fill="#2d3748" stroke="#4299e1" stroke-width="2"/>
+    <circle cx="40" cy="200" r="15" fill="#4a5568"/>
+    <circle cx="40" cy="200" r="8" fill="#4299e1">
+      <animate attributeName="fill" values="#4299e1;#63b3ed;#4299e1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Palm -->
+    <rect x="10" y="120" width="60" height="80" rx="30" fill="#4a5568" stroke="#718096" stroke-width="2"/>
+    <rect x="20" y="130" width="40" height="10" rx="5" fill="#2d3748"/>
+    <rect x="20" y="150" width="40" height="10" rx="5" fill="#2d3748"/>
+    <rect x="20" y="170" width="40" height="10" rx="5" fill="#2d3748"/>
+    
+    <!-- Fingers -->
+    <!-- Thumb -->
+    <rect x="70" y="140" width="15" height="40" rx="7" fill="#4a5568" stroke="#718096" stroke-width="1"/>
+    <rect x="85" y="145" width="12" height="30" rx="6" fill="#4a5568" stroke="#718096" stroke-width="1"/>
+    <circle cx="91" cy="150" r="3" fill="#4299e1" opacity="0.8"/>
+    
+    <!-- Index finger -->
+    <rect x="15" y="80" width="12" height="40" rx="6" fill="#4a5568" stroke="#718096" stroke-width="1"/>
+    <rect x="17" y="60" width="8" height="25" rx="4" fill="#4a5568" stroke="#718096" stroke-width="1"/>
+    <circle cx="21" cy="65" r="2" fill="#4299e1" opacity="0.8"/>
+    
+    <!-- Middle finger -->
+    <rect x="32" y="70" width="12" height="50" rx="6" fill="#4a5568" stroke="#718096" stroke-width="1"/>
+    <rect x="34" y="45" width="8" height="30" rx="4" fill="#4a5568" stroke="#718096" stroke-width="1"/>
+    <circle cx="38" cy="50" r="2" fill="#4299e1" opacity="0.8"/>
+    
+    <!-- Ring finger -->
+    <rect x="49" y="75" width="12" height="45" rx="6" fill="#4a5568" stroke="#718096" stroke-width="1"/>
+    <rect x="51" y="55" width="8" height="25" rx="4" fill="#4a5568" stroke="#718096" stroke-width="1"/>
+    <circle cx="55" cy="60" r="2" fill="#4299e1" opacity="0.8"/>
+    
+    <!-- Pinky -->
+    <rect x="66" y="85" width="10" height="35" rx="5" fill="#4a5568" stroke="#718096" stroke-width="1"/>
+    <rect x="68" y="70" width="6" height="20" rx="3" fill="#4a5568" stroke="#718096" stroke-width="1"/>
+    <circle cx="71" cy="75" r="1.5" fill="#4299e1" opacity="0.8"/>
+  </g>
+  
+  <!-- Human hand (right side) -->
+  <g transform="translate(1600, 350)">
+    <!-- Forearm -->
+    <ellipse cx="40" cy="250" rx="35" ry="100" fill="#d69e2e" opacity="0.8"/>
+    <ellipse cx="40" cy="250" rx="25" ry="90" fill="#ed8936" opacity="0.6"/>
+    
+    <!-- Palm -->
+    <ellipse cx="40" cy="150" rx="30" ry="50" fill="#ed8936"/>
+    <ellipse cx="40" cy="150" rx="25" ry="45" fill="#f6ad55" opacity="0.8"/>
+    
+    <!-- Fingers -->
+    <!-- Thumb -->
+    <ellipse cx="70" cy="140" rx="8" ry="20" fill="#ed8936"/>
+    <ellipse cx="75" cy="125" rx="6" ry="15" fill="#ed8936"/>
+    
+    <!-- Index finger -->
+    <ellipse cx="25" cy="110" rx="6" ry="25" fill="#ed8936"/>
+    <ellipse cx="25" cy="90" rx="5" ry="15" fill="#ed8936"/>
+    
+    <!-- Middle finger -->
+    <ellipse cx="40" cy="100" rx="6" ry="30" fill="#ed8936"/>
+    <ellipse cx="40" cy="75" rx="5" ry="18" fill="#ed8936"/>
+    
+    <!-- Ring finger -->
+    <ellipse cx="55" cy="105" rx="6" ry="28" fill="#ed8936"/>
+    <ellipse cx="55" cy="82" rx="5" ry="16" fill="#ed8936"/>
+    
+    <!-- Pinky -->
+    <ellipse cx="68" cy="115" rx="5" ry="22" fill="#ed8936"/>
+    <ellipse cx="68" cy="98" rx="4" ry="12" fill="#ed8936"/>
+  </g>
+  
+  <!-- Connection energy between hands -->
+  <g opacity="0.7">
+    <path d="M 280 250 Q 960 200 1600 400" stroke="#4299e1" stroke-width="3" fill="none" opacity="0.6">
+      <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 280 250 Q 960 300 1600 400" stroke="#10b981" stroke-width="2" fill="none" opacity="0.4">
+      <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="4s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 280 250 Q 960 250 1600 400" stroke="#f59e0b" stroke-width="1" fill="none" opacity="0.3">
+      <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="5s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Glowing orbs at connection points -->
+  <circle cx="280" cy="250" r="8" fill="#4299e1" opacity="0.8">
+    <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="1600" cy="400" r="8" fill="#10b981" opacity="0.8">
+    <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Additional atmospheric elements -->
+  <g opacity="0.3">
+    <circle cx="500" cy="300" r="100" fill="none" stroke="#4299e1" stroke-width="1">
+      <animate attributeName="r" values="100;120;100" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1400" cy="600" r="80" fill="none" stroke="#10b981" stroke-width="1">
+      <animate attributeName="r" values="80;100;80" dur="5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>
