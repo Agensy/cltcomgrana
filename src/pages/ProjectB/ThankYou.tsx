@@ -9,10 +9,10 @@ const ThankYouB = () => {
         <div className="max-w-4xl w-full">
           {/* Header com confete visual */}
           <div className="text-center mb-12 animate-fade-in">
-            <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-emerald-600 via-green-500 to-teal-400 mb-6 shadow-2xl shadow-emerald-500/50">
+            <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-primary via-emerald-500 to-green-500 mb-6 shadow-2xl shadow-primary/50">
               <CheckCircle className="w-14 h-14 text-white" strokeWidth={3} />
             </div>
-            <h1 className="text-4xl md:text-6xl font-black mb-4 bg-gradient-to-r from-emerald-600 via-green-500 to-teal-400 bg-clip-text text-transparent leading-tight">
+            <h1 className="text-4xl md:text-6xl font-black mb-4 bg-gradient-to-r from-primary via-orange-500 to-emerald-500 bg-clip-text text-transparent leading-tight">
               PARABÉNS! 🎉
             </h1>
             <p className="text-xl md:text-2xl text-foreground/90 font-semibold">
@@ -21,7 +21,7 @@ const ThankYouB = () => {
           </div>
 
           {/* Card principal */}
-          <div className="bg-card/95 backdrop-blur-xl border-2 border-emerald-500/20 rounded-3xl p-8 md:p-12 shadow-2xl">
+          <div className="bg-card/95 backdrop-blur-xl border-2 border-primary/20 rounded-3xl p-8 md:p-12 shadow-2xl shadow-primary/10">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground">
               Próximos Passos Essenciais
             </h2>
@@ -29,13 +29,13 @@ const ThankYouB = () => {
             {/* Steps */}
             <div className="space-y-6 mb-10">
               {/* Step 1 */}
-              <div className="flex gap-4 items-start p-6 rounded-2xl bg-gradient-to-r from-emerald-500/10 to-transparent border border-emerald-500/20 hover:border-emerald-500/40 transition-all hover:scale-[1.02]">
-                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-600 to-green-500 flex items-center justify-center shadow-lg">
+              <div className="flex gap-4 items-start p-6 rounded-2xl bg-gradient-to-r from-primary/10 via-orange-500/5 to-emerald-500/10 border border-primary/20 hover:border-primary/40 transition-all hover:scale-[1.02]">
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-emerald-500 flex items-center justify-center shadow-lg">
                   <Mail className="w-7 h-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="flex-1">
                   <div className="mb-3">
-                    <span className="text-sm font-black text-emerald-600 tracking-wider">#PASSO 1</span>
+                    <span className="text-sm font-black text-primary tracking-wider">#PASSO 1</span>
                     <h3 className="text-xl font-bold text-foreground mt-1">
                       Verifique seu Email
                     </h3>
@@ -47,8 +47,8 @@ const ThankYouB = () => {
               </div>
 
               {/* Step 2 */}
-              <div className="flex gap-4 items-start p-6 rounded-2xl bg-gradient-to-r from-emerald-500/10 to-transparent border border-emerald-500/20 hover:border-emerald-500/40 transition-all hover:scale-[1.02]">
-                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center shadow-lg">
+              <div className="flex gap-4 items-start p-6 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-green-500/5 to-primary/10 border border-emerald-500/20 hover:border-emerald-500/40 transition-all hover:scale-[1.02]">
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg">
                   <Users className="w-7 h-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="flex-1">
@@ -63,7 +63,7 @@ const ThankYouB = () => {
                   </p>
                   <Button 
                     size="lg" 
-                    className="w-full sm:w-auto font-bold bg-gradient-to-r from-emerald-600 to-green-500 hover:from-emerald-700 hover:to-green-600 text-white"
+                    className="w-full sm:w-auto font-bold bg-gradient-to-r from-emerald-600 to-green-500 hover:from-emerald-700 hover:to-green-600 text-white border-0"
                     onClick={() => window.open('https://chat.whatsapp.com/sua-comunidade', '_blank')}
                   >
                     <Users className="w-5 h-5 mr-2" />
@@ -74,7 +74,7 @@ const ThankYouB = () => {
             </div>
 
             {/* Seção de Suporte Destacada */}
-            <div className="bg-gradient-to-br from-emerald-500/20 via-green-500/10 to-teal-500/10 border-2 border-emerald-500/30 rounded-2xl p-8">
+            <div className="bg-gradient-to-br from-primary/20 via-emerald-500/10 to-green-500/10 border-2 border-primary/30 rounded-2xl p-8">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold text-foreground mb-2">
                   Canais Oficiais de Suporte
@@ -88,9 +88,9 @@ const ThankYouB = () => {
                 {/* Email */}
                 <a
                   href="mailto:suporte@cltcomgrana.com.br"
-                  className="flex flex-col items-center gap-3 p-6 bg-card/80 backdrop-blur rounded-xl hover:bg-card transition-all hover:scale-105 border border-border hover:border-emerald-500/50"
+                  className="flex flex-col items-center gap-3 p-6 bg-card/80 backdrop-blur rounded-xl hover:bg-card transition-all hover:scale-105 border border-border hover:border-primary/50"
                 >
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-600 to-green-500 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center">
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div className="text-center">
@@ -106,7 +106,7 @@ const ThankYouB = () => {
                   rel="noopener noreferrer"
                   className="flex flex-col items-center gap-3 p-6 bg-card/80 backdrop-blur rounded-xl hover:bg-card transition-all hover:scale-105 border border-border hover:border-emerald-500/50"
                 >
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center">
                     <MessageCircle className="w-6 h-6 text-white" />
                   </div>
                   <div className="text-center">
@@ -120,9 +120,9 @@ const ThankYouB = () => {
                   href="https://instagram.com/cltcomgrana"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-3 p-6 bg-card/80 backdrop-blur rounded-xl hover:bg-card transition-all hover:scale-105 border border-border hover:border-emerald-500/50"
+                  className="flex flex-col items-center gap-3 p-6 bg-card/80 backdrop-blur rounded-xl hover:bg-card transition-all hover:scale-105 border border-border hover:border-primary/50"
                 >
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center">
                     <Instagram className="w-6 h-6 text-white" />
                   </div>
                   <div className="text-center">
