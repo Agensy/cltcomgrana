@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Download, Users, TrendingUp, DollarSign, Eye } from 'lucide-react';
-import LeadsService, { LeadData, LeadSummary } from '@/services/leadsService';
+import React, { useState, useEffect } from 'react';
+import LeadsService, { LeadData, LeadSummary } from '../services/leadsService';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
+import { Download, Eye, Users, TrendingUp, DollarSign, Award, LogOut } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 const LeadsDashboard = () => {
   const [leads, setLeads] = useState<LeadData[]>([]);
   const [summary, setSummary] = useState<LeadSummary | null>(null);
   const [selectedLead, setSelectedLead] = useState<LeadData | null>(null);
+  const { logout, user } = useAuth();
 
   useEffect(() => {
     loadData();
@@ -65,18 +69,53 @@ const LeadsDashboard = () => {
     return new Date(dateString).toLocaleString('pt-BR');
   };
 
+  const handleLogout = () => {
+    logout();
+  };
+
   if (!summary) {
-    return <div>Carregando...</div>;
+    return (
+      <div className="container mx-auto p-6">
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500 mx-auto mb-4"></div>
+            <p className="text-gray-600">Carregando dashboard...</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="container mx-auto p-6 space-y-6">
+      {/* Header com botão de logout */}
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Dashboard de Leads</h1>
-        <Button onClick={handleExportCSV} className="flex items-center gap-2">
-          <Download className="w-4 h-4" />
-          Exportar CSV
-        </Button>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Dashboard de Leads</h1>
+          <p className="text-gray-600 mt-1">Acompanhe e gerencie seus leads capturados</p>
+        </div>
+        <div className="flex items-center gap-4">
+          <Button 
+            onClick={handleExportCSV} 
+            className="flex items-center gap-2"
+            variant="default"
+          >
+            <Download className="h-4 w-4" />
+            Exportar CSV
+          </Button>
+          <span className="text-sm text-gray-600">
+            Logado como: <strong>{user?.email}</strong>
+          </span>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={handleLogout}
+            className="flex items-center gap-2"
+          >
+            <LogOut className="h-4 w-4" />
+            Sair
+          </Button>
+        </div>
       </div>
 
       {/* Cards de Resumo */}
