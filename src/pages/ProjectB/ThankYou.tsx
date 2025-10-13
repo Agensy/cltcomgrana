@@ -1,8 +1,12 @@
 import { Mail, Users, MessageCircle, Instagram, CheckCircle, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
+import { useUtmifyPixel } from "@/hooks/use-utmify-pixel";
 
 const ThankYouB = () => {
+  // Carrega o script do Utmify para páginas do projeto B
+  useUtmifyPixel();
+
   return (
     <BackgroundWrapper>
       <div className="min-h-screen flex items-center justify-center px-4 py-16">

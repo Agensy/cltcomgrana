@@ -13,12 +13,16 @@ import DynamicFinalOfferSection from "@/components/DynamicFinalOfferSection";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
 import Footer from "@/components/Footer";
 import { VariationConfig } from "@/config/variations";
+import { useUtmifyPixel } from "@/hooks/use-utmify-pixel";
 
 interface BaseLandingPageProps {
   config: VariationConfig;
 }
 
 const BaseLandingPage = ({ config }: BaseLandingPageProps) => {
+  // Carrega o script do Utmify para páginas do projeto B
+  useUtmifyPixel();
+
   return (
     <main className="min-h-screen bg-background">
       <HeroSection />
