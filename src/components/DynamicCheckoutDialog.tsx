@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { VariationConfig } from "@/config/variations";
+import LeadsService from "@/services/leadsService";
 
 interface DynamicCheckoutDialogProps {
   open: boolean;
@@ -39,9 +40,27 @@ const DynamicCheckoutDialog = ({ open, onOpenChange, config }: DynamicCheckoutDi
       return;
     }
 
+    // Capture lead using LeadsService
+    const lead = LeadsService.captureLead({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      project: config.project,
+      variation: config.id,
+      originalPrice: config.pricing.originalPrice,
+      installmentPrice: config.pricing.installmentPrice,
+      installmentCount: config.pricing.installmentCount,
+      cashPrice: config.pricing.cashPrice,
+      discountPercentage: config.pricing.discountPercentage,
+      bonusValue: config.pricing.bonusValue,
+      popupType: 'checkout',
+      popupTrigger: 'Final Offer Button Click'
+    });
+
     // Store data in localStorage for checkout
     const checkoutData = {
       ...formData,
+      leadId: lead.id,
       variation: config.id,
       project: config.project,
       slug: config.slug,

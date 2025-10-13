@@ -23,6 +23,9 @@ const ProjectB_LP2 = lazy(() => import("./pages/ProjectB/LP2"));
 const ProjectB_LP3 = lazy(() => import("./pages/ProjectB/LP3"));
 const ProjectB_ThankYou = lazy(() => import("./pages/ProjectB/ThankYou"));
 
+// Leads Dashboard
+const LeadsPage = lazy(() => import("./pages/LeadsPage"));
+
 // Componente de loading
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-screen">
@@ -69,6 +72,9 @@ const App = () => (
             
             <Route path="/termos-de-uso" element={<TermsOfService />} />
             <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
+            
+            {/* Leads Dashboard */}
+            <Route path="/leads" element={<LeadsPage />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

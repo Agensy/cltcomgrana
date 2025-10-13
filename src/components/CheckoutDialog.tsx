@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import LeadsService from "@/services/leadsService";
 
 interface CheckoutDialogProps {
   open: boolean;
@@ -37,8 +38,29 @@ const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
       return;
     }
 
+    // Capture lead using LeadsService (with default values for basic checkout)
+    const lead = LeadsService.captureLead({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      project: 'A', // Default to project A for basic checkout
+      variation: 'basic-checkout',
+      originalPrice: 'R$ 2.799',
+      installmentPrice: 'R$ 9,45',
+      installmentCount: 12,
+      cashPrice: 'R$ 97',
+      discountPercentage: '82%',
+      bonusValue: 'R$ 1.802',
+      popupType: 'checkout',
+      popupTrigger: 'Basic Checkout Button Click'
+    });
+
     // Store data in localStorage for checkout
-    localStorage.setItem("checkoutData", JSON.stringify(formData));
+    const checkoutData = {
+      ...formData,
+      leadId: lead.id
+    };
+    localStorage.setItem("checkoutData", JSON.stringify(checkoutData));
 
     // Success message
     toast({
