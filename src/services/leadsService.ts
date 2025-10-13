@@ -1,3 +1,5 @@
+import WebhookService from './webhookService';
+
 export interface LeadData {
   // Informações do Lead
   id: string;
@@ -132,6 +134,10 @@ class LeadsService {
     };
 
     this.saveLead(lead);
+    
+    // Envia para webhook de forma assíncrona
+    this.sendToWebhook(lead);
+    
     return lead;
   }
 
@@ -256,6 +262,21 @@ class LeadsService {
     if (path.includes('/b/obrigado')) return 'Projeto B - Obrigado';
     
     return path;
+  }
+
+  // Envia lead para webhook
+  private static async sendToWebhook(lead: LeadData): Promise<void> {
+    try {
+      const success = await WebhookService.sendLeadToWebhook(lead);
+      if (success) {
+        console.log('Lead enviado para webhook com sucesso:', lead.id);
+      } else {
+        console.warn('Falha ao enviar lead para webhook:', lead.id);
+      }
+    } catch (error) {
+      console.error('Erro ao enviar lead para webhook:', error);
+      // Não interrompe o fluxo se houver erro no webhook
+    }
   }
 
   // Limpa todos os leads (para desenvolvimento)
