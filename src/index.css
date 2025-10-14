@@ -12,10 +12,6 @@ All colors MUST be HSL.
   :root {
     /* Dark Backgrounds */
     --background: 0 0% 3.9%;
-    --dark-900: 0 0% 3.9%;
-    --dark-800: 0 0% 5.9%;
-    --dark-700: 0 0% 10.2%;
-    --dark-600: 0 0% 16.5%;
 
     /* Text Colors */
     --foreground: 0 0% 100%;
@@ -119,7 +115,6 @@ All colors MUST be HSL.
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 20px rgba(235, 95, 46, 0.5)) drop-shadow(0 0 40px rgba(255, 140, 66, 0.3));
     position: relative;
   }
   

@@ -1,4 +1,4 @@
-import { Lightbulb, Zap, DollarSign, Check } from "lucide-react";
+import { Lightbulb, Zap, DollarSign } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 const HowItWorksSection = () => {

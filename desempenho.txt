@@ -1,0 +1,77 @@
+
+Elemento de Maior exibição de conteúdo 6.660 ms
+Este é o maior elemento com conteúdo na janela de visualização. Saiba mais sobre o elemento Maior exibição de conteúdo.LCP
+Elemento
+I.A em minutos
+<span class="text-gradient-orange-glow">
+Fase
+% de LCP
+Tempo
+TTFB
+9%
+600 ms
+Atraso no carregamento
+0%
+0 ms
+Tempo de carregamento
+0%
+0 ms
+Atraso na renderização
+91%
+6.060 ms
+Reduza o JavaScript não usado Possível economia de 94 KiB
+Para diminuir o consumo de bytes da atividade da rede, reduza o JavaScript não usado e adie o carregamento de scripts até que eles sejam necessários. Aprenda a reduzir o JavaScript não usado.LCPFCP
+URL
+Tamanho da transferência
+Possível economia
+cltcomgrana.com.br Própria
+139,5 KiB	67,9 KiB
+…js/index-BS_kMvoC.js(cltcomgrana.com.br)
+63,1 KiB
+34,4 KiB
+…js/Footer-BgFBB6GM.js(cltcomgrana.com.br)
+76,4 KiB
+33,5 KiB
+Facebook social 
+83,0 KiB	26,1 KiB
+/en_US/fbevents.js(connect.facebook.net)
+83,0 KiB
+26,1 KiB
+Elimine recursos que impedem a renderização Possível economia de 280 ms
+Recursos estão bloqueando a first paint da sua página. Inclua JS/CSS crítico inline e adie todos os JS/estilos não críticos. Aprenda a eliminar recursos de bloqueio de renderização.LCPFCP
+URL
+Tamanho da transferência
+Duração
+cltcomgrana.com.br Própria
+21,4 KiB	460 ms
+…css/index-B9UnwKtj.css(cltcomgrana.com.br)
+21,4 KiB
+460 ms
+Minimize o trabalho da thread principal 2,4 s
+Considere diminuir o tempo gasto na análise, compilação e execução de JS. Você vai perceber que a entrega de payloads JS menores ajuda a fazer isso. Aprenda a minimizar o trabalho da linha de execução principal.TBT
+Categoria
+Tempo gasto
+Script Evaluation
+742 ms
+Style & Layout
+705 ms
+Other
+629 ms
+Rendering
+181 ms
+Script Parsing & Compilation
+120 ms
+Garbage Collection
+18 ms
+Parse HTML & CSS
+7 ms
+Reduza o CSS não usado Possível economia de 14 KiB
+Para diminuir o consumo de bytes da atividade da rede, reduza as regras não usadas nas folhas de estilo e adie o CSS não usado para conteúdo acima da dobra. Aprenda a reduzir o CSS não usado.LCPFCP
+URL
+Tamanho da transferência
+Possível economia
+cltcomgrana.com.br Própria
+21,1 KiB	14,4 KiB
+…css/index-B9UnwKtj.css(cltcomgrana.com.br)
+21,1 KiB
+14,4 KiB

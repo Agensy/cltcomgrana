@@ -1,4 +1,3 @@
-import { Check } from "lucide-react";
 import guaranteeVisual from "@/assets/guarantee-visual.jpg";
 const GuaranteeSection = () => {
   return <section className="relative overflow-hidden">

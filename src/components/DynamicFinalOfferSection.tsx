@@ -1,4 +1,4 @@
-import { Check, Shield, Clock, Users, TrendingUp, Sparkles, ArrowRight, Zap } from "lucide-react";
+import { Shield, Clock, Users, TrendingUp, Sparkles, Zap } from "lucide-react";
 import GlowButton from "@/components/ui/GlowButton";
 import DynamicCheckoutDialog from "@/components/DynamicCheckoutDialog";
 import { Badge } from "@/components/ui/badge";

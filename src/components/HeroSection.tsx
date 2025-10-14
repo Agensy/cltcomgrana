@@ -1,3 +1,4 @@
+import React, { useCallback } from "react";
 import { Check } from "lucide-react";
 import GlowButton from "@/components/ui/GlowButton";
 import heroBackground from "@/assets/hero-background-optimized.jpg";
@@ -5,13 +6,13 @@ import heroMobile from "@/assets/hero-mobile.webp";
 import logo from "@/assets/logo-clt-com-grana.webp";
 // Removendo animações para melhorar LCP no mobile
 
-const HeroSection = () => {
-  const scrollToOffer = () => {
+const HeroSection = React.memo(() => {
+  const scrollToOffer = useCallback(() => {
     const offerSection = document.getElementById('final-offer');
     if (offerSection) {
       offerSection.scrollIntoView({ behavior: "smooth" });
     }
-  };
+  }, []);
   return <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Grid Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
@@ -67,5 +68,5 @@ const HeroSection = () => {
         </div>
       </div>
     </section>;
-};
+});
 export default HeroSection;

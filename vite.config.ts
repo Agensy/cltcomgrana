@@ -23,7 +23,9 @@ export default defineConfig(({ mode }) => ({
         // Estratégia de chunking para CSS crítico
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-accordion'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-accordion', '@radix-ui/react-toast'],
+          router: ['react-router-dom'],
+          query: ['@tanstack/react-query'],
         },
         // Nomes de arquivo com hash para cache
         assetFileNames: (assetInfo) => {

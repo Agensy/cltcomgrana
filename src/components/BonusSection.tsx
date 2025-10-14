@@ -1,14 +1,8 @@
+import React from "react";
 import { Check, Gift, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import CountUp from "react-countup";
 import { Badge } from "@/components/ui/badge";
 
-const BonusSection = () => {
-  const { ref, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true
-  });
+const BonusSection = React.memo(() => {
   const bonuses = [
     { 
       title: "Propostas prontas pra fechar cliente", 
@@ -47,77 +41,63 @@ const BonusSection = () => {
   }, 0);
 
   return (
-    <section className="relative overflow-hidden">
-      <div className="container relative z-10 mx-auto px-4 md:px-8 py-8 md:py-[75px]" ref={ref}>
+    <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0.6))]" />
+      
+      <div className="container relative z-10 mx-auto px-4 md:px-8 py-8 md:py-[75px]">
         <div className="w-full max-w-4xl mx-auto">
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-center mb-12">
-              <motion.div 
-                className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-6 py-3 mb-4"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5 }}
+          <div className="text-center mb-12 opacity-100 transform-none">
+            <Badge variant="secondary" className="mb-4 bg-green-500/10 text-green-400 border-green-500/20">
+              <Gift className="w-4 h-4 mr-2" />
+              BÔNUS EXCLUSIVOS
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              Mais de <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">R$ 1.800</span>
+              <span className="block">em bônus inclusos</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Tudo que você precisa para começar a faturar hoje mesmo
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-12 opacity-100 transform-none">
+            {bonuses.map((bonus, index) => (
+              <div 
+                key={index}
+                className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-green-500/30 transition-all duration-300"
               >
-                <Gift className="w-5 h-5 icon-gradient-orange" />
-                <span className="text-gradient-orange font-semibold">Bônus Exclusivos</span>
-              </motion.div>
-              <h2 className="text-4xl md:text-5xl mb-6 leading-tight font-bold lg:text-5xl">
-                <span className="text-gradient-orange-glow">Bônus exclusivos</span> para quem<br />
-                começar agora
-              </h2>
-              <p className="text-lg text-zinc-300">
-                Além do curso completo e da ferramenta de I.A, você recebe:
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-4 mb-8">
-              {bonuses.map((bonus, index) => (
-                <motion.div 
-                  key={index} 
-                  className="bg-card/30 border border-border hover:border-primary/40 rounded-lg p-4 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,102,0,0.1)] group"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="flex-1">
-                      <p className="text-base font-bold text-zinc-200 mb-1">{bonus.title}</p>
-                      <p className="text-sm text-zinc-400 mb-2">{bonus.description}</p>
-                      <p className="text-sm font-semibold text-gradient-orange">Valor: {bonus.value}</p>
-                    </div>
-                    <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-1" />
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-500/10 rounded-full p-3 flex-shrink-0">
+                    <Check className="w-6 h-6 text-green-400" />
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-white mb-2">{bonus.title}</h3>
+                    <p className="text-gray-300 mb-3">{bonus.description}</p>
+                    <div className="text-green-400 font-bold text-lg">{bonus.value}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
 
-            <motion.div 
-              className="flex flex-col items-center justify-center gap-3"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.9 }}
-            >
-              <Badge className="bg-gradient-to-r from-primary via-orange-500 to-primary border-2 border-primary/50 px-6 py-3 text-base md:text-lg shadow-[0_0_30px_rgba(255,102,0,0.3)] hover:shadow-[0_0_40px_rgba(255,102,0,0.5)] transition-all duration-300">
-                <Sparkles className="w-5 h-5 mr-2" />
-                <span className="font-bold">
-                  Valor total: R$ {inView && <CountUp end={totalValue} duration={2} separator="." />}
-                </span>
-              </Badge>
-              <p className="text-xl text-secondary font-semibold animate-pulse">
-                Tudo isso GRÁTIS para você!
+          <div className="text-center opacity-100 transform-none scale-100">
+            <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-2xl p-8 max-w-2xl mx-auto">
+              <div className="flex items-center justify-center mb-4">
+                <Sparkles className="w-8 h-8 text-green-400 mr-3" />
+                <h3 className="text-2xl font-bold text-white">Valor Total dos Bônus</h3>
+              </div>
+              <div className="text-4xl md:text-5xl font-bold text-green-400 mb-2">
+                R$ {totalValue.toLocaleString('pt-BR')}
+              </div>
+              <p className="text-gray-300">
+                Tudo isso <span className="text-green-400 font-bold">GRÁTIS</span> quando você adquire o CLT com Grana hoje
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
-};
+});
 
 export default BonusSection;
