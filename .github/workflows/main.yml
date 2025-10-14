@@ -34,6 +34,17 @@ jobs:
             exit 1
           fi
 
+      - name: Deletar index.html antigo via FTP
+        run: |
+          echo "=== Deletando index.html antigo ==="
+          ftp -n << EOF
+          open ${{ secrets.FTP_SERVER }}
+          user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}
+          cd public_html
+          delete index.html
+          quit
+          EOF
+
       - name: Listar arquivos antes do deploy
         run: |
           echo "=== Arquivos no diretório de build ==="
@@ -54,7 +65,7 @@ jobs:
           local-dir: ${{ env.BUILD_DIR }}/
           server-dir: public_html/
           log-level: verbose
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.git*/**
