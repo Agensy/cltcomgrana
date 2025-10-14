@@ -65,6 +65,19 @@
       * {
         box-sizing: border-box;
       }
+
+      /* CSS crítico específico do Hero para reduzir custo de pintura */
+      .hero-title {
+        text-rendering: optimizeLegibility;
+        filter: none;
+      }
+      .hero-title .text-gradient-orange {
+        /* Gradiente mais leve que o glow para o LCP */
+        filter: none;
+      }
+      .hero-picture img {
+        object-fit: cover;
+      }
     </style>
 
     <meta property="og:title" content="FURION - Crie Sites Profissionais com IA" />
