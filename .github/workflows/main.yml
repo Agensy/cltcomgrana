@@ -54,8 +54,13 @@ jobs:
           local-dir: ${{ env.BUILD_DIR }}/
           server-dir: public_html/
           log-level: verbose
-          dangerous-clean-slate: false
+          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
+            **/cgi-bin/**
+            **/.htaccess
+            **/wp-admin/**
+            **/wp-content/**
+            **/wp-includes/**
