@@ -3,20 +3,41 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
+// Plugin personalizado para garantir que o script principal seja incluído
+const ensureMainScript = () => {
+  return {
+    name: 'ensure-main-script',
+    transformIndexHtml(html: string) {
+      // Sempre adiciona o script principal se não estiver presente
+      if (!html.includes('assets/js/index-')) {
+        html = html.replace(
+          '<div id="root"></div>',
+          '<div id="root"></div>\n    <script type="module" crossorigin src="/assets/js/index-CzXZQ8Sp.js"></script>'
+        );
+      }
+      return html;
+    }
+  };
+};
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [
+    react(),
+    ...(mode === "development" ? [componentTagger()] : []),
+    ensureMainScript()
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
   build: {
-    // Otimizações para reduzir bloqueio de renderização
+    // Otimizações de build
     cssCodeSplit: true, // Divide CSS em chunks menores
     rollupOptions: {
       output: {
