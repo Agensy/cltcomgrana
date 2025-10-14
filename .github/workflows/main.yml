@@ -22,6 +22,26 @@ jobs:
       - name: Build do projeto
         run: npm run build
 
+      - name: 🔍 Validar configurações de deploy
+        run: |
+          echo "🔍 Verificando configurações críticas do deploy..."
+          
+          # Verificar se server-dir está correto
+          if grep -A 10 "Deploy via FTP" .github/workflows/main.yml | grep -q "server-dir: /"; then
+            echo "✅ server-dir configurado corretamente: /"
+          else
+            echo "❌ ERRO CRÍTICO: server-dir não está configurado como '/'"
+            echo "   Isso causará problemas no deploy da HostGator!"
+            exit 1
+          fi
+          
+          # Verificar se .htaccess não está sendo excluído
+          if grep -q "exclude.*\.htaccess" .github/workflows/main.yml; then
+            echo "⚠️  AVISO: .htaccess está sendo excluído - pode quebrar roteamento SPA"
+          fi
+          
+          echo "🚀 Validação concluída - deploy seguro para prosseguir!"
+
       - name: Detectar diretório de build (dist/ ou out/)
         id: detect-dir
         run: |
@@ -34,6 +54,18 @@ jobs:
             exit 1
           fi
 
+      # ⚠️  ATENÇÃO CRÍTICA: NÃO ALTERE O server-dir ABAIXO! ⚠️
+      # 
+      # REGRA DE PROTEÇÃO HOSTGATOR:
+      # - server-dir DEVE ser "/" (raiz)
+      # - HostGator já usa /public_html/ como diretório público
+      # - Alterar para "public_html/" criará /public_html/public_html/ (ERRO!)
+      # - Isso tornará o site INACESSÍVEL na URL principal
+      # 
+      # ✅ CORRETO: server-dir: /
+      # ❌ ERRADO:  server-dir: public_html/
+      # 
+      # Se precisar alterar, TESTE primeiro em ambiente de staging!
       - name: Deploy via FTP para HostGator
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -43,4 +75,4 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ${{ env.BUILD_DIR }}/
-          server-dir: /
+          server-dir: /  # ⚠️ CRÍTICO: Manter como "/" - Ver comentários acima!

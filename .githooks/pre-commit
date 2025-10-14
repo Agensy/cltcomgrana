@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Git Hook: Pre-commit
+# Valida configurações críticas antes de permitir commits
+
+set -e
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo -e "${YELLOW}🔍 Executando validações de segurança...${NC}"
+
+# Verificar se o workflow foi modificado
+if git diff --cached --name-only | grep -q ".github/workflows/main.yml"; then
+    echo -e "${YELLOW}⚠️  Workflow de deploy foi modificado - executando validação crítica...${NC}"
+    
+    # Executar script de validação
+    if [ -f "scripts/validate-workflow.sh" ]; then
+        ./scripts/validate-workflow.sh
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}❌ COMMIT BLOQUEADO: Configurações de deploy inválidas!${NC}"
+            echo -e "${YELLOW}💡 Corrija os problemas acima antes de fazer commit.${NC}"
+            exit 1
+        fi
+    else
+        echo -e "${YELLOW}⚠️  Script de validação não encontrado em scripts/validate-workflow.sh${NC}"
+    fi
+    
+    echo -e "${GREEN}✅ Validação de deploy aprovada!${NC}"
+fi
+
+echo -e "${GREEN}🚀 Todas as validações passaram - commit permitido!${NC}"
+exit 0
