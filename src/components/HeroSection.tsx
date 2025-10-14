@@ -26,7 +26,7 @@ const HeroSection = React.memo(() => {
           className="w-full h-full object-cover opacity-70"
           loading="eager"
           decoding="async"
-          fetchPriority="high"
+          {...({ fetchpriority: "high" } as any)}
         />
       </picture>
 

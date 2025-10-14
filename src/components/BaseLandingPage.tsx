@@ -14,14 +14,20 @@ import BackgroundWrapper from "@/components/BackgroundWrapper";
 import Footer from "@/components/Footer";
 import { VariationConfig } from "@/config/variations";
 import { useUtmifyPixel } from "@/hooks/use-utmify-pixel";
+import { useFacebookPixel } from "@/hooks/use-facebook-pixel";
+import { useLazyScripts } from "@/hooks/use-lazy-scripts";
 
 interface BaseLandingPageProps {
   config: VariationConfig;
 }
 
 const BaseLandingPage = ({ config }: BaseLandingPageProps) => {
-  // Carrega o script do Utmify para páginas do projeto B
-  useUtmifyPixel();
+  // Detecta quando a HeroSection foi carregada
+  const { heroLoaded } = useLazyScripts();
+  
+  // Carrega os scripts apenas após a HeroSection estar carregada
+  useUtmifyPixel(heroLoaded);
+  useFacebookPixel(heroLoaded);
 
   return (
     <main className="min-h-screen bg-background">

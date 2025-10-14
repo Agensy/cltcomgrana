@@ -5,43 +5,39 @@ import solutionBg from "@/assets/solution-background.webp";
 
 const SolutionSection = React.memo(() => {
   const scrollToForm = useCallback(() => {
-    document.getElementById("lead-form")?.scrollIntoView({
-      behavior: "smooth"
-    });
+    const offerSection = document.getElementById('final-offer');
+    if (offerSection) {
+      offerSection.scrollIntoView({ behavior: "smooth" });
+    }
   }, []);
 
   const steps = [
     {
       icon: Briefcase,
-      number: "01",
       title: "Identifique empresas sem site na sua região",
       description: "Lojas, salões, oficinas, clínicas... milhares de negócios ainda não têm presença online e estão perdendo clientes todos os dias para a concorrência.",
       connector: "Depois de identificar quem precisa..."
     },
     {
       icon: Sparkles,
-      number: "02",
       title: "Crie sites profissionais em minutos com I.A",
       description: "Não precisa programar nada. Você conversa com a ferramenta, descreve o que o cliente precisa, e a I.A monta o site completo automaticamente.",
       connector: "Com o site pronto..."
     },
     {
       icon: List,
-      number: "03",
       title: "Personalize seguindo nosso método simples",
       description: "Se você sabe usar WhatsApp, consegue fazer isso. Nosso passo a passo mostra exatamente como ajustar cores, textos e imagens para cada cliente.",
       connector: "Agora é hora de apresentar..."
     },
     {
       icon: DollarSign,
-      number: "04",
       title: "Venda e receba de R$500 a R$2.000 por projeto",
       description: "Apresente o site pronto, feche o negócio e receba pelo Pix. Trabalhe no seu ritmo, de casa, e escolha quantos projetos quer fazer por mês.",
       connector: "E se não funcionar?"
     },
     {
       icon: Shield,
-      number: "05",
       title: "Garantia de 7 dias ou dinheiro de volta",
       description: "Se em 7 dias você não conseguir vender seu primeiro site, devolvemos 100% do seu investimento. Sem perguntas, sem burocracia.",
       connector: null
@@ -111,46 +107,48 @@ const SolutionSection = React.memo(() => {
                 Como funciona o método <span className="text-gradient-orange-glow">CLT com Grana</span>
               </h3>
 
-              <div className="space-y-8 md:space-y-12">
-                {steps.map((step, index) => {
-                  const Icon = step.icon;
-                  return (
-                    <div key={index} className="relative">
-                      <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
-                        {/* Step Number and Icon */}
-                        <div className="flex-shrink-0 flex items-center gap-4">
-                          <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center text-white font-bold text-xl shadow-glow-orange">
-                            {step.number}
+              <div className="relative">
+                {/* Vertical Flow Line */}
+                <div className="absolute left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-primary/30 via-primary/50 to-primary/30 hidden md:block"></div>
+                
+                <div className="space-y-8 md:space-y-12">
+                  {steps.map((step, index) => {
+                    const Icon = step.icon;
+                    return (
+                      <div key={index} className="relative">
+                        <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
+                          {/* Step Icon */}
+                          <div className="flex-shrink-0 relative z-10">
+                            <div className="w-16 h-16 bg-gradient-to-br from-zinc-800 to-zinc-900 border border-primary/30 rounded-lg flex items-center justify-center shadow-glow-orange">
+                              <Icon className="w-8 h-8 icon-gradient-orange" />
+                            </div>
                           </div>
-                          <div className="w-12 h-12 bg-gradient-to-br from-zinc-800 to-zinc-900 border border-primary/30 rounded-lg flex items-center justify-center">
-                            <Icon className="w-6 h-6 icon-gradient-orange" />
-                          </div>
-                        </div>
 
-                        {/* Content */}
-                        <div className="flex-1">
-                          <h4 className="text-xl md:text-2xl font-bold text-white mb-3">
-                            {step.title}
-                          </h4>
-                          <p className="text-lg text-zinc-300 leading-relaxed">
-                            {step.description}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Connector */}
-                      {step.connector && (
-                        <div className="mt-6 mb-2 flex items-center justify-center">
-                          <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 border border-primary/30 rounded-full px-6 py-2">
-                            <p className="text-sm text-gradient-orange-glow font-medium">
-                              {step.connector}
+                          {/* Content */}
+                          <div className="flex-1">
+                            <h4 className="text-xl md:text-2xl font-bold text-white mb-3">
+                              {step.title}
+                            </h4>
+                            <p className="text-lg text-zinc-300 leading-relaxed">
+                              {step.description}
                             </p>
                           </div>
                         </div>
-                      )}
-                    </div>
-                  );
-                })}
+
+                        {/* Connector */}
+                        {step.connector && (
+                          <div className="mt-6 mb-2 flex items-center justify-center">
+                            <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 border border-primary/30 rounded-full px-6 py-2">
+                              <p className="text-sm text-gradient-orange-glow font-medium">
+                                {step.connector}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
@@ -163,9 +161,11 @@ const SolutionSection = React.memo(() => {
                 <p className="text-lg text-zinc-300 mb-6">
                   Junte-se a centenas de pessoas que já estão vendendo sites e mudando de vida com nosso método.
                 </p>
-                <GlowButton onClick={scrollToForm}>
-                  QUERO COMEÇAR AGORA
-                </GlowButton>
+                <div className="flex justify-center">
+                  <GlowButton onClick={scrollToForm}>
+                    QUERO COMEÇAR AGORA
+                  </GlowButton>
+                </div>
               </div>
             </div>
           </div>

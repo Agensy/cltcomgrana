@@ -2,10 +2,16 @@ import { Mail, Users, MessageCircle, Instagram, CheckCircle, ArrowRight, Sparkle
 import { Button } from "@/components/ui/button";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
 import { useUtmifyPixel } from "@/hooks/use-utmify-pixel";
+import { useFacebookPixel } from "@/hooks/use-facebook-pixel";
+import { useLazyScripts } from "@/hooks/use-lazy-scripts";
 
 const ThankYouB = () => {
-  // Carrega o script do Utmify para páginas do projeto B
-  useUtmifyPixel();
+  // Detecta quando a página foi carregada
+  const { heroLoaded } = useLazyScripts();
+  
+  // Carrega os scripts após o carregamento inicial
+  useUtmifyPixel(heroLoaded);
+  useFacebookPixel(heroLoaded);
 
   return (
     <BackgroundWrapper>
