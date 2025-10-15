@@ -1,10 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { Play, CheckCircle, Clock, Zap } from 'lucide-react';
-import codigoImage from '../assets/codigo.jpg';
+import { CheckCircle, Zap } from 'lucide-react';
 
 const VideoProofSection: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -17,44 +14,9 @@ const VideoProofSection: React.FC = () => {
     `https://player-vz-1e7e0b7e-27c.tv.pandavideo.com.br/embed/?v=8bb01fda-4f87-487d-b6ff-0dfc5ce36d55`
   ];
 
-  const getCurrentVideoUrl = useCallback(() => {
-    const baseUrl = videoUrls[Math.min(retryCount, videoUrls.length - 1)];
-    return `${baseUrl}&t=${Date.now()}`;
-  }, [retryCount, videoUrls]);
-
-  const checkVideoAvailability = useCallback(async (url: string): Promise<boolean> => {
-    try {
-      const response = await fetch(url, { method: 'HEAD', mode: 'no-cors' });
-      return true; // Se chegou até aqui, a URL está acessível
-    } catch (error) {
-      console.warn('URL não acessível:', url);
-      return false;
-    }
-  }, []);
-
   const handleRetry = useCallback(() => {
     setRetryCount(prev => prev + 1);
     setHasError(false);
-    setIsPlaying(false);
-    setIsLoading(false);
-  }, []);
-
-  const handlePlayVideo = useCallback(() => {
-    try {
-      console.log('Play button clicked - iniciando vídeo');
-      setIsLoading(true);
-      setHasError(false);
-      
-      // Ativar o vídeo imediatamente
-      console.log('Ativando vídeo - setIsPlaying(true)');
-      setIsPlaying(true);
-      setIsLoading(false);
-      
-    } catch (error) {
-      console.error('Erro ao iniciar vídeo:', error);
-      setHasError(true);
-      setIsLoading(false);
-    }
   }, []);
 
   const handleIframeError = useCallback(() => {
@@ -66,7 +28,6 @@ const VideoProofSection: React.FC = () => {
       }, 1000);
     } else {
       setHasError(true);
-      setIsLoading(false);
     }
   }, [retryCount, videoUrls.length, handleRetry]);
 
@@ -113,62 +74,7 @@ const VideoProofSection: React.FC = () => {
             <div className="relative bg-gradient-to-r from-primary/30 to-primary/10 p-1 rounded-2xl shadow-2xl">
               <div className="bg-black rounded-xl overflow-hidden">
                 <div className="aspect-video relative">
-                  {!isPlaying ? (
-                    /* Video Cover */
-                    <div 
-                      className={`absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black flex items-center justify-center cursor-pointer group transition-all duration-300 hover:scale-[1.02] ${isLoading ? 'pointer-events-none' : ''}`}
-                      onClick={handlePlayVideo}
-                      style={{
-                        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('${codigoImage}')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                      }}
-                    >
-                      {/* Background Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-zinc-900/70 to-black/80"></div>
-                      
-                      {/* Content */}
-                      <div className="relative z-10 text-center px-6">
-                        {/* Play Button */}
-                        <div className="mb-6 relative">
-                          <div className={`w-20 h-20 md:w-24 md:h-24 bg-gradient-to-r from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto shadow-2xl transition-all duration-300 ${isLoading ? 'animate-pulse' : 'group-hover:shadow-[0_0_40px_rgba(203,123,66,0.6)] group-hover:scale-110'}`}>
-                            {isLoading ? (
-                              <div className="w-8 h-8 md:w-10 md:h-10 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                            ) : (
-                              <Play className="w-8 h-8 md:w-10 md:h-10 text-white ml-1" fill="currentColor" />
-                            )}
-                          </div>
-                          {/* Pulse Animation */}
-                          {!isLoading && (
-                            <div className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 bg-primary/30 rounded-full mx-auto animate-ping"></div>
-                          )}
-                        </div>
-                        
-                        {/* Title */}
-                        <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
-                          <span className="text-gradient-orange-glow">Veja na Prática</span>
-                        </h3>
-                        
-                        {/* Subtitle */}
-                        <p className="text-zinc-300 text-sm md:text-base mb-4 max-w-md mx-auto leading-relaxed">
-                          Trecho exclusivo da aula mostrando como criar um site profissional em minutos
-                        </p>
-                        
-                        {/* Call to Action */}
-                        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/20 to-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/30 group-hover:border-primary/50 transition-all duration-300">
-                          <Play className="w-4 h-4" />
-                          <span>Clique para assistir</span>
-                        </div>
-                        
-                        {/* Duration Badge */}
-                        <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
-                          <Clock className="w-3 h-3" />
-                          <span>3:42</span>
-                        </div>
-                      </div>
-                    </div>
-                  ) : hasError ? (
+                  {hasError ? (
                     /* Error State */
                     <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black flex items-center justify-center">
                       <div className="text-center px-6">
@@ -183,12 +89,7 @@ const VideoProofSection: React.FC = () => {
                         </div>
                         <p className="text-zinc-400 text-sm mb-4">Houve um problema ao carregar o vídeo. Tente novamente.</p>
                         <button
-                           onClick={() => {
-                             handleRetry();
-                             setTimeout(() => {
-                               handlePlayVideo();
-                             }, 500);
-                           }}
+                           onClick={handleRetry}
                            disabled={retryCount >= videoUrls.length - 1}
                            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
                              retryCount >= videoUrls.length - 1
@@ -206,7 +107,7 @@ const VideoProofSection: React.FC = () => {
                       </div>
                     </div>
                   ) : (
-                    /* Video Player */
+                    /* Video Player - Direto sem placeholder */
                     <div className="absolute inset-0">
                       <iframe
                          ref={iframeRef}
@@ -230,7 +131,6 @@ const VideoProofSection: React.FC = () => {
                          onError={(e) => {
                            console.error('Erro ao carregar iframe do vídeo:', e);
                            setHasError(true);
-                           setIsLoading(false);
                          }}
                        />
                     </div>
