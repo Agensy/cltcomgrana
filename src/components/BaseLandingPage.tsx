@@ -38,10 +38,10 @@ const BaseLandingPage = ({ config }: BaseLandingPageProps) => {
         <SolutionSection />
         <ForWhoSection />
         <HowItWorksSection />
-        <TestimonialsSection />
         <BonusSection />
         <DynamicFinalOfferSection config={config} />
         <BenefitsSection />
+        <TestimonialsSection />
         <FAQSection />
         <GuaranteeSection />
       </BackgroundWrapper>
