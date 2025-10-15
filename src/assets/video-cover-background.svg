@@ -1,0 +1,74 @@
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c3e50;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#34495e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a252f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="personGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f4d1ae;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8b892;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shirtGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c3e50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34495e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#cb7b42;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#e67e22;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bgGradient)"/>
+  
+  <!-- Accent overlay -->
+  <rect x="0" y="0" width="800" height="450" fill="url(#accentGradient)"/>
+  
+  <!-- Professional person silhouette -->
+  <g transform="translate(500, 50)">
+    <!-- Head -->
+    <ellipse cx="0" cy="80" rx="45" ry="55" fill="url(#personGradient)"/>
+    
+    <!-- Hair -->
+    <path d="M -40 50 Q -45 30 -35 25 Q -20 20 0 25 Q 20 20 35 25 Q 45 30 40 50 Q 35 45 20 50 Q 0 45 -20 50 Q -35 45 -40 50" fill="#2c3e50"/>
+    
+    <!-- Shirt/Suit -->
+    <rect x="-60" y="130" width="120" height="200" rx="10" fill="url(#shirtGradient)"/>
+    
+    <!-- Collar -->
+    <polygon points="-25,130 25,130 35,160 -35,160" fill="#1a252f"/>
+    
+    <!-- Tie -->
+    <polygon points="-8,160 8,160 12,220 -12,220" fill="#cb7b42"/>
+    
+    <!-- Arms -->
+    <ellipse cx="-70" cy="180" rx="25" ry="80" fill="url(#shirtGradient)"/>
+    <ellipse cx="70" cy="180" rx="25" ry="80" fill="url(#shirtGradient)"/>
+    
+    <!-- Hands -->
+    <ellipse cx="-70" cy="250" rx="15" ry="20" fill="url(#personGradient)"/>
+    <ellipse cx="70" cy="250" rx="15" ry="20" fill="url(#personGradient)"/>
+  </g>
+  
+  <!-- Decorative elements -->
+  <circle cx="150" cy="100" r="3" fill="#cb7b42" opacity="0.6"/>
+  <circle cx="180" cy="150" r="2" fill="#cb7b42" opacity="0.4"/>
+  <circle cx="120" cy="180" r="2" fill="#cb7b42" opacity="0.5"/>
+  
+  <circle cx="650" cy="350" r="3" fill="#cb7b42" opacity="0.6"/>
+  <circle cx="680" cy="320" r="2" fill="#cb7b42" opacity="0.4"/>
+  <circle cx="620" cy="380" r="2" fill="#cb7b42" opacity="0.5"/>
+  
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#cb7b42" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="450" fill="url(#grid)"/>
+  
+  <!-- Central focus area for play button -->
+  <circle cx="400" cy="225" r="80" fill="none" stroke="#cb7b42" stroke-width="1" opacity="0.2"/>
+  <circle cx="400" cy="225" r="60" fill="none" stroke="#cb7b42" stroke-width="1" opacity="0.3"/>
+</svg>

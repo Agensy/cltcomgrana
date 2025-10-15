@@ -114,7 +114,7 @@ export const variationsConfig: Record<string, VariationConfig> = {
     checkout: {
       title: 'Só mais um passo pra liberar seu acesso completo.',
       description: 'Preencha seus dados pra seguir direto pro checkout.',
-      checkoutUrl: 'https://pay.hotmart.com/K102191894H?off=nbmg2y2r&bid=1759848815162',
+      checkoutUrl: 'https://pay.hotmart.com/K102191894H?checkoutMode=10',
       utmParams: {
         utm_source: 'afiliado',
         utm_medium: 'referral',
