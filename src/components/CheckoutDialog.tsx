@@ -68,11 +68,10 @@ const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
       description: "Seus dados foram salvos. Redirecionando para o checkout!",
     });
 
-    // TODO: Redirect to checkout page with data
-    // For now, just close the dialog
+    // Redirect to checkout page with data
     setTimeout(() => {
       onOpenChange(false);
-      // window.location.href = `/checkout?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&phone=${encodeURIComponent(formData.phone)}`;
+      window.location.href = `/b/checkout?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&phone=${encodeURIComponent(formData.phone)}`;
     }, 1500);
   };
 

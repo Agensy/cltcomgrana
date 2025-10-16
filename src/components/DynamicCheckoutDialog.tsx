@@ -75,87 +75,14 @@ const DynamicCheckoutDialog = ({ open, onOpenChange, config }: DynamicCheckoutDi
       description: "Seus dados foram salvos. Redirecionando para o checkout!",
     });
 
-    // Build checkout URL with UTM parameters and form data
-    let checkoutUrl = config.checkout.checkoutUrl;
-    
-    // For Project B, use specific parameter format for Hotmart
-    if (config.project === 'B') {
-      // Extract DDD and phone number from the phone field
-      const phoneClean = formData.phone.replace(/\D/g, ''); // Remove non-digits
-      let phoneac = '';
-      let phonenumber = '';
-      
-      if (phoneClean.length >= 10) {
-        phoneac = phoneClean.substring(0, 2); // First 2 digits (DDD)
-        phonenumber = phoneClean.substring(2); // Rest of the phone
-      } else if (phoneClean.length >= 8) {
-        // Fallback for shorter phones - assume DDD 11 if not provided
-        phoneac = '11';
-        phonenumber = phoneClean;
-      } else {
-        // Very short phone - use as is
-        phoneac = phoneClean.substring(0, 2) || '11';
-        phonenumber = phoneClean.substring(2) || phoneClean;
-      }
-      
-      const urlParams = new URLSearchParams({
-        name: formData.name,
-        email: formData.email,
-        phoneac: phoneac,
-        phonenumber: phonenumber,
-        ...config.checkout.utmParams
-      });
-      
-      checkoutUrl = `${config.checkout.checkoutUrl}&${urlParams.toString()}`;
-    } else if (config.project === 'A') {
-       // For Project A, use Ticto parameter format
-       const phoneClean = formData.phone.replace(/\D/g, ''); // Remove non-digits
-       
-       const urlParams = new URLSearchParams({
-         name: formData.name,
-         email: formData.email,
-         DDI: '55',
-         phonenumber: phoneClean,
-         ...config.checkout.utmParams
-       });
-       
-       checkoutUrl = `${config.checkout.checkoutUrl}?${urlParams.toString()}`;
-     } else {
-       // For other projects, use the original format
-       const urlParams = new URLSearchParams({
-         name: formData.name,
-         email: formData.email,
-         phone: formData.phone,
-         variation: config.id,
-         ...config.checkout.utmParams
-       });
-       
-       checkoutUrl = `${config.checkout.checkoutUrl}?${urlParams.toString()}`;
-     }
-
-    // Function to handle redirect with mobile fallback
-    const handleRedirect = () => {
-      onOpenChange(false);
-      
-      // Check if we're on mobile
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      
-      if (isMobile) {
-        // On mobile, use window.location.href for better compatibility
-        window.location.href = checkoutUrl;
-      } else {
-        // On desktop, try window.open first, fallback to window.location.href
-        const newWindow = window.open(checkoutUrl, '_blank');
-        
-        // If popup was blocked, fallback to same window
-        if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-          window.location.href = checkoutUrl;
-        }
-      }
-    };
+    // Build checkout URL - redirect to internal checkout page
+    const checkoutUrl = `/b/checkout?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&phone=${encodeURIComponent(formData.phone)}`;
 
     // Redirect to checkout page with data
-    setTimeout(handleRedirect, 1500);
+    setTimeout(() => {
+      onOpenChange(false);
+      window.location.href = checkoutUrl;
+    }, 1500);
   };
 
   return (

@@ -53,7 +53,7 @@ const DynamicFinalOfferSection = ({ config }: DynamicFinalOfferSectionProps) => 
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center justify-center gap-3 mb-4">
-              <Badge className="bg-red-500/20 border-red-500/50 text-red-400 px-4 py-2 animate-pulse">
+              <Badge className="bg-error/20 border-error/50 text-error px-4 py-2 animate-pulse">
                 <Clock className="w-4 h-4 mr-2" />
                 Oferta por Tempo Limitado
               </Badge>

@@ -154,7 +154,7 @@ const LeadsDashboard = () => {
           <div className="flex items-center gap-4">
             <Button 
               onClick={handleTestWebhook} 
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+              className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground"
               variant="default"
             >
               <TestTube className="h-4 w-4" />

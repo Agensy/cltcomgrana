@@ -36,12 +36,12 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      <Card className="w-full max-w-md border border-border shadow-card">
         <CardHeader className="space-y-1">
           <div className="flex items-center justify-center mb-4">
-            <div className="p-3 bg-blue-100 rounded-full">
-              <Lock className="h-6 w-6 text-blue-600" />
+            <div className="p-3 bg-primary/10 rounded-full">
+              <Lock className="h-6 w-6 text-primary" />
             </div>
           </div>
           <CardTitle className="text-2xl text-center">Acesso Restrito</CardTitle>

@@ -28,6 +28,9 @@ const ProjectB_ThankYou = lazy(() => import("./pages/ProjectB/ThankYou"));
 // Leads Dashboard
 const LeadsPage = lazy(() => import("./pages/LeadsPage"));
 
+// Checkout Page
+const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
+
 // Componente de loading
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-screen">
@@ -72,6 +75,7 @@ const App = () => (
             <Route path="/b/lp2" element={<ProjectB_LP2 />} />
             <Route path="/b/lp3" element={<ProjectB_LP3 />} />
             <Route path="/b/obrigado" element={<ProjectB_ThankYou />} />
+            <Route path="/b/checkout" element={<CheckoutPage />} />
             
             <Route path="/termos-de-uso" element={<TermsOfService />} />
             <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />

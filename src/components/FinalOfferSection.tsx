@@ -106,8 +106,8 @@ const FinalOfferSection = React.memo(() => {
                 </p>
               </div>
 
-              <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-xl p-6">
-                <h3 className="text-xl font-bold text-blue-400 mb-3">🎯 Suporte Exclusivo</h3>
+              <div className="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-xl p-6">
+                <h3 className="text-xl font-bold text-primary mb-3">🎯 Suporte Exclusivo</h3>
                 <p className="text-gray-300">
                   Tire suas dúvidas diretamente comigo no WhatsApp. Suporte personalizado incluído.
                 </p>
