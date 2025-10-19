@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useState } from 'react';
 import { getVariationConfig } from '@/config/variations';
 
 const CheckoutPage: React.FC = () => {
@@ -25,8 +25,8 @@ const CheckoutPage: React.FC = () => {
   // URL base do checkout (variação ou fallback)
   const baseUrl = config?.checkout.checkoutUrl || 'https://pay.hotmart.com/K102191894H';
 
-  // Monta a URL final com UTMs e dados disponíveis
-  const finalUrl = useMemo(() => {
+  // Monta a URL final uma única vez para evitar reloads/flicker no iframe
+  const [finalUrl] = useState(() => {
     try {
       const url = new URL(baseUrl);
 
@@ -47,7 +47,7 @@ const CheckoutPage: React.FC = () => {
     } catch {
       return baseUrl;
     }
-  }, [baseUrl, checkoutData, config, name, email, phone]);
+  });
 
   return (
     <div className="fixed inset-0 bg-background overflow-hidden">
@@ -57,7 +57,6 @@ const CheckoutPage: React.FC = () => {
         title="Checkout"
         allow="payment; fullscreen"
         sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation allow-popups-to-escape-sandbox"
-        loading="lazy"
       />
     </div>
   );
