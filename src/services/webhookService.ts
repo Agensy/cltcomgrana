@@ -21,8 +21,7 @@ class WebhookService {
         webhookUrl: this.config.url
       });
 
-      // Verificação de conectividade básica
-      console.log('🔍 Enviando dados para webhook...');
+      console.log('🔍 Enviando dados para webhook (JSON POST)...');
 
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), this.config.timeout);
@@ -56,12 +55,13 @@ class WebhookService {
         return true;
       } else {
         const errorText = await response.text();
-        
+
+        // Erros 404 geralmente indicam endpoint incorreto ou fluxo desligado; não adianta fallback
         if (response.status === 404) {
           console.error('❌ Webhook não encontrado (404):', {
             status: response.status,
             statusText: response.statusText,
-            errorText: errorText,
+            errorText,
             message: 'O endpoint do webhook não existe ou está mal configurado',
             possibleSolutions: [
               'Verifique se a URL do webhook está correta',
@@ -69,40 +69,81 @@ class WebhookService {
               'Verifique se o webhook trigger está configurado corretamente no n8n'
             ]
           });
-        } else {
-          console.error('❌ Erro na resposta do webhook:', {
-            status: response.status,
-            statusText: response.statusText,
-            errorText: errorText
-          });
+          return false;
         }
-        return false;
+
+        // Para outros códigos (ex: 5xx) tenta fallback para garantir entrega
+        console.warn('⚠️ Erro HTTP ao enviar lead. Tentando fallback...', {
+          status: response.status,
+          statusText: response.statusText,
+          errorText
+        });
+        const fb = await this.fallbackSendLead(lead);
+        return fb;
       }
     } catch (error) {
-      console.error('❌ Erro ao enviar lead para webhook:', {
-        error: error,
+      console.error('❌ Erro ao enviar lead para webhook (JSON POST):', {
+        error,
         message: error instanceof Error ? error.message : 'Erro desconhecido',
         stack: error instanceof Error ? error.stack : undefined,
         webhookUrl: this.config.url
       });
 
-      // Diagnóstico adicional
-      if (error instanceof Error) {
-        if (error.name === 'AbortError') {
-          console.error('🚨 DIAGNÓSTICO: Timeout na requisição!');
-          console.error('📋 O webhook demorou mais que 10 segundos para responder');
-        } else if (error.message.includes('Failed to fetch')) {
-          console.error('🚨 DIAGNÓSTICO: Erro de conectividade detectado!');
-          console.error('📋 Possíveis causas:');
-          console.error('   1. Webhook está offline ou inacessível');
-          console.error('   2. URL do webhook está incorreta');
-          console.error('   3. Problemas de rede ou firewall');
-          console.error('   4. Servidor do webhook está com problemas');
-        }
-      }
-
-      return false;
+      // Fallback para cenários de CORS/timeout/falha de rede
+      const fb = await this.fallbackSendLead(lead);
+      return fb;
     }
+  }
+
+  // Fallbacks para evitar bloqueios de CORS/preflight e garantir melhor entrega
+  private static async fallbackSendLead(lead: LeadData): Promise<boolean> {
+    // 1) Tenta navigator.sendBeacon (não requer preflight, ideal para eventos de UI)
+    try {
+      console.log('🛟 Tentando fallback via sendBeacon...');
+      const blob = new Blob([JSON.stringify(lead)], { type: 'application/json' });
+      const scheduled = navigator.sendBeacon(this.config.url, blob);
+      if (scheduled) {
+        console.log('✅ Fallback via sendBeacon agendado com sucesso');
+        return true; // não há confirmação de entrega, mas o envio foi agendado
+      } else {
+        console.warn('⚠️ sendBeacon não conseguiu agendar o envio');
+      }
+    } catch (e) {
+      console.warn('⚠️ sendBeacon não suportado ou falhou:', e);
+    }
+
+    // 2) Tenta fetch com no-cors e Content-Type simples (evita preflight)
+    try {
+      console.log('🛟 Tentando fallback via fetch no-cors (resposta opaca)...');
+      await fetch(this.config.url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          // Content-Type simples para evitar preflight
+          'Content-Type': 'text/plain'
+        },
+        body: JSON.stringify(lead)
+      });
+      console.log('✅ Fallback via fetch no-cors enviado (não é possível ler a resposta)');
+      return true;
+    } catch (e) {
+      console.error('❌ Fallback via fetch no-cors falhou:', e);
+    }
+
+    // 3) Como último recurso, tenta GET com querystring (se o n8n aceitar GET)
+    try {
+      console.log('🛟 Tentando fallback via GET com querystring...');
+      const qs = encodeURIComponent(JSON.stringify(lead));
+      const url = `${this.config.url}?payload=${qs}`;
+      await fetch(url, { method: 'GET', mode: 'no-cors' });
+      console.log('✅ Fallback via GET enviado (resposta opaca)');
+      return true;
+    } catch (e) {
+      console.error('❌ Fallback via GET falhou:', e);
+    }
+
+    console.error('❌ Todos os fallbacks falharam. Lead não enviado.');
+    return false;
   }
 
   // Testa a conectividade com o webhook
