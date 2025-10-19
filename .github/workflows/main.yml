@@ -76,3 +76,35 @@ jobs:
           port: 21
           local-dir: ${{ env.BUILD_DIR }}/
           server-dir: /  # ⚠️ CRÍTICO: Manter como "/" - Ver comentários acima!
+
+      - name: Verificar arquivos no servidor via FTPS
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          echo "🔎 Listando raiz do FTP..."
+          curl --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_SERVER/" -s || true
+          echo "🔎 Listando public_html..."
+          curl --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_SERVER/public_html/" -s || true
+          echo "🔎 Checando .htaccess na public_html..."
+          curl --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_SERVER/public_html/.htaccess" -s --head | grep -q "Content-Length" && echo "✅ .htaccess encontrado" || echo "⚠️ .htaccess ausente"
+          echo "🔎 Checando index.html na public_html..."
+          curl --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_SERVER/public_html/index.html" -s --head | grep -q "Content-Length" && echo "✅ index.html encontrado" || echo "❌ index.html ausente"
+          echo "🔎 Checando assets/js na public_html..."
+          curl --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_SERVER/public_html/assets/js/" -s | head -n 20 || echo "⚠️ Não foi possível listar assets/js"
+
+      - name: Verificar site por HTTP (opcional)
+        env:
+          PROD_URL: ${{ secrets.PRODUCTION_URL }}
+        run: |
+          if [ -z "$PROD_URL" ]; then
+            echo "ℹ️ PROD_URL não configurado nos secrets; pulando verificação HTTP."
+          else
+            echo "🔎 Testando $PROD_URL"
+            curl -sI "$PROD_URL" | head -n 20
+            echo "🔎 Buscando bundles na homepage"
+            curl -s "$PROD_URL/index.html" | grep -E "assets/js/.+\\.js" | head -n 5 || echo "⚠️ Não encontrei referência a assets/js"
+            echo "🔎 Verificando rota SPA /b/checkout"
+            curl -sI "$PROD_URL/b/checkout" | grep -E "HTTP/|Location" | head -n 5
+          fi
