@@ -1,14 +1,16 @@
 RewriteEngine On
 
-# Redirect HTTP to HTTPS early
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-
-# SPA routing for React/Vite
+# Handle Angular and React Router
 RewriteBase /
+
+# Handle client-side routing
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
+
+# Optional: Force HTTPS (descomente se quiser forçar HTTPS)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Cache static assets
 <IfModule mod_expires.c>
