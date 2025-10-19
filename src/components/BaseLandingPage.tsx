@@ -17,6 +17,7 @@ import { VariationConfig } from "@/config/variations";
 import { useUtmifyPixel } from "@/hooks/use-utmify-pixel";
 import { useFacebookPixel } from "@/hooks/use-facebook-pixel";
 import { useLazyScripts } from "@/hooks/use-lazy-scripts";
+import WhatsAppHelpButton from "@/components/WhatsAppHelpButton";
 
 interface BaseLandingPageProps {
   config: VariationConfig;
@@ -47,6 +48,7 @@ const BaseLandingPage = ({ config }: BaseLandingPageProps) => {
         <FAQSection />
         <GuaranteeSection />
       </BackgroundWrapper>
+      <WhatsAppHelpButton />
       <Footer />
     </main>
   );
