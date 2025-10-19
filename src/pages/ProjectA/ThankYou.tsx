@@ -101,7 +101,7 @@ const ThankYouA = () => {
 
                 {/* WhatsApp */}
                 <a
-                  href="https://wa.me/5511999999999"
+                  href="https://wa.me/5511959175948"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-col items-center gap-3 p-6 bg-card/80 backdrop-blur rounded-xl hover:bg-card transition-all hover:scale-105 border border-border hover:border-primary/50"

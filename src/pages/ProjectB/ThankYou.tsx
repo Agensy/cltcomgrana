@@ -154,7 +154,7 @@ const ThankYouB = () => {
 
                   {/* WhatsApp Support */}
                   <a
-                    href="https://wa.me/5511999999999"
+                    href="https://wa.me/5511959175948"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex flex-col items-center gap-4 p-6 bg-card/60 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-emerald-300/50 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-1"
