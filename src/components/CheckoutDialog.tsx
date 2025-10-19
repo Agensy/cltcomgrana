@@ -65,14 +65,32 @@ const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
     // Success message
     toast({
       title: "Redirecionando...",
-      description: "Seus dados foram salvos. Redirecionando para o checkout!",
+      description: "Seus dados foram salvos. Abrindo o checkout em nova aba!",
     });
 
-    // Redirect to checkout page with data
-    setTimeout(() => {
-      onOpenChange(false);
-      window.location.href = `/b/checkout?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&phone=${encodeURIComponent(formData.phone)}`;
-    }, 1500);
+    // Monta URL do checkout Hotmart com dados do usuário
+    const baseUrl = 'https://pay.hotmart.com/K102191894H';
+    let finalUrl = baseUrl;
+    try {
+      const url = new URL(baseUrl);
+      if (formData.name) url.searchParams.set('name', formData.name);
+      if (formData.email) url.searchParams.set('email', formData.email);
+      if (formData.phone) url.searchParams.set('phone', formData.phone);
+      finalUrl = url.toString();
+    } catch {
+      finalUrl = baseUrl;
+    }
+
+    // Abre em nova aba (gesto do usuário) e fecha o popup; fallback se bloqueado
+    const newTab = window.open(finalUrl, '_blank', 'noopener,noreferrer');
+    onOpenChange(false);
+    if (!newTab) {
+      // Fallback para checkout interno quando bloqueado
+      const fallback = `/b/checkout?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&phone=${encodeURIComponent(formData.phone)}`;
+      window.location.href = fallback;
+    } else {
+      newTab.focus();
+    }
   };
 
   return (

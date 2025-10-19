@@ -72,17 +72,38 @@ const DynamicCheckoutDialog = ({ open, onOpenChange, config }: DynamicCheckoutDi
     // Success message
     toast({
       title: "Redirecionando...",
-      description: "Seus dados foram salvos. Redirecionando para o checkout!",
+      description: "Seus dados foram salvos. Abrindo o checkout em nova aba!",
     });
 
-    // Build checkout URL - redirect to internal checkout page
-    const checkoutUrl = `/b/checkout?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&phone=${encodeURIComponent(formData.phone)}`;
+    // Monta URL do checkout (Hotmart/Ticto) com UTMs e dados do usuário
+    const baseUrl = config?.checkout?.checkoutUrl || 'https://pay.hotmart.com/K102191894H';
+    let finalUrl = baseUrl;
+    try {
+      const url = new URL(baseUrl);
+      const utm = checkoutData.utmParams || config?.checkout?.utmParams;
+      if (utm) {
+        Object.entries(utm).forEach(([k, v]) => {
+          if (v) url.searchParams.set(k, String(v));
+        });
+      }
+      if (formData.name) url.searchParams.set('name', formData.name);
+      if (formData.email) url.searchParams.set('email', formData.email);
+      if (formData.phone) url.searchParams.set('phone', formData.phone);
+      finalUrl = url.toString();
+    } catch {
+      finalUrl = baseUrl;
+    }
 
-    // Redirect to checkout page with data
-    setTimeout(() => {
-      onOpenChange(false);
-      window.location.href = checkoutUrl;
-    }, 1500);
+    // Abre em nova aba (gesto do usuário) e fecha o popup; fallback se bloqueado
+    const newTab = window.open(finalUrl, '_blank', 'noopener,noreferrer');
+    onOpenChange(false);
+    if (!newTab) {
+      // Fallback para checkout interno quando bloqueado
+      const fallback = `/b/checkout?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&phone=${encodeURIComponent(formData.phone)}`;
+      window.location.href = fallback;
+    } else {
+      newTab.focus();
+    }
   };
 
   return (
