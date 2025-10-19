@@ -14,10 +14,19 @@ class WebhookService {
   // Envia os dados do lead para o webhook
   static async sendLeadToWebhook(lead: LeadData): Promise<boolean> {
     try {
+      const timestampBr = new Intl.DateTimeFormat('pt-BR', {
+        dateStyle: 'short',
+        timeStyle: 'medium',
+        timeZone: 'America/Sao_Paulo'
+      }).format(new Date(lead.timestamp));
+
+      const payload = { ...lead, timestampBr };
+
       console.log('📡 Enviando lead para webhook:', {
         leadId: lead.id,
         email: lead.email,
-        timestamp: lead.timestamp,
+        timestamp_iso: lead.timestamp,
+        timestamp_br: timestampBr,
         webhookUrl: this.config.url
       });
 
@@ -31,7 +40,7 @@ class WebhookService {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(lead),
+        body: JSON.stringify(payload),
         signal: controller.signal
       });
 
@@ -78,7 +87,7 @@ class WebhookService {
           statusText: response.statusText,
           errorText
         });
-        const fb = await this.fallbackSendLead(lead);
+        const fb = await this.fallbackSendLead(payload);
         return fb;
       }
     } catch (error) {
@@ -90,17 +99,17 @@ class WebhookService {
       });
 
       // Fallback para cenários de CORS/timeout/falha de rede
-      const fb = await this.fallbackSendLead(lead);
+      const fb = await this.fallbackSendLead({ ...lead, timestampBr: new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'medium', timeZone: 'America/Sao_Paulo' }).format(new Date(lead.timestamp)) });
       return fb;
     }
   }
 
   // Fallbacks para evitar bloqueios de CORS/preflight e garantir melhor entrega
-  private static async fallbackSendLead(lead: LeadData): Promise<boolean> {
+  private static async fallbackSendLead(payload: any): Promise<boolean> {
     // 1) Tenta navigator.sendBeacon (não requer preflight, ideal para eventos de UI)
     try {
       console.log('🛟 Tentando fallback via sendBeacon...');
-      const blob = new Blob([JSON.stringify(lead)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
       const scheduled = navigator.sendBeacon(this.config.url, blob);
       if (scheduled) {
         console.log('✅ Fallback via sendBeacon agendado com sucesso');
@@ -122,7 +131,7 @@ class WebhookService {
           // Content-Type simples para evitar preflight
           'Content-Type': 'text/plain'
         },
-        body: JSON.stringify(lead)
+        body: JSON.stringify(payload)
       });
       console.log('✅ Fallback via fetch no-cors enviado (não é possível ler a resposta)');
       return true;
@@ -133,7 +142,7 @@ class WebhookService {
     // 3) Como último recurso, tenta GET com querystring (se o n8n aceitar GET)
     try {
       console.log('🛟 Tentando fallback via GET com querystring...');
-      const qs = encodeURIComponent(JSON.stringify(lead));
+      const qs = encodeURIComponent(JSON.stringify(payload));
       const url = `${this.config.url}?payload=${qs}`;
       await fetch(url, { method: 'GET', mode: 'no-cors' });
       console.log('✅ Fallback via GET enviado (resposta opaca)');
@@ -153,9 +162,16 @@ class WebhookService {
       console.log('📡 URL de teste:', this.config.url);
 
       // Teste simples de conectividade
+      const timestampBr = new Intl.DateTimeFormat('pt-BR', {
+        dateStyle: 'short',
+        timeStyle: 'medium',
+        timeZone: 'America/Sao_Paulo'
+      }).format(new Date());
+
       const testData = {
         test: true,
         timestamp: new Date().toISOString(),
+        timestampBr,
         message: 'Teste de conectividade do webhook'
       };
 
