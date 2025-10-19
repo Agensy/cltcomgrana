@@ -41,7 +41,8 @@ class WebhookService {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
-        signal: controller.signal
+        signal: controller.signal,
+        keepalive: true
       });
 
       clearTimeout(timeoutId);
@@ -131,7 +132,8 @@ class WebhookService {
           // Content-Type simples para evitar preflight
           'Content-Type': 'text/plain'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        keepalive: true
       });
       console.log('✅ Fallback via fetch no-cors enviado (não é possível ler a resposta)');
       return true;
@@ -144,7 +146,7 @@ class WebhookService {
       console.log('🛟 Tentando fallback via GET com querystring...');
       const qs = encodeURIComponent(JSON.stringify(payload));
       const url = `${this.config.url}?payload=${qs}`;
-      await fetch(url, { method: 'GET', mode: 'no-cors' });
+      await fetch(url, { method: 'GET', mode: 'no-cors', keepalive: true });
       console.log('✅ Fallback via GET enviado (resposta opaca)');
       return true;
     } catch (e) {
@@ -184,7 +186,8 @@ class WebhookService {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(testData),
-        signal: controller.signal
+        signal: controller.signal,
+        keepalive: true
       });
 
       clearTimeout(timeoutId);
