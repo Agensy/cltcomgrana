@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import UpdateBanner from "./components/UpdateBanner";
 
 // Lazy loading dos componentes para code splitting
 const IndexA = lazy(() => import("./pages/CLTCOMGRANA-A/Index"));
@@ -58,6 +59,7 @@ const App = () => (
       
       <Toaster />
       <Sonner />
+      <UpdateBanner />
       <BrowserRouter>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
