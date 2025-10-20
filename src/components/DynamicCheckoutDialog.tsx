@@ -186,7 +186,7 @@ const DynamicCheckoutDialog = ({ open, onOpenChange, config }: DynamicCheckoutDi
           type="submit"
           variant="secondary"
           size="lg"
-          className="w-full uppercase font-bold text-base"
+          className="utmify-initiate-checkout w-full uppercase font-bold text-base"
         >
           IR PARA O CHECKOUT AGORA
         </Button>
