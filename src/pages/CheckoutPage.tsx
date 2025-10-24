@@ -56,7 +56,7 @@ const CheckoutPage: React.FC = () => {
         className="w-full h-full border-0"
         title="Checkout"
         allow="payment; fullscreen"
-        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation allow-popups-to-escape-sandbox"
+        sandbox="allow-same-origin allow-scripts allow-forms"
       />
     </div>
   );

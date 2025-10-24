@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import LeadsService from "@/services/leadsService";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { useNavigate } from "react-router-dom";
 
 interface CheckoutDialogProps {
   open: boolean;
@@ -27,6 +28,7 @@ const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
     phone: "",
   });
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,35 +70,16 @@ const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
     // Success message
     toast({
       title: "Redirecionando...",
-      description: "Seus dados foram salvos. Abrindo o checkout em nova aba!",
+      description: "Seus dados foram salvos. Abrindo o checkout interno!",
     });
 
-    // Monta URL do checkout Hotmart com dados do usuário
-    const baseUrl = 'https://pay.hotmart.com/K102191894H';
-    let finalUrl = baseUrl;
-    try {
-      const url = new URL(baseUrl);
-      if (formData.name) url.searchParams.set('name', formData.name);
-      if (formData.email) url.searchParams.set('email', formData.email);
-      if (formData.phone) url.searchParams.set('phone', formData.phone);
-      finalUrl = url.toString();
-    } catch {
-      finalUrl = baseUrl;
-    }
-
-    // Abre em nova aba (gesto do usuário) e fecha o popup; fallback se bloqueado
-    const newTab = window.open(finalUrl, '_blank', 'noopener,noreferrer');
+    // Fecha popup e navega internamente para o checkout
     onOpenChange(false);
-    if (!newTab) {
-      // Fallback para checkout interno quando bloqueado
-      const fallback = `/b/checkout?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&phone=${encodeURIComponent(formData.phone)}`;
-      // Pequeno atraso para dar tempo ao envio do webhook iniciar
-      setTimeout(() => {
-        window.location.href = fallback;
-      }, 200);
-    } else {
-      newTab.focus();
-    }
+    const fallback = `/b/checkout?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&phone=${encodeURIComponent(formData.phone)}`;
+    // Pequeno atraso para dar tempo ao envio do webhook iniciar
+    setTimeout(() => {
+      navigate(fallback);
+    }, 200);
   };
 
   // Form compartilhado (desktop e mobile)
