@@ -42,7 +42,8 @@ jobs:
           fi
           
           # Verificar se .htaccess não está sendo excluído
-          if grep -q "exclude.*\.htaccess" .github/workflows/main.yml; then
+          # (busca apenas chaves exclude/excludes para evitar falso positivo)
+          if grep -Eq '^[[:space:]]*(exclude|excludes):.*\.htaccess' .github/workflows/main.yml; then
             echo "⚠️  AVISO: .htaccess está sendo excluído - pode quebrar roteamento SPA"
           fi
           

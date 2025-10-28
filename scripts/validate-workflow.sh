@@ -40,8 +40,8 @@ if [ "$SERVER_DIR" != "/" ]; then
     exit 1
 fi
 
-# Verificar se há exclusões problemáticas do .htaccess
-if grep -q "exclude.*\.htaccess" "$WORKFLOW_FILE"; then
+# Verificar se há exclusões problemáticas do .htaccess (somente chaves exclude/excludes)
+if grep -Eq '^[[:space:]]*(exclude|excludes):.*\.htaccess' "$WORKFLOW_FILE"; then
     echo -e "${RED}❌ AVISO: .htaccess está sendo excluído do deploy!${NC}"
     echo -e "${YELLOW}   Isso pode quebrar o roteamento SPA do React.${NC}"
     echo ""
