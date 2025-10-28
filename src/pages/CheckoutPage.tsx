@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getVariationConfig } from '@/config/variations';
 import { useFacebookPixel } from '@/hooks/use-facebook-pixel';
+import Clarity from '@microsoft/clarity';
 
 const CheckoutPage: React.FC = () => {
   // Força o carregamento do Facebook Pixel ao montar o Checkout
@@ -51,6 +52,31 @@ const CheckoutPage: React.FC = () => {
       return baseUrl;
     }
   });
+
+  useEffect(() => {
+    try {
+      const measurementId = (import.meta as any)?.env?.VITE_GA_MEASUREMENT_ID || 'G-SWB08GP822';
+      const variation = (checkoutData?.variation || config?.id || 'unknown').toString();
+      const project = (checkoutData?.project || config?.project || 'unknown').toString();
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'InitiateCheckout', {
+          project,
+          variation,
+          page_path: window.location.pathname,
+          send_to: measurementId,
+        });
+      }
+    } catch {}
+
+    try {
+      const variation = (checkoutData?.variation || config?.id || 'unknown').toString();
+      const project = (checkoutData?.project || config?.project || 'unknown').toString();
+      Clarity.setTag('project', project);
+      Clarity.setTag('variation', variation);
+      Clarity.event('InitiateCheckout');
+    } catch {}
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="fixed inset-0 bg-background overflow-hidden">

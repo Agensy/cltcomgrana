@@ -33,7 +33,10 @@ const BaseLandingPage = ({ config }: BaseLandingPageProps) => {
 
   // Carrega os scripts apenas após a HeroSection estar carregada
   useUtmifyPixel(heroLoaded, pixelId);
-  useFacebookPixel(heroLoaded);
+  // Define Facebook Pixel por projeto/variação via env, com fallback para lista global
+  const fbEnvKey = `VITE_FACEBOOK_PIXEL_${config.project.toUpperCase()}_${config.slug.toUpperCase()}`;
+  const fbPixelIds = (import.meta as any)?.env?.[fbEnvKey] || (import.meta as any)?.env?.VITE_FACEBOOK_PIXEL_IDS;
+  useFacebookPixel(heroLoaded, fbPixelIds);
 
   return (
     <main className="min-h-screen bg-background">

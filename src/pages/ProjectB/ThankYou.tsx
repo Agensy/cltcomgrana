@@ -13,8 +13,20 @@ const ThankYouB = () => {
   
   // Carrega os scripts após o carregamento inicial
   useUtmifyPixel(heroLoaded);
-  // Força o carregamento do Facebook Pixel independente do heroLoaded
-  useFacebookPixel(true);
+  // Força o carregamento do Facebook Pixel independente do heroLoaded, mapeando por variação (lp1 vs lp2)
+  const fbEnv = (import.meta as any)?.env || {};
+  let chosenFbPixel: string | undefined;
+  try {
+    const raw = localStorage.getItem('checkoutData');
+    const variation = raw ? (JSON.parse(raw)?.variation as string | undefined) : undefined;
+    if (variation && variation.toLowerCase() === 'lp1') {
+      chosenFbPixel = fbEnv.VITE_FACEBOOK_PIXEL_B_LP1;
+    } else if (variation && variation.toLowerCase() === 'lp2') {
+      chosenFbPixel = fbEnv.VITE_FACEBOOK_PIXEL_B_LP2;
+    }
+  } catch {}
+  const fbOverride = chosenFbPixel || fbEnv.VITE_FACEBOOK_PIXEL_B_LP2 || fbEnv.VITE_FACEBOOK_PIXEL_IDS;
+  useFacebookPixel(true, fbOverride);
   // Dispara Purchase (fbq + CAPI) ao montar a página
   useEffect(() => {
     sendMetaPurchase();

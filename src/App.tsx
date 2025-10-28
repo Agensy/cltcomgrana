@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import ClarityInitializer from "@/components/ClarityInitializer";
+import GtagInitializer from "@/components/GtagInitializer";
 
 
 // Lazy loading dos componentes para code splitting
@@ -60,6 +62,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <GtagInitializer />
+        <ClarityInitializer />
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<ProjectA_LP1 />} />

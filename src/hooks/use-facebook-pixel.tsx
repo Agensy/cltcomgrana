@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-export const useFacebookPixel = (shouldLoad: boolean = false) => {
+export const useFacebookPixel = (shouldLoad: boolean = false, pixelIdsOverride?: string | string[]) => {
   const isLoadedRef = useRef(false);
 
   useEffect(() => {
@@ -20,10 +20,21 @@ export const useFacebookPixel = (shouldLoad: boolean = false) => {
     const existingScript = document.querySelector('script[src*="fbevents.js"]');
     // Se não houver variável de ambiente, inicializa ambos os pixels por padrão
     const envIdsRaw = (import.meta as any)?.env?.VITE_FACEBOOK_PIXEL_IDS || '1148863280512739,1597639481206943';
-    const pixelIds = String(envIdsRaw)
-      .split(',')
-      .map((id) => id.trim())
-      .filter((id) => id.length > 0);
+    const pixelIds = ((): string[] => {
+      if (pixelIdsOverride) {
+        const raw = Array.isArray(pixelIdsOverride)
+          ? pixelIdsOverride.join(',')
+          : String(pixelIdsOverride);
+        return raw
+          .split(',')
+          .map((id) => id.trim())
+          .filter((id) => id.length > 0);
+      }
+      return String(envIdsRaw)
+        .split(',')
+        .map((id) => id.trim())
+        .filter((id) => id.length > 0);
+    })();
 
     // Carrega o Facebook Pixel de forma assíncrona
     const loadFacebookPixel = () => {

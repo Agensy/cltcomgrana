@@ -1,4 +1,5 @@
 import WebhookService from './webhookService';
+import Clarity from '@microsoft/clarity';
 
 export interface LeadData {
   // Informações do Lead
@@ -135,6 +136,27 @@ class LeadsService {
 
     this.saveLead(lead);
     
+    // Eventos: Lead (GA4 e Clarity)
+    try {
+      const measurementId = (import.meta as any)?.env?.VITE_GA_MEASUREMENT_ID || 'G-SWB08GP822';
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'Lead', {
+          lead_id: lead.id,
+          project: lead.project,
+          variation: lead.variation,
+          page_name: lead.pageName,
+          page_url: lead.pageUrl,
+          send_to: measurementId,
+        });
+      }
+    } catch {}
+
+    try {
+      Clarity.setTag('project', lead.project);
+      Clarity.setTag('variation', lead.variation);
+      Clarity.event('Lead');
+    } catch {}
+
     // Envia para webhook de forma assíncrona
     this.sendToWebhook(lead);
     
