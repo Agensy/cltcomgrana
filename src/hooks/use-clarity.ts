@@ -17,15 +17,22 @@ export const useClarity = () => {
     try {
       // Suporte híbrido: se já houver snippet inline (window.clarity), não chamar init novamente
       const hasGlobalClarity = typeof (window as any)?.clarity === 'function';
+      console.log('[Clarity] verificação inicial', {
+        hasGlobalClarity,
+        projectId: projectId ? 'definido' : 'indefinido',
+        mode: (import.meta as any)?.env?.MODE,
+      });
       if (hasGlobalClarity) {
         initedRef.current = true;
       } else {
         if (!projectId) return;
         Clarity.init(projectId);
+        console.log('[Clarity] init chamado com projectId');
         initedRef.current = true;
       }
       // Tag inicial de rota
       Clarity.setTag('route', location.pathname);
+      console.log('[Clarity] tag de rota definida (init):', location.pathname);
     } catch (err) {
       console.error('Falha ao inicializar Microsoft Clarity:', err);
     }
@@ -38,6 +45,7 @@ export const useClarity = () => {
     try {
       Clarity.setTag('route', location.pathname);
       Clarity.event('RouteChange');
+      console.log('[Clarity] RouteChange:', location.pathname);
     } catch {}
   }, [location.pathname]);
 
@@ -49,6 +57,7 @@ export const useClarity = () => {
       try {
         Clarity.identify(email);
         Clarity.setTag('auth', 'true');
+        console.log('[Clarity] identify chamado para:', email);
       } catch {}
     }
   }, [user?.email, user?.isAuthenticated]);

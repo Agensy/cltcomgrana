@@ -8,6 +8,8 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import ClarityInitializer from "@/components/ClarityInitializer";
 import GtagInitializer from "@/components/GtagInitializer";
+import ClarityIndicator from "@/components/ClarityIndicator";
+import ClarityDebugPanel from "@/components/ClarityDebugPanel";
 
 
 // Lazy loading dos componentes para code splitting
@@ -64,6 +66,8 @@ const App = () => (
       <BrowserRouter>
         <GtagInitializer />
         <ClarityInitializer />
+        <ClarityIndicator />
+        <ClarityDebugPanel />
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<ProjectA_LP1 />} />
