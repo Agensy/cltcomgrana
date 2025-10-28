@@ -30,7 +30,18 @@ Executado pelo hook se arquivos críticos mudarem (`src/`, `vite.config.ts`, `in
 - `local-dir: dist/` (ou `out/` em Next.js)
 - `.htaccess` não é excluído no deploy
 - Build do CI passa sem erros
- - (GA4) Gera `.env.production` com `VITE_GA_MEASUREMENT_ID` a partir de `Secrets`
+- (GA4) Gera `.env.production` com `VITE_GA_MEASUREMENT_ID` a partir de `Secrets`
+ - (SSL) Verifica HTTPS, redirecionamento de HTTP→HTTPS, HSTS e certificado
+
+### Como configurar a verificação de SSL
+- Adicione `PRODUCTION_URL` em Secrets (ex.: `https://seudominio.com`)
+- O workflow executará:
+  - `curl -I https://seudominio.com` para checar cabeçalhos e status
+  - `curl -I http://seudominio.com` para checar redirecionamento para HTTPS
+  - Busca por `Strict-Transport-Security` (HSTS)
+  - Handshake `--tlsv1.2` e `--tlsv1.3`
+  - `openssl s_client | openssl x509 -noout -dates` para validade do certificado
+  - Checagem básica de mixed content (links `http://` na homepage)
 
 ## Como rodar manualmente
 ```bash
