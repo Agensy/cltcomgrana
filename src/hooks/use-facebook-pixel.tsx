@@ -4,6 +4,7 @@ declare global {
   interface Window {
     fbq: any;
     _fbq: any;
+    __fbq_initialized_ids?: Set<string>;
   }
 }
 
@@ -17,10 +18,11 @@ export const useFacebookPixel = (shouldLoad: boolean = false) => {
 
     // Verifica se o script já foi carregado
     const existingScript = document.querySelector('script[src*="fbevents.js"]');
-    if (existingScript) {
-      isLoadedRef.current = true;
-      return;
-    }
+    const envIdsRaw = (import.meta as any)?.env?.VITE_FACEBOOK_PIXEL_IDS || '1148863280512739';
+    const pixelIds = String(envIdsRaw)
+      .split(',')
+      .map((id) => id.trim())
+      .filter((id) => id.length > 0);
 
     // Carrega o Facebook Pixel de forma assíncrona
     const loadFacebookPixel = () => {
@@ -44,21 +46,33 @@ export const useFacebookPixel = (shouldLoad: boolean = false) => {
         })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js', undefined, undefined, undefined);
       }
 
-      // Inicializa o pixel com o ID
-      window.fbq('init', '1148863280512739');
-      window.fbq('track', 'PageView');
-
-      // Adiciona o noscript fallback se não existir
-      if (!document.querySelector('noscript img[src*="facebook.com/tr"]')) {
-        const noscript = document.createElement('noscript');
-        const img = document.createElement('img');
-        img.height = 1;
-        img.width = 1;
-        img.style.display = 'none';
-        img.src = 'https://www.facebook.com/tr?id=1148863280512739&ev=PageView&noscript=1';
-        noscript.appendChild(img);
-        document.body.appendChild(noscript);
+      // Inicializa múltiplos pixels de forma idempotente
+      if (!window.__fbq_initialized_ids) {
+        window.__fbq_initialized_ids = new Set<string>();
       }
+
+      pixelIds.forEach((id) => {
+        if (!window.__fbq_initialized_ids!.has(id)) {
+          window.fbq('init', id);
+          window.__fbq_initialized_ids!.add(id);
+
+          // Adiciona noscript fallback por pixel se não existir
+          const existingNoscriptForId = document.querySelector(`noscript img[src*="facebook.com/tr?id=${id}"]`);
+          if (!existingNoscriptForId) {
+            const noscript = document.createElement('noscript');
+            const img = document.createElement('img');
+            img.height = 1;
+            img.width = 1;
+            img.style.display = 'none';
+            img.src = `https://www.facebook.com/tr?id=${id}&ev=PageView&noscript=1`;
+            noscript.appendChild(img);
+            document.body.appendChild(noscript);
+          }
+        }
+      });
+
+      // Dispara PageView para todos os pixels inicializados
+      window.fbq('track', 'PageView');
 
       isLoadedRef.current = true;
     };
