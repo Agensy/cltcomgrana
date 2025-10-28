@@ -18,7 +18,8 @@ export const useFacebookPixel = (shouldLoad: boolean = false) => {
 
     // Verifica se o script já foi carregado
     const existingScript = document.querySelector('script[src*="fbevents.js"]');
-    const envIdsRaw = (import.meta as any)?.env?.VITE_FACEBOOK_PIXEL_IDS || '1148863280512739';
+    // Se não houver variável de ambiente, inicializa ambos os pixels por padrão
+    const envIdsRaw = (import.meta as any)?.env?.VITE_FACEBOOK_PIXEL_IDS || '1148863280512739,1597639481206943';
     const pixelIds = String(envIdsRaw)
       .split(',')
       .map((id) => id.trim())
