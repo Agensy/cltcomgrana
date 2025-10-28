@@ -128,16 +128,18 @@ export const variationsConfig: Record<string, VariationConfig> = {
     project: 'B',
     slug: 'lp2',
     pricing: {
-      originalPrice: 'R$ 2.999',
-      installmentPrice: 'R$ 14,32',
+      // Copiado da LP1 para manter os mesmos valores
+      originalPrice: 'R$ 2.799',
+      installmentPrice: 'R$ 9,45',
       installmentCount: 12,
-      cashPrice: 'R$ 147',
-      discountPercentage: '83%',
-      bonusValue: 'R$ 1.950'
+      cashPrice: 'R$ 97',
+      discountPercentage: '85%',
+      bonusValue: 'R$ 1.802'
     },
     checkout: {
-      title: 'Finalize sua compra agora!',
-      description: 'Complete seus dados para garantir sua vaga.',
+      // Opcionalmente, podemos manter títulos iguais à LP1
+      title: 'Só mais um passo pra liberar seu acesso completo.',
+      description: 'Preencha seus dados pra seguir direto pro checkout.',
       checkoutUrl: 'https://pay.hotmart.com/K102191894H?off=ymii42y8&bid=1759848870539',
       utmParams: {
         utm_source: 'afiliado',
