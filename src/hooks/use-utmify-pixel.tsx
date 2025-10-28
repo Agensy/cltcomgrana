@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
-export const useUtmifyPixel = (shouldLoad: boolean = false) => {
+// Permite definir pixelId por página/variação sem quebrar chamadas existentes
+export const useUtmifyPixel = (shouldLoad: boolean = false, pixelId?: string) => {
   const location = useLocation();
   const isLoadedRef = useRef(false);
 
@@ -22,8 +23,9 @@ export const useUtmifyPixel = (shouldLoad: boolean = false) => {
 
     // Carrega o script após um pequeno delay para não bloquear a renderização inicial
     const loadUtmifyScript = () => {
-      // Define o pixelId globalmente
-      (window as any).pixelId = "68e562a4c37ceae05c2d9a64";
+      // Define o pixelId globalmente (parametrizado com fallback)
+      const defaultId = (import.meta as any)?.env?.VITE_UTMIFY_PIXEL_DEFAULT || "68e562a4c37ceae05c2d9a64";
+      (window as any).pixelId = pixelId || defaultId;
 
       // Cria e adiciona o script do Utmify
       const script = document.createElement("script");
@@ -49,5 +51,5 @@ export const useUtmifyPixel = (shouldLoad: boolean = false) => {
       delete (window as any).pixelId;
       isLoadedRef.current = false;
     };
-  }, [location.pathname, shouldLoad]);
+  }, [location.pathname, shouldLoad, pixelId]);
 };

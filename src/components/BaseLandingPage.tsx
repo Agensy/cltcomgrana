@@ -27,8 +27,12 @@ const BaseLandingPage = ({ config }: BaseLandingPageProps) => {
   // Detecta quando a HeroSection foi carregada
   const { heroLoaded } = useLazyScripts();
   
+  // Define pixelId dinamicamente por projeto/variação via env
+  const envKey = `VITE_UTMIFY_PIXEL_${config.project}_${config.slug.toUpperCase()}`;
+  const pixelId = (import.meta as any)?.env?.[envKey] || (import.meta as any)?.env?.VITE_UTMIFY_PIXEL_DEFAULT;
+
   // Carrega os scripts apenas após a HeroSection estar carregada
-  useUtmifyPixel(heroLoaded);
+  useUtmifyPixel(heroLoaded, pixelId);
   useFacebookPixel(heroLoaded);
 
   return (
