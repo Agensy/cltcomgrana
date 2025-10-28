@@ -22,6 +22,7 @@ jobs:
       - name: Build do projeto
         run: npm run build
 
+
       - name: 🔍 Validar configurações de deploy
         run: |
           echo "🔍 Verificando configurações críticas do deploy..."
@@ -53,6 +54,23 @@ jobs:
             echo "Nenhum diretório de build encontrado (dist/ ou out/)."
             exit 1
           fi
+
+      - name: Injetar server-config da Meta CAPI no build
+        if: ${{ env.BUILD_DIR != '' }}
+        env:
+          META_PIXEL_ID: ${{ secrets.META_PIXEL_ID }}
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          META_TEST_EVENT_CODE: ${{ secrets.META_TEST_EVENT_CODE }}
+        run: |
+          echo "🛠️ Gerando CAPI server-config.php em $BUILD_DIR/capi"
+          mkdir -p "$BUILD_DIR/capi"
+          cat > "$BUILD_DIR/capi/server-config.php" << EOF
+          <?php
+          define('META_PIXEL_ID', '${META_PIXEL_ID}');
+          define('META_ACCESS_TOKEN', '${META_ACCESS_TOKEN}');
+          define('META_TEST_EVENT_CODE', '${META_TEST_EVENT_CODE}');
+          EOF
+          ls -la "$BUILD_DIR/capi" || true
 
       # ⚠️  ATENÇÃO CRÍTICA: NÃO ALTERE O server-dir ABAIXO! ⚠️
       # 

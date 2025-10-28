@@ -1,9 +1,11 @@
+import React, { useEffect } from "react";
 import { Mail, Users, MessageCircle, Instagram, CheckCircle, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
 import { useUtmifyPixel } from "@/hooks/use-utmify-pixel";
 import { useFacebookPixel } from "@/hooks/use-facebook-pixel";
 import { useLazyScripts } from "@/hooks/use-lazy-scripts";
+import { sendMetaPurchase } from "@/services/metaCapiService";
 
 const ThankYouB = () => {
   // Detecta quando a página foi carregada
@@ -13,6 +15,10 @@ const ThankYouB = () => {
   useUtmifyPixel(heroLoaded);
   // Força o carregamento do Facebook Pixel independente do heroLoaded
   useFacebookPixel(true);
+  // Dispara Purchase (fbq + CAPI) ao montar a página
+  useEffect(() => {
+    sendMetaPurchase();
+  }, []);
 
   return (
     <BackgroundWrapper>

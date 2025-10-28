@@ -1,11 +1,17 @@
+import React, { useEffect } from "react";
 import { Mail, Users, MessageCircle, Instagram, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
 import { useFacebookPixel } from "@/hooks/use-facebook-pixel";
+import { sendMetaPurchase } from "@/services/metaCapiService";
 
 const ThankYouA = () => {
   // Força o carregamento do Facebook Pixel ao montar a página
   useFacebookPixel(true);
+  // Dispara Purchase (fbq + CAPI) ao montar a página
+  useEffect(() => {
+    sendMetaPurchase();
+  }, []);
   return (
     <BackgroundWrapper>
       <div className="min-h-screen flex items-center justify-center px-4 py-16">
