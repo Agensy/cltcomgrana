@@ -12,6 +12,11 @@ RewriteRule . /index.html [L]
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Security: enable HSTS for HTTPS
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
 # Cache static assets
 <IfModule mod_expires.c>
     ExpiresActive on
