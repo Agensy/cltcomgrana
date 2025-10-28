@@ -1,8 +1,11 @@
 import { Mail, Users, MessageCircle, Instagram, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
+import { useFacebookPixel } from "@/hooks/use-facebook-pixel";
 
 const ThankYouA = () => {
+  // Força o carregamento do Facebook Pixel ao montar a página
+  useFacebookPixel(true);
   return (
     <BackgroundWrapper>
       <div className="min-h-screen flex items-center justify-center px-4 py-16">

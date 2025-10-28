@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { getVariationConfig } from '@/config/variations';
+import { useFacebookPixel } from '@/hooks/use-facebook-pixel';
 
 const CheckoutPage: React.FC = () => {
+  // Força o carregamento do Facebook Pixel ao montar o Checkout
+  useFacebookPixel(true);
   // Captura dados da URL
   const params = new URLSearchParams(window.location.search);
   const name = params.get('name') || '';

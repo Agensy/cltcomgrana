@@ -11,7 +11,8 @@ const ThankYouB = () => {
   
   // Carrega os scripts após o carregamento inicial
   useUtmifyPixel(heroLoaded);
-  useFacebookPixel(heroLoaded);
+  // Força o carregamento do Facebook Pixel independente do heroLoaded
+  useFacebookPixel(true);
 
   return (
     <BackgroundWrapper>
