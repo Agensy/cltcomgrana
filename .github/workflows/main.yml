@@ -19,6 +19,11 @@ jobs:
       - name: Instalar react-is (necessário para Recharts)
         run: npm install react-is --legacy-peer-deps
 
+      - name: Configurar variáveis de ambiente de produção (GA4)
+        if: ${{ secrets.GA_MEASUREMENT_ID != '' }}
+        run: |
+          echo "VITE_GA_MEASUREMENT_ID=${{ secrets.GA_MEASUREMENT_ID }}" >> .env.production
+
       - name: Build do projeto
         run: npm run build
 

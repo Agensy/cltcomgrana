@@ -30,6 +30,7 @@ Executado pelo hook se arquivos críticos mudarem (`src/`, `vite.config.ts`, `in
 - `local-dir: dist/` (ou `out/` em Next.js)
 - `.htaccess` não é excluído no deploy
 - Build do CI passa sem erros
+ - (GA4) Gera `.env.production` com `VITE_GA_MEASUREMENT_ID` a partir de `Secrets`
 
 ## Como rodar manualmente
 ```bash
