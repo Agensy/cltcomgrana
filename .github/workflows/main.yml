@@ -19,11 +19,6 @@ jobs:
       - name: Instalar react-is (necessário para Recharts)
         run: npm install react-is --legacy-peer-deps
 
-      - name: Configurar variáveis de ambiente de produção (GA4)
-        if: ${{ secrets.GA_MEASUREMENT_ID }}
-        run: |
-          echo "VITE_GA_MEASUREMENT_ID=${{ secrets.GA_MEASUREMENT_ID }}" >> .env.production
-
       - name: Build do projeto
         run: npm run build
 
@@ -60,23 +55,6 @@ jobs:
             echo "Nenhum diretório de build encontrado (dist/ ou out/)."
             exit 1
           fi
-
-      - name: Injetar server-config da Meta CAPI no build
-        if: ${{ env.BUILD_DIR != '' }}
-        env:
-          META_PIXEL_ID: ${{ secrets.META_PIXEL_ID }}
-          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
-          META_TEST_EVENT_CODE: ${{ secrets.META_TEST_EVENT_CODE }}
-        run: |
-          echo "🛠️ Gerando CAPI server-config.php em $BUILD_DIR/capi"
-          mkdir -p "$BUILD_DIR/capi"
-          cat > "$BUILD_DIR/capi/server-config.php" << EOF
-          <?php
-          define('META_PIXEL_ID', '${META_PIXEL_ID}');
-          define('META_ACCESS_TOKEN', '${META_ACCESS_TOKEN}');
-          define('META_TEST_EVENT_CODE', '${META_TEST_EVENT_CODE}');
-          EOF
-          ls -la "$BUILD_DIR/capi" || true
 
       # ⚠️  ATENÇÃO CRÍTICA: CONFIGURAÇÃO CORRIGIDA PARA HOSTGATOR! ⚠️
       # 
@@ -117,52 +95,3 @@ jobs:
           curl --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_SERVER/public_html/index.html" -s --head | grep -q "Content-Length" && echo "✅ index.html encontrado" || echo "❌ index.html ausente"
           echo "🔎 Checando assets/js na public_html..."
           curl --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_SERVER/public_html/assets/js/" -s | head -n 20 || echo "⚠️ Não foi possível listar assets/js"
-
-      - name: Verificar site por HTTP (opcional)
-        env:
-          PROD_URL: ${{ secrets.PRODUCTION_URL }}
-        run: |
-          if [ -z "$PROD_URL" ]; then
-            echo "ℹ️ PROD_URL não configurado nos secrets; pulando verificação HTTP."
-          else
-            echo "🔎 Testando $PROD_URL"
-            curl -sI "$PROD_URL" | head -n 20
-            echo "🔎 Buscando bundles na homepage"
-            curl -s "$PROD_URL/index.html" | grep -E "assets/js/.+\\.js" | head -n 5 || echo "⚠️ Não encontrei referência a assets/js"
-            echo "🔎 Verificando rota SPA /b/checkout"
-            curl -sI "$PROD_URL/b/checkout" | grep -E "HTTP/|Location" | head -n 5
-          fi
-
-      - name: Verificar SSL/TLS, redirecionamento e HSTS (opcional)
-        env:
-          PROD_URL: ${{ secrets.PRODUCTION_URL }}
-        run: |
-          if [ -z "$PROD_URL" ]; then
-            echo "ℹ️ PROD_URL não configurado nos secrets; pulando verificação SSL/HSTS."
-            exit 0
-          fi
-
-          # Extrair host do PROD_URL
-          HOST=$(echo "$PROD_URL" | sed -E 's~https?://([^/]+).*~\1~')
-          echo "🔎 Host detectado: $HOST"
-
-          echo "\n🔐 Checando HTTPS cabeçalhos"
-          curl -sI "https://$HOST" | head -n 20
-
-          echo "\n➡️  Checando redirecionamento HTTP -> HTTPS"
-          curl -sI "http://$HOST" | grep -E "HTTP/|Location" | head -n 5 || echo "⚠️ Sem cabeçalhos de redirecionamento detectados"
-
-          echo "\n🛡️  Checando HSTS (Strict-Transport-Security)"
-          curl -sI "https://$HOST" | grep -i "Strict-Transport-Security" || echo "⚠️ HSTS não encontrado"
-
-          echo "\n🔧 TLS 1.2 handshake"
-          curl -sI --tlsv1.2 "https://$HOST" | grep -E "HTTP/" || echo "⚠️ Falha em TLSv1.2"
-
-          echo "\n🔧 TLS 1.3 handshake (se suportado)"
-          curl -sI --tlsv1.3 "https://$HOST" | grep -E "HTTP/" || echo "ℹ️ TLSv1.3 pode não estar habilitado; verifique provedor"
-
-          echo "\n📜 Certificado: validade"
-          echo | openssl s_client -servername "$HOST" -connect "$HOST:443" 2>/dev/null | openssl x509 -noout -issuer -subject -dates || echo "⚠️ Não foi possível ler certificado"
-
-          echo "\n🧪 Mixed content (links http) na homepage"
-          curl -sL "https://$HOST" | grep -Eo 'http://[^" ]+' | head -n 10 || echo "✅ Sem links http aparentes (parcial)"
