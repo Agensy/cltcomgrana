@@ -6,6 +6,7 @@ import { useUtmifyPixel } from "@/hooks/use-utmify-pixel";
 import { useFacebookPixel } from "@/hooks/use-facebook-pixel";
 import { useLazyScripts } from "@/hooks/use-lazy-scripts";
 import { sendMetaPurchase } from "@/services/metaCapiService";
+import { useGTM } from "@/hooks/use-gtm";
 
 const ThankYouB = () => {
   // Detecta quando a página foi carregada
@@ -13,6 +14,8 @@ const ThankYouB = () => {
   
   // Carrega os scripts após o carregamento inicial
   useUtmifyPixel(heroLoaded);
+  // GTM para o subdomínio LP1 (container fixo)
+  useGTM(true, 'GTM-K8BN9FDK');
   // Força o carregamento do Facebook Pixel independente do heroLoaded, mapeando por variação (lp1 vs lp2)
   const fbEnv = (import.meta as any)?.env || {};
   let chosenFbPixel: string | undefined;
@@ -34,6 +37,15 @@ const ThankYouB = () => {
 
   return (
     <BackgroundWrapper>
+      {/* GTM noscript fallback (conforme gtm.txt) */}
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-K8BN9FDK"
+          height="0"
+          width="0"
+          style={{ display: 'none', visibility: 'hidden' }}
+        ></iframe>
+      </noscript>
       <div className="min-h-screen flex items-center justify-center px-4 py-16">
         <div className="max-w-4xl w-full space-y-8">
           {/* Hero Section */}
