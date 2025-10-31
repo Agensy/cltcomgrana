@@ -11,6 +11,7 @@ import GtagInitializer from "@/components/GtagInitializer";
 import ClarityIndicator from "@/components/ClarityIndicator";
 import ClarityDebugPanel from "@/components/ClarityDebugPanel";
 import LP1GlobalGTM from "@/components/LP1GlobalGTM";
+import { getSubdomainHome, shouldBlockGlobalScripts } from "@/config/subdomains";
 
 
 // Lazy loading dos componentes para code splitting
@@ -51,10 +52,12 @@ const ConditionalScripts = () => {
   const location = useLocation();
   const DEFAULT_HOME = (import.meta as any)?.env?.VITE_DEFAULT_HOME as string | undefined;
   const isLP1Home = DEFAULT_HOME === 'b/lp1' && location.pathname === '/';
+  const blockBySubdomain = shouldBlockGlobalScripts();
   
   // Não carrega scripts globais na página /b/lp1
   // e também quando LP1 é a homepage do subdomínio
-  if (location.pathname === '/b/lp1' || isLP1Home) {
+  // e quando o subdomínio ativo exige bloqueio
+  if (location.pathname === '/b/lp1' || isLP1Home || blockBySubdomain) {
     return null;
   }
   
@@ -105,7 +108,8 @@ const App = () => (
                   default: return <ProjectA_LP1 />;
                 }
               };
-              return <Route path="/" element={resolveHome(DEFAULT_HOME)} />;
+              const HOME_BY_SUBDOMAIN = getSubdomainHome(DEFAULT_HOME);
+              return <Route path="/" element={resolveHome(HOME_BY_SUBDOMAIN)} />;
             })()}
             
             {/* Project A Routes */}
