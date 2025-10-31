@@ -46,8 +46,9 @@ const LP1 = () => {
     } catch {}
   }, []);
   
-  // Inicializa o GTM (após stub de fbq)
-  const { pushEvent } = useGTM(true, 'GTM-K8BN9FDK');
+  // Inicializa o GTM local apenas quando NÃO estiver no subdomínio LP1
+  const isLP1Host = typeof window !== 'undefined' && /(^|\.)lp1\.cltcomgrana\.com\.br$/i.test(window.location.hostname);
+  const { pushEvent } = useGTM(!isLP1Host, 'GTM-K8BN9FDK');
   
   if (!config) {
     return <div>Configuração não encontrada</div>;

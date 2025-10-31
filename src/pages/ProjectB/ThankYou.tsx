@@ -14,8 +14,9 @@ const ThankYouB = () => {
   
   // Carrega os scripts após o carregamento inicial
   useUtmifyPixel(heroLoaded);
-  // GTM para o subdomínio LP1 (container fixo)
-  useGTM(true, 'GTM-K8BN9FDK');
+  // GTM: usa global no subdomínio LP1; local fora dele
+  const isLP1Host = typeof window !== 'undefined' && /(^|\.)lp1\.cltcomgrana\.com\.br$/i.test(window.location.hostname);
+  useGTM(!isLP1Host, 'GTM-K8BN9FDK');
   // Força o carregamento do Facebook Pixel independente do heroLoaded, mapeando por variação (lp1 vs lp2)
   const fbEnv = (import.meta as any)?.env || {};
   let chosenFbPixel: string | undefined;

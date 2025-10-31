@@ -10,6 +10,7 @@ import ClarityInitializer from "@/components/ClarityInitializer";
 import GtagInitializer from "@/components/GtagInitializer";
 import ClarityIndicator from "@/components/ClarityIndicator";
 import ClarityDebugPanel from "@/components/ClarityDebugPanel";
+import LP1GlobalGTM from "@/components/LP1GlobalGTM";
 
 
 // Lazy loading dos componentes para code splitting
@@ -86,6 +87,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        {/* GTM global para o subdomínio LP1 */}
+        <LP1GlobalGTM />
         <ConditionalScripts />
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
