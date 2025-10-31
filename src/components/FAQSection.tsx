@@ -21,10 +21,6 @@ const FAQSection = () => {
       answer: "O curso ensina métodos práticos e validados para conseguir clientes sem gastar com anúncios ou redes sociais."
     },
     {
-      question: "Preciso investir em outras ferramentas?",
-      answer: "Não. A ferramenta de I.A já está inclusa e você tem acesso vitalício. Sem mensalidades escondidas."
-    },
-    {
       question: "E se eu não conseguir vender em 7 dias?",
       answer: "Você tem 7 dias de garantia incondicional. Se não vender seu primeiro site, devolvemos 100% do seu investimento."
     },
