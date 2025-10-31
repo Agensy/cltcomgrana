@@ -78,7 +78,7 @@ jobs:
           password: ${{ secrets.LP1_FTP_PASSWORD }}
           protocol: ftps
           port: 21
-          local-dir: dist
+          local-dir: dist/
           server-dir: ${{ env.REMOTE_DIR }}
           # Keep .htaccess and robots.txt if present remotely
           exclude: |
