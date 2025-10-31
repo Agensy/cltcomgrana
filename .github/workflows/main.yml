@@ -1,9 +1,12 @@
 name: Build and Deploy Vite/Next.js App to HostGator via FTP
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      build_mode:
+        description: "Build mode (default: production)"
+        required: false
+        default: "production"
 
 jobs:
   build-and-deploy:
