@@ -22,20 +22,20 @@ fi
 # Verificar server-dir (pegar apenas a linha de configuração, não a de validação)
 SERVER_DIR=$(grep -A 10 "Deploy via FTP" "$WORKFLOW_FILE" | grep "server-dir:" | grep -v "grep" | sed 's/.*server-dir: *\([^ #]*\).*/\1/' | tr -d '"' | tr -d "'")
 
-if [ "$SERVER_DIR" != "/" ]; then
+if [ "$SERVER_DIR" != "public_html/" ]; then
     echo -e "${RED}❌ ERRO CRÍTICO: server-dir está configurado como '$SERVER_DIR'${NC}"
     echo -e "${RED}   Isso causará problemas no deploy da HostGator!${NC}"
     echo ""
     echo -e "${YELLOW}📋 EXPLICAÇÃO DO PROBLEMA:${NC}"
-    echo "   • HostGator usa /public_html/ como diretório público"
-    echo "   • server-dir: 'public_html/' criará /public_html/public_html/"
+    echo "   • HostGator requer server-dir: 'public_html/' para deploy correto"
+    echo "   • server-dir: '/' fará upload para diretório raiz incorreto"
     echo "   • Isso torna o site inacessível na URL principal"
     echo ""
     echo -e "${GREEN}✅ SOLUÇÃO:${NC}"
-    echo "   Altere server-dir para: /"
+    echo "   Altere server-dir para: public_html/"
     echo ""
     echo -e "${YELLOW}💡 COMANDO PARA CORRIGIR:${NC}"
-    echo "   sed -i 's/server-dir:.*/server-dir: \/  # ⚠️ CRÍTICO: Manter como \"\/\"/' $WORKFLOW_FILE"
+    echo "   sed -i 's/server-dir:.*/server-dir: public_html\/  # ✅ CORRETO: HostGator requer public_html\//' $WORKFLOW_FILE"
     echo ""
     exit 1
 fi
@@ -55,6 +55,6 @@ if grep -q "dangerous-clean-slate.*true" "$WORKFLOW_FILE"; then
 fi
 
 echo -e "${GREEN}✅ Validação concluída com sucesso!${NC}"
-echo -e "${GREEN}   server-dir está configurado corretamente: '/'${NC}"
+echo -e "${GREEN}   server-dir está configurado corretamente: 'public_html/'${NC}"
 echo ""
 echo -e "${GREEN}🚀 Deploy seguro para prosseguir!${NC}"
