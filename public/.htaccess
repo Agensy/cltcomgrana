@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Ensure index.html is used as directory index
+DirectoryIndex index.html
+
 # Handle Angular and React Router
 RewriteBase /
 
@@ -9,8 +12,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
 
 # Optional: Force HTTPS (descomente se quiser forçar HTTPS)
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Security: enable HSTS for HTTPS (compat)
 <IfModule mod_headers.c>
