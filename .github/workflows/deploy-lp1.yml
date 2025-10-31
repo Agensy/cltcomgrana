@@ -87,9 +87,9 @@ jobs:
             **/.DS_Store
             **/node_modules/**
           # Logs
-          log-level: info
+          log-level: standard
 
       - name: Post-deploy check
         run: |
-          echo "Deployment finished to public_html/lp1/." 
-          echo "Ensure subdomain lp1.cltcomgrana.com.br points to public_html/lp1/."
+          echo "Deployment finished to ${REMOTE_DIR}." 
+          echo "Ensure subdomain lp1.cltcomgrana.com.br points to ${REMOTE_DIR}."
