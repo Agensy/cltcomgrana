@@ -1,0 +1,85 @@
+name: Deploy <TARGET> to <domain>
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_mode:
+        description: "Vite mode (default: production)"
+        required: false
+        default: "production"
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect <TARGET>-related changes
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            target:
+              - 'src/pages/**/LPX.tsx'
+              - 'src/config/variations.ts'
+              - 'public/.htaccess'
+
+      - name: Skip if not <TARGET> changes (unless commit overrides)
+        if: steps.changes.outputs.target != 'true' && !contains(github.event.head_commit.message, '[<marker>]')
+        run: |
+          echo "No <TARGET>-specific changes detected and no [<marker>] override. Skipping." && exit 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create .env.production
+        env:
+          VITE_DEFAULT_HOME: b/lpX
+          VITE_GA_MEASUREMENT_ID: ${{ secrets.TARGET_GA_ID }}
+          VITE_CLARITY_PROJECT_ID: ${{ secrets.TARGET_CLARITY_ID }}
+        run: |
+          echo "VITE_DEFAULT_HOME=${VITE_DEFAULT_HOME}" > .env.production
+          if [ -n "${VITE_GA_MEASUREMENT_ID}" ]; then echo "VITE_GA_MEASUREMENT_ID=${VITE_GA_MEASUREMENT_ID}" >> .env.production; fi
+          if [ -n "${VITE_CLARITY_PROJECT_ID}" ]; then echo "VITE_CLARITY_PROJECT_ID=${VITE_CLARITY_PROJECT_ID}" >> .env.production; fi
+          cat .env.production
+
+      - name: Build (Vite)
+        env:
+          MODE: ${{ github.event.inputs.build_mode }}
+        run: |
+          npm run build -- --mode ${MODE:-production}
+
+      - name: Include .htaccess in dist
+        run: |
+          if [ -f "public/.htaccess" ]; then cp -v public/.htaccess dist/.htaccess; fi
+          ls -la dist | head -n 50
+
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.TARGET_FTP_SERVER }}
+          username: ${{ secrets.TARGET_FTP_USERNAME }}
+          password: ${{ secrets.TARGET_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: dist/
+          server-dir: ${{ vars.TARGET_REMOTE_DIR }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            **/node_modules/**
+          log-level: standard
+
+      - name: Post-deploy check
+        run: |
+          echo "Deployment finished."
