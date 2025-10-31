@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import Clarity from '@microsoft/clarity';
+import { getSubdomainClarityProjectId } from '@/config/subdomains';
 import { useAuth } from '@/contexts/AuthContext';
 
 // Inicializa Microsoft Clarity e acompanha mudanças de rota
@@ -11,7 +12,8 @@ export const useClarity = () => {
 
   // Inicialização única
   useEffect(() => {
-    const projectId = (import.meta as any)?.env?.VITE_CLARITY_PROJECT_ID;
+    const subdomainId = getSubdomainClarityProjectId();
+    const projectId = subdomainId || (import.meta as any)?.env?.VITE_CLARITY_PROJECT_ID;
     if (initedRef.current) return;
 
     try {
@@ -19,7 +21,7 @@ export const useClarity = () => {
       const hasGlobalClarity = typeof (window as any)?.clarity === 'function';
       console.log('[Clarity] verificação inicial', {
         hasGlobalClarity,
-        projectId: projectId ? 'definido' : 'indefinido',
+        projectId: projectId ? `definido (${projectId ? 'subdomain' : 'env'})` : 'indefinido',
         mode: (import.meta as any)?.env?.MODE,
       });
       if (hasGlobalClarity) {

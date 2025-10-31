@@ -4,6 +4,7 @@ export interface SubdomainConfig {
   home: string; // path-style home resolver (e.g., 'b/lp1')
   blockGlobalScripts?: boolean;
   gtmContainer?: string;
+  clarityProjectId?: string;
 }
 
 // Mapeamento inicial de subdomínios. Expanda conforme necessário.
@@ -13,7 +14,8 @@ const SUBDOMAINS: SubdomainConfig[] = [
     hostPattern: /(^|\.)lp1\.cltcomgrana\.com\.br$/i,
     home: 'b/lp1',
     blockGlobalScripts: true,
-    gtmContainer: 'GTM-K8BN9FDK'
+    gtmContainer: 'GTM-K8BN9FDK',
+    clarityProjectId: 'tyuidayuzy'
   }
 ];
 
@@ -39,4 +41,10 @@ export const getSubdomainGTMContainer = (): string | undefined => {
   const active = getActiveSubdomain();
   const cfg = SUBDOMAINS.find((s) => s.key === active);
   return cfg?.gtmContainer;
+};
+
+export const getSubdomainClarityProjectId = (): string | undefined => {
+  const active = getActiveSubdomain();
+  const cfg = SUBDOMAINS.find((s) => s.key === active);
+  return cfg?.clarityProjectId;
 };

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Clarity from '@microsoft/clarity';
+import { getSubdomainClarityProjectId } from '@/config/subdomains';
 
 const ClarityDebugPanel = () => {
   const showInPreview = (import.meta as any)?.env?.VITE_SHOW_CLARITY_DEBUG === 'true';
@@ -18,7 +19,9 @@ const ClarityDebugPanel = () => {
 
   const check = () => {
     const fn = typeof (window as any)?.clarity === 'function';
-    const id = !!(import.meta as any)?.env?.VITE_CLARITY_PROJECT_ID;
+    const idFromEnv = !!(import.meta as any)?.env?.VITE_CLARITY_PROJECT_ID;
+    const idFromSubdomain = !!getSubdomainClarityProjectId();
+    const id = idFromEnv || idFromSubdomain;
     const script = !!document.querySelector('script[src*="clarity.ms"]');
     setHasFn(fn);
     setHasId(id);
