@@ -55,15 +55,33 @@ const CheckoutPage: React.FC = () => {
 
   useEffect(() => {
     try {
-      const measurementId = (import.meta as any)?.env?.VITE_GA_MEASUREMENT_ID || 'G-SWB08GP822';
+      const measurementId = (import.meta as any)?.env?.VITE_GA_MEASUREMENT_ID;
       const variation = (checkoutData?.variation || config?.id || 'unknown').toString();
       const project = (checkoutData?.project || config?.project || 'unknown').toString();
-      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      if (
+        measurementId &&
+        typeof window !== 'undefined' &&
+        typeof window.gtag === 'function'
+      ) {
         window.gtag('event', 'InitiateCheckout', {
           project,
           variation,
           page_path: window.location.pathname,
           send_to: measurementId,
+        });
+      }
+    } catch {}
+
+    // Sempre envia para o GTM via dataLayer
+    try {
+      const variation = (checkoutData?.variation || config?.id || 'unknown').toString();
+      const project = (checkoutData?.project || config?.project || 'unknown').toString();
+      if (typeof window !== 'undefined' && Array.isArray(window.dataLayer)) {
+        window.dataLayer.push({
+          event: 'InitiateCheckout',
+          project,
+          variation,
+          page_path: window.location.pathname,
         });
       }
     } catch {}

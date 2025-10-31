@@ -14,7 +14,7 @@ export const useGtag = () => {
 
   // Carrega e inicializa GA4 uma única vez
   useEffect(() => {
-    const measurementId = (import.meta as any)?.env?.VITE_GA_MEASUREMENT_ID || 'G-SWB08GP822';
+    const measurementId = (import.meta as any)?.env?.VITE_GA_MEASUREMENT_ID;
     if (!measurementId || initedRef.current) return;
 
     // Evita script duplicado
@@ -45,7 +45,8 @@ export const useGtag = () => {
   useEffect(() => {
     if (!initedRef.current || typeof window.gtag !== 'function') return;
     try {
-      const measurementId = (import.meta as any)?.env?.VITE_GA_MEASUREMENT_ID || 'G-SWB08GP822';
+      const measurementId = (import.meta as any)?.env?.VITE_GA_MEASUREMENT_ID;
+      if (!measurementId) return;
       // page_view recomendada para SPA
       window.gtag('event', 'page_view', {
         page_path: location.pathname,

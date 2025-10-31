@@ -138,8 +138,8 @@ class LeadsService {
     
     // Eventos: Lead (GA4 e Clarity)
     try {
-      const measurementId = (import.meta as any)?.env?.VITE_GA_MEASUREMENT_ID || 'G-SWB08GP822';
-      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      const measurementId = (import.meta as any)?.env?.VITE_GA_MEASUREMENT_ID;
+      if (measurementId && typeof window !== 'undefined' && typeof window.gtag === 'function') {
         window.gtag('event', 'Lead', {
           lead_id: lead.id,
           project: lead.project,
@@ -147,6 +147,20 @@ class LeadsService {
           page_name: lead.pageName,
           page_url: lead.pageUrl,
           send_to: measurementId,
+        });
+      }
+    } catch {}
+
+    // Sempre envia para o GTM via dataLayer
+    try {
+      if (typeof window !== 'undefined' && Array.isArray(window.dataLayer)) {
+        window.dataLayer.push({
+          event: 'Lead',
+          lead_id: lead.id,
+          project: lead.project,
+          variation: lead.variation,
+          page_name: lead.pageName,
+          page_url: lead.pageUrl,
         });
       }
     } catch {}
