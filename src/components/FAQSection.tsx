@@ -34,7 +34,7 @@ const FAQSection = () => {
     },
     {
       question: "Vou ter suporte?",
-      answer: "Sim! Você terá suporte direto via e-mail por 90 dias e acesso ao grupo exclusivo de alunos no WhatsApp."
+      answer: "Sim! Você terá suporte direto whatsapp e acesso ao grupo exclusivo de alunos"
     }
   ];
 
