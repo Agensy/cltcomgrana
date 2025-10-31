@@ -17,6 +17,7 @@ import WhatsAppHelpButton from "@/components/WhatsAppHelpButton";
 import { getVariationConfig } from "@/config/variations";
 import { useClarity } from "@/hooks/use-clarity";
 import { useGTM } from "@/hooks/use-gtm";
+import { useEffect } from "react";
 
 const LP1 = () => {
   const config = getVariationConfig('b', 'lp1');
@@ -24,7 +25,28 @@ const LP1 = () => {
   // Inicializa o Clarity
   useClarity();
   
-  // Inicializa o GTM
+  // Teardown do Facebook Pixel na LP1
+  // Garante que, mesmo vindo de outra rota, o Pixel seja desativado aqui
+  useEffect(() => {
+    // Define um stub de fbq antes do GTM para impedir reinit
+    try {
+      (window as any).fbq = function() {};
+      (window as any)._fbq = (window as any).fbq;
+      (window as any).__fbq_initialized_ids = new Set<string>();
+
+      // Remove scripts já inseridos do Facebook Pixel
+      document.querySelectorAll('script[src*="fbevents.js"]').forEach((s) => {
+        s.parentElement?.removeChild(s);
+      });
+
+      // Remove noscript fallback de pixels existentes
+      document.querySelectorAll('noscript img[src*="facebook.com/tr"]').forEach((img) => {
+        img.parentElement?.remove();
+      });
+    } catch {}
+  }, []);
+  
+  // Inicializa o GTM (após stub de fbq)
   const { pushEvent } = useGTM(true, 'GTM-K8BN9FDK');
   
   if (!config) {
