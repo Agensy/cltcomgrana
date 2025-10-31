@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { getActiveSubdomain } from '@/config/subdomains';
 
 declare global {
   interface Window {
@@ -19,8 +20,10 @@ export const useFacebookPixel = (shouldLoad: boolean = false, pixelIdsOverride?:
     const defaultHome = (import.meta as any)?.env?.VITE_DEFAULT_HOME as string | undefined;
     const isLP1Home = defaultHome === 'b/lp1' && path === '/';
     const isLP1Path = path === '/b/lp1';
+    const isLP1Host = getActiveSubdomain() === 'lp1';
 
-    if (!shouldLoad || isLoadedRef.current || isLP1Path || isLP1Home) {
+    // Política: somente GTM no subdomínio LP1 (qualquer rota)
+    if (!shouldLoad || isLoadedRef.current || isLP1Path || isLP1Home || isLP1Host) {
       return;
     }
 
