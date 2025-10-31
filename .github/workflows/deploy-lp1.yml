@@ -29,6 +29,7 @@ jobs:
             lp1:
               - 'src/pages/**/LP1.tsx'
               - 'src/config/variations.ts'
+              - 'public/.htaccess'
               - 'src/components/HeroSection.tsx'
               - 'src/components/ProblemSection.tsx'
               - 'src/components/StorySection.tsx'
