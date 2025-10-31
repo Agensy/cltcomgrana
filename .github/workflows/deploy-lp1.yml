@@ -145,6 +145,24 @@ jobs:
           # Logs
           log-level: standard
 
+      - name: Deploy via FTPS (Fallback to lp1/ directory)
+        if: steps.changes.outputs.lp1 == 'true' || contains(github.event.head_commit.message, '[lp1]')
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ env.SERVER }}
+          username: ${{ secrets.LP1_FTP_USERNAME }}
+          password: ${{ secrets.LP1_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: dist/
+          server-dir: ./lp1/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            **/node_modules/**
+          log-level: standard
+
       - name: Post-deploy check
         if: steps.changes.outputs.lp1 == 'true' || contains(github.event.head_commit.message, '[lp1]')
         run: |
