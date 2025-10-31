@@ -1,0 +1,144 @@
+HostGator Hospedagem de Sites
+Erro 403
+Acesso negado
+Por que estou vendo esta página?
+O Erro 403 geralmente significa que o servidor não possui permissão para visualizar o arquivo solicitado. Na maioria das situações, o erro é causado por regras de bloqueio de IPs, Proteção de Arquivos ou problemas em suas permissões.
+
+Em muitos casos não é uma indicação de um problema real no servidor, mas sim um problema com as informações que o servidor foi instruído a acessar como resultado de uma solicitação. Geralmente o erro é causado por uma dificuldade em seu site, que pode precisar de uma revisão adicional da nossa equipe de Suporte.
+
+Para nos informar sobre a dificuldade e buscar orientações, entre em contato via ticket (e-mail).
+
+Existe algo que eu possa fazer?
+Existem algumas causas comuns que geram esse código de erro, incluindo problemas com scripts individuais que devem ser executados através de solicitações. Alguns destes são mais fáceis de encontrar e corrigir do que outros.
+
+Propriedade de Arquivos e Diretórios
+O servidor no qual você está hospedado roda aplicações de forma muito específica na maioria dos casos. O servidor geralmente espera que os arquivos e diretórios sejam de propriedade do seu usuário do cPanel. Se você fez alterações na autoridade dos arquivos por conta própria, faça um reset do proprietário e grupo adequadamente.
+
+Permissões dos arquivos e diretórios
+O servidor no qual você está hospedado roda aplicações de uma forma muito específica na maioria dos casos. O servidor espera que os arquivos, como HTML, imagens e outros tipos de mídia, tenham as permissões configuradas como 644. O servidor também espera que as permissões dos diretórios estejam configuradas como 755 na maioria dos casos.
+
+(Veja nossa FAQ a respeito das permissões dos arquivos)
+
+Obs: Se as permissões estiverem marcadas como 000, por favor, entre em contato com o suporte através de nosso sistema de tickets. Isso pode estar relacionado a uma suspensão de conta por abuso ou violação aos nossos Termos de Serviço.
+
+Regras de Bloqueio de IP
+No arquivo .htaccess podem existir regras que conflitem umas com as outras ou que não estejam permitido o acesso através de um IP ao site.
+
+Se você deseja verificar uma regra específica no arquivo .htaccess, você pode comentar a linha que contém a regra no arquivo. Para fazer isso, basta adicionar o caractere # no início da linha. Você deve sempre realizar um backup deste arquivo antes de iniciar as modificações.
+
+Por exemplo, se o .htaccess é similar a este:
+
+Order deny,allow
+allow from all
+deny from 192.168.1.5
+deny from 192.168.1.25
+Então tente alterar para o formato abaixo:
+
+Order deny,allow
+allow from all
+#deny from 192.168.1.5
+deny from 192.168.1.25
+Caso o erro ocorra por limitações de processos, nossos administradores do servidor estarão aptos a lhe auxiliar. Por favor, entre em contato com nosso Suporte online ou abra um chamado (ticket). Assegure-se de incluir os passos necessários para que nossa equipe de suporte possa analisar o Erro 403 em seu site.
+
+Compreendendo o sistema de permissões de arquivos
+Representação Simbólica
+O primeiro caractere indica o tipo de arquivo e não está relacionado às permissões. Os 9 caracteres remanescentes formam três conjuntos, cada um representando a classe da permissão em três caracteres. O primeiro conjunto representa a classe do usuário, o segundo conjunto representa a classe do grupo e o terceiro conjunto representa as outras classes.
+
+Cada caractere representa um tipo de permissão: permissão de Leitura, Escrita e Execução:
+
+r se for permitida leitura (read), - se não for permitido.
+w se for permitida escrita (write), - se não for permitido.
+x se for permitida execução (execution), - se não for permitido.
+Abaixo vemos alguns exemplos de notação simbólica:
+
+-rwxr-xr-x um arquivo regular no qual a classe de usuário possui todas as permissões; as classes grupo e outros possuem apenas permissões de leitura e execução.
+crw-rw-r-- um arquivo com caractere especial no qual as classes usuário e grupo possuem permissões de leitura e escrita, enquanto a classe outros possui apenas permissão de leitura.
+dr-x------ um diretório no qual a classe de usuário possui permissões de leitura e execução, enquanto os demais grupos não possuem nenhuma permissão.
+Representação Numérica
+Outro método para representar permissões é o Octal (base-8), que conta com pelo menos três dígitos. Esta notação consiste em pelo menos tres digitos. Cada um dos dígitos, mais a direita, representa um componente diferente de permissões: usuário, grupo, e outros.
+
+Cada um destes dígitos mostra o resultado da soma de seus componentes em bits.
+
+O Bit de Leitura adiciona 4 ao seu total. (100 em binário),
+O Bit de escrita adiciona 2 ao seu total. (010 em binário) e
+O Bit de execução adiciona 1 ao seu total. (001 em binário).
+Estes valores nunca produzem combinações ambíguas. Cada soma representa um conjunto específico de permissões. Mais tecnicamente, é uma representação octal do campo de bit: cada bit é referência para uma permissão separada, e agrupar os 3 bits de uma vez em octal corresponde a agrupar essas permissões por usuário, grupo e outros.
+
+Confira, abaixo, alguns exemplos que mostram a formação das permissões:
+Permissão 0755
+
+4+2+1=7
+Ler, escrever, executar
+4+1=5
+Ler, Executar
+4+1=5
+Ler, Executar
+Permissão 0644
+
+4+2=6
+Ler, escrever
+4
+Ler
+4
+Ler
+Como modificar seu arquivo .htaccess
+O arquivo .htaccess contém diretivas (instruções) que informarão ao servidor como ele deve se comportar em determinados cenários, e afeta diretamente o funcionamento de seu website.
+
+Redirecionamentos e reescritas de URL são duas diretivas comuns encontradas no .htaccess e muitos scripts, como o WordPress, Drupal, Joomla e Magento, por exemplo, adicionam diretivas ao arquivo .htaccess para que possam funcionar corretamente.
+
+É possível que você precise editar o arquivo .htaccess em algum momento. Essa seção irá mostrar como editar o arquivo em seu cPanel, mas não como ele deve ser alterado. (É possível que você tenha que consultar outros artigos e recursos para encontrar essa informação.)
+
+Existem muitas maneiras de editar o arquivo .htaccess
+Editar o arquivo em seu computador e fazer upload para o servidor via FTP
+Utilizar o Modo Edição em um programa FTP
+Utilizar um editor de Texto SSH
+Utilizar o Gerenciador de Arquivos no cPanel
+Para a maioria das pessoas, a maneira mais fácil de editar um arquivo .htaccess é através do Gerenciador de Arquivos no cPanel.
+
+Como editar o arquivo .htaccess através do Gerenciador de Arquivos no cPanel
+Antes de qualquer coisa, sugerimos que faça um backup de seu site. Assim, caso alguma falha ocorra, você poderá reverter para uma versão anterior do arquivo.
+
+Abra o Gerenciador de Arquivos
+Faça login no cPanel.
+Na seção Arquivos, clique no ícone do Gerenciador de Arquivos
+Na caixa que abre, selecione Raiz do Documento e informe o domínio que deseja acessar no menu drop-down.
+Assegure-se de que a opção Exibir arquivos ocultos (dotfiles) está marcada.
+Clique em Go. O Gerenciador de arquivos irá abrir em uma nova aba ou janela.
+Procure pelo arquivo .htaccess na lista de arquivos. Você poderá precisar usar a rolagem para encontrá-lo.
+Para Editar o arquivo .htaccess
+Clique com o botão direito no arquivo .htaccess e clique em Code Edit no menu. Alternativamente você poderá clicar no ícone do .htaccess e então clicar em Code Editor no topo da página
+Uma nova caixa de diálogo irá abrir perguntando sobre codificação. Apenas clique em Edit para continuar. O Editor irá abrir em uma nova Janela.
+Edite o arquivo conforme sua necessidade.
+Clique em Salvar alterações no canto superior direito quando estiver concluído. As alterações serão salvas.
+Teste seu site para assegurar-se de que as alterações foram bem-sucedidas e salvas. Caso não, corrija o erro ou reverta para a versão anterior até que seu site volte a funcionar.
+Após a conclusão, clique em Fechar.
+Como modificar as permissões de arquivos e diretórios
+As permissões de um arquivo ou diretório dizem ao servidor como e de que maneira ele deve interagir com um arquivo ou diretório.
+
+Essa seção irá mostrar como editar as permissões de arquivos através do cPanel, mas não como você deve modificá-las. (Veja nossa seção Existe algo que eu possa fazer? para mais informações).
+
+Existem muitas formas de Editar as Permissões dos Arquivos
+Utilize um programa FTP
+Use o editor de texto SSH
+Use o Gerenciador de Arquivos no cPanel
+Para a maioria das pessoas, a maneira mais fácil de editar as permissões é através do Gerenciador de Arquivos no cPanel.
+
+Como editar as permissões dos arquivos pelo Gerenciador de Arquivos do cPanel.
+Antes de qualquer coisa, sugerimos que faça um backup de seu site. Assim, caso alguma falha ocorra, você poderá reverter para uma versão anterior.
+
+Abra o Gerenciador de Arquivos
+Faça login no cPanel.
+Na seção Arquivos, clique no ícone do Gerenciador de Arquivos
+Na caixa que abre, marque Raiz do Documento e selecione o domínio que deseja acessar no menu drop-down.
+Assegure-se de que a opção Exibir arquivos ocultos (dotfiles) está marcada.
+Clique em Go. O Gerenciador de arquivos irá abrir em uma nova aba ou janela.
+Procure pelos arquivos ou diretórios na lista de arquivos, você poderá precisar utilizar a rolagem para encontrá-los.
+Para editar as Permissões
+Clique com o botão direito no arquivo ou diretório e clique em Change Permissions no menu.
+Uma caixa irá aparecer permitindo que você selecione as permissões corretas ou utilize um valor numérico para configurar as permissões corretas.
+Edite as permissões dos arquivos conforme sua necessidade.
+Clique em Change Permissions para salvar as alterações.
+Teste seu site para ter certeza de que as modificações foram salvas com sucesso. Caso não, corrija o erro ou reverta para uma versão anterior, até que volte a funcionar.
+Após a conclusão, clique em Fechar.
+Esse site é hospedado pela HostGator
+Conheça nossos planos

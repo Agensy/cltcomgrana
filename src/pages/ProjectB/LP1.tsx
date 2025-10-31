@@ -32,7 +32,18 @@ const LP1 = () => {
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
+      {/* GTM noscript fallback (conforme gtm.txt) */}
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-K8BN9FDK"
+          height="0"
+          width="0"
+          style={{ display: 'none', visibility: 'hidden' }}
+        ></iframe>
+      </noscript>
+
+      <main className="min-h-screen bg-background">
       <HeroSection />
       <VideoProofSection />
       <BackgroundWrapper>
@@ -51,6 +62,7 @@ const LP1 = () => {
       <WhatsAppHelpButton />
       <Footer />
     </main>
+    </>
   );
 };
 

@@ -48,9 +48,12 @@ const queryClient = new QueryClient();
 // Componente para renderizar scripts condicionalmente
 const ConditionalScripts = () => {
   const location = useLocation();
+  const DEFAULT_HOME = (import.meta as any)?.env?.VITE_DEFAULT_HOME as string | undefined;
+  const isLP1Home = DEFAULT_HOME === 'b/lp1' && location.pathname === '/';
   
   // Não carrega scripts globais na página /b/lp1
-  if (location.pathname === '/b/lp1') {
+  // e também quando LP1 é a homepage do subdomínio
+  if (location.pathname === '/b/lp1' || isLP1Home) {
     return null;
   }
   
@@ -86,7 +89,21 @@ const App = () => (
         <ConditionalScripts />
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
-            <Route path="/" element={<ProjectA_LP1 />} />
+            {(() => {
+              const DEFAULT_HOME = (import.meta as any)?.env?.VITE_DEFAULT_HOME as string | undefined;
+              const resolveHome = (home?: string) => {
+                switch (home) {
+                  case 'a/lp1': return <ProjectA_LP1 />;
+                  case 'a/lp2': return <ProjectA_LP2 />;
+                  case 'a/lp3': return <ProjectA_LP3 />;
+                  case 'b/lp1': return <ProjectB_LP1 />;
+                  case 'b/lp2': return <ProjectB_LP2 />;
+                  case 'b/lp3': return <ProjectB_LP3 />;
+                  default: return <ProjectA_LP1 />;
+                }
+              };
+              return <Route path="/" element={resolveHome(DEFAULT_HOME)} />;
+            })()}
             
             {/* Project A Routes */}
             <Route path="/cltcomgrana-a" element={<IndexA />} />
@@ -100,6 +117,8 @@ const App = () => (
             <Route path="/b/lp2" element={<ProjectB_LP2 />} />
             <Route path="/b/lp3" element={<ProjectB_LP3 />} />
             <Route path="/b/obrigado" element={<ProjectB_ThankYou />} />
+            {/* Alias para Thank You dentro do subdomínio LP1 */}
+            <Route path="/obrigado" element={<ProjectB_ThankYou />} />
             <Route path="/b/checkout" element={<CheckoutPage />} />
             
             <Route path="/termos-de-uso" element={<TermsOfService />} />

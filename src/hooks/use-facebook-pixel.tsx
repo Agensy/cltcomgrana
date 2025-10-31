@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 declare global {
   interface Window {
@@ -10,16 +11,23 @@ declare global {
 
 export const useFacebookPixel = (shouldLoad: boolean = false, pixelIdsOverride?: string | string[]) => {
   const isLoadedRef = useRef(false);
+  const location = useLocation();
 
   useEffect(() => {
-    if (!shouldLoad || isLoadedRef.current) {
+    // Não carregar o Facebook Pixel na LP1 (apenas GTM)
+    const path = location.pathname;
+    const defaultHome = (import.meta as any)?.env?.VITE_DEFAULT_HOME as string | undefined;
+    const isLP1Home = defaultHome === 'b/lp1' && path === '/';
+    const isLP1Path = path === '/b/lp1';
+
+    if (!shouldLoad || isLoadedRef.current || isLP1Path || isLP1Home) {
       return;
     }
 
     // Verifica se o script já foi carregado
     const existingScript = document.querySelector('script[src*="fbevents.js"]');
-    // Se não houver variável de ambiente, inicializa ambos os pixels por padrão
-    const envIdsRaw = (import.meta as any)?.env?.VITE_FACEBOOK_PIXEL_IDS || '1148863280512739,1597639481206943';
+    // Se não houver variável de ambiente, inicializa apenas o pixel restante por padrão
+    const envIdsRaw = (import.meta as any)?.env?.VITE_FACEBOOK_PIXEL_IDS || '1597639481206943';
     const pixelIds = ((): string[] => {
       if (pixelIdsOverride) {
         const raw = Array.isArray(pixelIdsOverride)
@@ -95,7 +103,7 @@ export const useFacebookPixel = (shouldLoad: boolean = false, pixelIdsOverride?:
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [shouldLoad]);
+  }, [shouldLoad, location.pathname]);
 
   // Função para disparar eventos customizados do Facebook
   const trackEvent = (eventName: string, parameters?: any) => {
