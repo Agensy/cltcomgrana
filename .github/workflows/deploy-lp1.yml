@@ -121,8 +121,8 @@ jobs:
             echo "REMOTE_DIR=${{ vars.LP1_REMOTE_DIR }}" >> $GITHUB_ENV
             echo "Using vars.LP1_REMOTE_DIR"
           else
-            echo "REMOTE_DIR=public_html/lp1/" >> $GITHUB_ENV
-            echo "Using default remote dir: public_html/lp1/"
+            echo "REMOTE_DIR=./" >> $GITHUB_ENV
+            echo "Using default remote dir: ./ (FTP user root)"
           fi
 
       - name: Deploy via FTPS (HostGator)
