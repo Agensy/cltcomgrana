@@ -1,12 +1,17 @@
 name: Deploy LP1 to lp1.cltcomgrana.com.br
 
 on:
+  # Manual trigger remains available
   workflow_dispatch:
     inputs:
       build_mode:
         description: "Vite mode (default: production)"
         required: false
         default: "production"
+  # Auto-trigger on push to main; job will self-filter LP1 changes
+  push:
+    branches:
+      - main
 
 jobs:
   build-and-deploy-lp1:
@@ -15,6 +20,39 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Detect LP1-related changes
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            lp1:
+              - 'src/pages/**/LP1.tsx'
+              - 'src/config/variations.ts'
+              - 'src/components/HeroSection.tsx'
+              - 'src/components/ProblemSection.tsx'
+              - 'src/components/StorySection.tsx'
+              - 'src/components/SolutionSection.tsx'
+              - 'src/components/VideoProofSection.tsx'
+              - 'src/components/BenefitsSection.tsx'
+              - 'src/components/ForWhoSection.tsx'
+              - 'src/components/HowItWorksSection.tsx'
+              - 'src/components/TestimonialsSection.tsx'
+              - 'src/components/BonusSection.tsx'
+              - 'src/components/FAQSection.tsx'
+              - 'src/components/GuaranteeSection.tsx'
+              - 'src/components/DynamicFinalOfferSection.tsx'
+              - 'src/components/BackgroundWrapper.tsx'
+              - 'src/components/Footer.tsx'
+              - 'src/components/WhatsAppHelpButton.tsx'
+              - 'src/hooks/use-clarity.ts'
+              - 'src/hooks/use-gtm.ts'
+              - '.github/workflows/deploy-lp1.yml'
+
+      - name: Skip if not LP1 changes (unless commit overrides)
+        if: steps.changes.outputs.lp1 != 'true' && !contains(github.event.head_commit.message, '[lp1]')
+        run: |
+          echo "No LP1-specific changes detected and no [lp1] override. Skipping." && exit 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -26,6 +64,7 @@ jobs:
           npm ci || npm install --legacy-peer-deps
 
       - name: Create .env.production for lp1
+        if: steps.changes.outputs.lp1 == 'true' || contains(github.event.head_commit.message, '[lp1]')
         env:
           VITE_DEFAULT_HOME: b/lp1
           VITE_GA_MEASUREMENT_ID: ${{ secrets.LP1_GA_ID }}
@@ -37,6 +76,7 @@ jobs:
           echo "Generated .env.production:" && cat .env.production
 
       - name: Build (Vite)
+        if: steps.changes.outputs.lp1 == 'true' || contains(github.event.head_commit.message, '[lp1]')
         env:
           # Allow overriding mode from manual dispatch
           MODE: ${{ github.event.inputs.build_mode }}
@@ -45,12 +85,14 @@ jobs:
           npm run build -- --mode ${MODE:-production}
 
       - name: Upload dist as artifact
+        if: steps.changes.outputs.lp1 == 'true' || contains(github.event.head_commit.message, '[lp1]')
         uses: actions/upload-artifact@v4
         with:
           name: dist-lp1
           path: dist
 
       - name: Resolve FTP server (fallback)
+        if: steps.changes.outputs.lp1 == 'true' || contains(github.event.head_commit.message, '[lp1]')
         run: |
           if [ -n "${{ secrets.LP1_FTP_SERVER }}" ]; then
             echo "SERVER=${{ secrets.LP1_FTP_SERVER }}" >> $GITHUB_ENV
@@ -61,6 +103,7 @@ jobs:
           fi
 
       - name: Resolve remote directory (vars or default)
+        if: steps.changes.outputs.lp1 == 'true' || contains(github.event.head_commit.message, '[lp1]')
         run: |
           if [ -n "${{ vars.LP1_REMOTE_DIR }}" ]; then
             echo "REMOTE_DIR=${{ vars.LP1_REMOTE_DIR }}" >> $GITHUB_ENV
@@ -71,6 +114,7 @@ jobs:
           fi
 
       - name: Deploy via FTPS (HostGator)
+        if: steps.changes.outputs.lp1 == 'true' || contains(github.event.head_commit.message, '[lp1]')
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ env.SERVER }}
@@ -90,6 +134,7 @@ jobs:
           log-level: standard
 
       - name: Post-deploy check
+        if: steps.changes.outputs.lp1 == 'true' || contains(github.event.head_commit.message, '[lp1]')
         run: |
           echo "Deployment finished to ${REMOTE_DIR}." 
           echo "Ensure subdomain lp1.cltcomgrana.com.br points to ${REMOTE_DIR}."
