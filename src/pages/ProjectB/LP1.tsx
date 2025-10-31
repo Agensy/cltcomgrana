@@ -27,26 +27,8 @@ const LP1 = () => {
   // Inicializa o Clarity
   useClarity();
   
-  // Teardown do Facebook Pixel na LP1
-  // Garante que, mesmo vindo de outra rota, o Pixel seja desativado aqui
-  useEffect(() => {
-    // Define um stub de fbq antes do GTM para impedir reinit
-    try {
-      (window as any).fbq = function() {};
-      (window as any)._fbq = (window as any).fbq;
-      (window as any).__fbq_initialized_ids = new Set<string>();
-
-      // Remove scripts já inseridos do Facebook Pixel
-      document.querySelectorAll('script[src*="fbevents.js"]').forEach((s) => {
-        s.parentElement?.removeChild(s);
-      });
-
-      // Remove noscript fallback de pixels existentes
-      document.querySelectorAll('noscript img[src*="facebook.com/tr"]').forEach((img) => {
-        img.parentElement?.remove();
-      });
-    } catch {}
-  }, []);
+  // Remove qualquer bloqueio ao Facebook Pixel para permitir injeção via GTM
+  // (Nenhum teardown é aplicado aqui para LP1)
   
   // Inicializa o GTM local apenas quando NÃO estiver no subdomínio LP1
   const isLP1Host = typeof window !== 'undefined' && /(^|\.)lp1\.cltcomgrana\.com\.br$/i.test(window.location.hostname);
