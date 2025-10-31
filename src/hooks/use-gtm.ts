@@ -3,6 +3,15 @@ import { useEffect, useRef } from 'react';
 export const useGTM = (shouldLoad: boolean = false, containerId?: string) => {
   const isLoadedRef = useRef<Set<string>>(new Set());
 
+  // Detecta se GTM já está presente na página (inserido globalmente ou por outro componente)
+  const hasGtmPresent = () => {
+    const id = containerId || '';
+    if (!id || typeof document === 'undefined') return false;
+    const script = !!document.querySelector(`script[src*="googletagmanager.com/gtm.js?id=${id}"]`);
+    const gtmObj = typeof (window as any)?.google_tag_manager === 'object' && !!(window as any).google_tag_manager[id];
+    return script || gtmObj;
+  };
+
   useEffect(() => {
     if (!shouldLoad || !containerId) return;
 
@@ -55,10 +64,21 @@ export const useGTM = (shouldLoad: boolean = false, containerId?: string) => {
     isLoadedRef.current.add(containerId);
   }, [shouldLoad, containerId]);
 
+  // Marcar como carregado quando GTM já está presente, mesmo que shouldLoad=false
+  useEffect(() => {
+    if (!containerId) return;
+    if (hasGtmPresent()) {
+      isLoadedRef.current.add(containerId);
+    }
+  }, [containerId]);
+
   // Função para enviar eventos customizados
   const pushEvent = (eventName: string, parameters?: any) => {
-    if (window.dataLayer && isLoadedRef.current.has(containerId || '')) {
-      window.dataLayer.push({
+    const id = containerId || '';
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    const canPush = isLoadedRef.current.has(id) || hasGtmPresent();
+    if (canPush) {
+      (window as any).dataLayer.push({
         event: eventName,
         ...parameters
       });
