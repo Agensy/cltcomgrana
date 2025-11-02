@@ -54,10 +54,10 @@ const ConditionalScripts = () => {
   const isLP1Home = DEFAULT_HOME === 'b/lp1' && location.pathname === '/';
   const blockBySubdomain = shouldBlockGlobalScripts();
   
-  // Não carrega scripts globais na página /b/lp1
+  // Não carrega scripts globais nas páginas /b/lp1 e /b/lp2
   // e também quando LP1 é a homepage do subdomínio
   // e quando o subdomínio ativo exige bloqueio
-  if (location.pathname === '/b/lp1' || isLP1Home || blockBySubdomain) {
+  if (location.pathname === '/b/lp1' || location.pathname === '/b/lp2' || isLP1Home || blockBySubdomain) {
     return null;
   }
   

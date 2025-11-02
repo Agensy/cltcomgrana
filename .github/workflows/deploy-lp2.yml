@@ -1,0 +1,170 @@
+name: Deploy LP2 to lp2.cltcomgrana.com.br
+
+on:
+  # Manual trigger remains available
+  workflow_dispatch:
+    inputs:
+      build_mode:
+        description: "Vite mode (default: production)"
+        required: false
+        default: "production"
+  # Auto-trigger on push to main; job will self-filter LP2 changes
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy-lp2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect LP2-related changes
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            lp2:
+              - 'src/pages/**/LP2.tsx'
+              - 'src/config/variations.ts'
+              - 'public/.htaccess'
+              - 'src/components/HeroSection.tsx'
+              - 'src/components/ProblemSection.tsx'
+              - 'src/components/StorySection.tsx'
+              - 'src/components/SolutionSection.tsx'
+              - 'src/components/VideoProofSection.tsx'
+              - 'src/components/BenefitsSection.tsx'
+              - 'src/components/ForWhoSection.tsx'
+              - 'src/components/HowItWorksSection.tsx'
+              - 'src/components/TestimonialsSection.tsx'
+              - 'src/components/BonusSection.tsx'
+              - 'src/components/FAQSection.tsx'
+              - 'src/components/GuaranteeSection.tsx'
+              - 'src/components/DynamicFinalOfferSection.tsx'
+              - 'src/components/BackgroundWrapper.tsx'
+              - 'src/components/Footer.tsx'
+              - 'src/components/WhatsAppHelpButton.tsx'
+              - 'src/hooks/use-clarity.ts'
+              - 'src/hooks/use-gtm.ts'
+              - '.github/workflows/deploy-lp2.yml'
+
+      - name: Skip if not LP2 changes (unless commit overrides)
+        if: steps.changes.outputs.lp2 != 'true' && !contains(github.event.head_commit.message, '[lp2]')
+        run: |
+          echo "No LP2-specific changes detected and no [lp2] override. Skipping." && exit 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm ci || npm install --legacy-peer-deps
+
+      - name: Create .env.production for lp2
+        if: steps.changes.outputs.lp2 == 'true' || contains(github.event.head_commit.message, '[lp2]')
+        env:
+          VITE_DEFAULT_HOME: b/lp2
+          VITE_GA_MEASUREMENT_ID: ${{ secrets.LP2_GA_ID }}
+          VITE_CLARITY_PROJECT_ID: ${{ secrets.LP2_CLARITY_ID }}
+        run: |
+          echo "VITE_DEFAULT_HOME=${VITE_DEFAULT_HOME}" > .env.production
+          if [ -n "${VITE_GA_MEASUREMENT_ID}" ]; then echo "VITE_GA_MEASUREMENT_ID=${VITE_GA_MEASUREMENT_ID}" >> .env.production; fi
+          if [ -n "${VITE_CLARITY_PROJECT_ID}" ]; then echo "VITE_CLARITY_PROJECT_ID=${VITE_CLARITY_PROJECT_ID}" >> .env.production; fi
+          echo "Generated .env.production:" && cat .env.production
+
+      - name: Build (Vite)
+        if: steps.changes.outputs.lp2 == 'true' || contains(github.event.head_commit.message, '[lp2]')
+        env:
+          # Allow overriding mode from manual dispatch
+          MODE: ${{ github.event.inputs.build_mode }}
+        run: |
+          if [ -n "$MODE" ]; then echo "Using Vite mode: $MODE"; fi
+          npm run build -- --mode ${MODE:-production}
+
+      - name: Include .htaccess in dist
+        if: steps.changes.outputs.lp2 == 'true' || contains(github.event.head_commit.message, '[lp2]')
+        run: |
+          if [ -f "public/.htaccess" ]; then
+            echo "Copying public/.htaccess into dist/.htaccess"
+            cp -v public/.htaccess dist/.htaccess
+          else
+            echo "public/.htaccess not found; skipping copy"
+          fi
+          echo "Listing dist contents:" && ls -la dist | head -n 100
+
+      - name: Upload dist as artifact
+        if: steps.changes.outputs.lp2 == 'true' || contains(github.event.head_commit.message, '[lp2]')
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-lp2
+          path: dist
+
+      - name: Resolve FTP server (fallback)
+        if: steps.changes.outputs.lp2 == 'true' || contains(github.event.head_commit.message, '[lp2]')
+        run: |
+          if [ -n "${{ secrets.LP2_FTP_SERVER }}" ]; then
+            echo "SERVER=${{ secrets.LP2_FTP_SERVER }}" >> $GITHUB_ENV
+            echo "Using LP2_FTP_SERVER"
+          else
+            echo "SERVER=${{ secrets.FTP_SERVER }}" >> $GITHUB_ENV
+            echo "Using default FTP_SERVER"
+          fi
+
+      - name: Resolve remote directory (vars or default)
+        if: steps.changes.outputs.lp2 == 'true' || contains(github.event.head_commit.message, '[lp2]')
+        run: |
+          if [ -n "${{ vars.LP2_REMOTE_DIR }}" ]; then
+            echo "REMOTE_DIR=${{ vars.LP2_REMOTE_DIR }}" >> $GITHUB_ENV
+            echo "Using vars.LP2_REMOTE_DIR"
+          else
+            echo "REMOTE_DIR=./" >> $GITHUB_ENV
+            echo "Using default remote dir: ./ (FTP user root)"
+          fi
+
+      - name: Deploy via FTPS (HostGator)
+        if: steps.changes.outputs.lp2 == 'true' || contains(github.event.head_commit.message, '[lp2]')
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ env.SERVER }}
+          username: ${{ secrets.LP2_FTP_USERNAME }}
+          password: ${{ secrets.LP2_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: dist/
+          server-dir: ${{ env.REMOTE_DIR }}
+          # Keep .htaccess and robots.txt if present remotely
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            **/node_modules/**
+          # Logs
+          log-level: standard
+
+      - name: Deploy via FTPS (Fallback to lp2/ directory)
+        if: steps.changes.outputs.lp2 == 'true' || contains(github.event.head_commit.message, '[lp2]')
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ env.SERVER }}
+          username: ${{ secrets.LP2_FTP_USERNAME }}
+          password: ${{ secrets.LP2_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: dist/
+          server-dir: ./lp2/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            **/node_modules/**
+          log-level: standard
+
+      - name: Post-deploy check
+        if: steps.changes.outputs.lp2 == 'true' || contains(github.event.head_commit.message, '[lp2]')
+        run: |
+          echo "Deployment finished to ${REMOTE_DIR}." 
+          echo "Ensure subdomain lp2.cltcomgrana.com.br points to ${REMOTE_DIR}."
