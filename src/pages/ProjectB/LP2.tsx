@@ -15,9 +15,16 @@ import BackgroundWrapper from "@/components/BackgroundWrapper";
 import Footer from "@/components/Footer";
 import WhatsAppHelpButton from "@/components/WhatsAppHelpButton";
 import { getVariationConfig } from "@/config/variations";
+import { useFacebookPixel } from "@/hooks/use-facebook-pixel";
+import { useLazyScripts } from "@/hooks/use-lazy-scripts";
 
 const LP2 = () => {
   const config = getVariationConfig('b', 'lp2');
+  // Carrega Facebook Pixel quando a Hero estiver carregada
+  const { heroLoaded } = useLazyScripts();
+  const fbEnv = (import.meta as any)?.env || {};
+  const fbPixelIds = fbEnv.VITE_FACEBOOK_PIXEL_B_LP2 || fbEnv.VITE_FACEBOOK_PIXEL_IDS;
+  useFacebookPixel(heroLoaded, fbPixelIds);
   
   if (!config) {
     return <div>Configuração não encontrada</div>;

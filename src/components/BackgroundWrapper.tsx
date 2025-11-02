@@ -20,7 +20,16 @@ const BackgroundWrapper = ({ children }: BackgroundWrapperProps) => {
       </div>
       
       {/* Content */}
-      <div className="relative">
+      <div
+        className="relative"
+        style={{
+          // Adia renderização e pintura das seções abaixo da dobra
+          contentVisibility: 'auto',
+          containIntrinsicSize: '1000px',
+          // Melhora isolamento para reduzir custo de layout/pintura
+          contain: 'layout paint size'
+        } as any}
+      >
         {children}
       </div>
     </div>

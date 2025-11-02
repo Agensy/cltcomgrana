@@ -18,11 +18,13 @@ const HeroSection = React.memo(() => {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_20%_/_0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_20%_/_0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
       
       {/* Background Image com picture/srcset e fetchpriority alto */}
-      <picture className="absolute inset-0">
-        <source srcSet={heroMobile} media="(max-width: 768px)" />
+      <picture className="absolute inset-0 hero-picture">
+        <source srcSet={heroMobile} media="(max-width: 768px)" type="image/webp" />
         <img
           src={heroBackground}
           alt=""
+          role="presentation"
+          aria-hidden="true"
           className="w-full h-full object-cover opacity-70"
           loading="eager"
           decoding="async"

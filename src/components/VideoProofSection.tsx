@@ -50,6 +50,8 @@ const VideoProofSection: React.FC = () => {
                 style={{ border: 'none', position: 'absolute', top: 0, left: 0 }}
                 allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
                 allowFullScreen={true}
+                loading="lazy"
+                title="Trecho da Aula — PandaVideo"
                 width="100%"
                 height="100%"
               />
