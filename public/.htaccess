@@ -24,8 +24,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 <IfModule mod_headers.c>
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
     Header always set Content-Security-Policy "upgrade-insecure-requests"
-    # Temporário: header de diagnóstico para confirmar mod_headers ativo
-    Header set X-HSTS-Test "1"
+    # Removido header de diagnóstico
 </IfModule>
 
 # Cache static assets
