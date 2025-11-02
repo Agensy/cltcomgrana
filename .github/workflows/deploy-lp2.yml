@@ -27,27 +27,9 @@ jobs:
         with:
           filters: |
             lp2:
-              - 'src/pages/**/LP2.tsx'
-              - 'src/config/variations.ts'
-              - 'public/.htaccess'
-              - 'src/components/HeroSection.tsx'
-              - 'src/components/ProblemSection.tsx'
-              - 'src/components/StorySection.tsx'
-              - 'src/components/SolutionSection.tsx'
-              - 'src/components/VideoProofSection.tsx'
-              - 'src/components/BenefitsSection.tsx'
-              - 'src/components/ForWhoSection.tsx'
-              - 'src/components/HowItWorksSection.tsx'
-              - 'src/components/TestimonialsSection.tsx'
-              - 'src/components/BonusSection.tsx'
-              - 'src/components/FAQSection.tsx'
-              - 'src/components/GuaranteeSection.tsx'
-              - 'src/components/DynamicFinalOfferSection.tsx'
-              - 'src/components/BackgroundWrapper.tsx'
-              - 'src/components/Footer.tsx'
-              - 'src/components/WhatsAppHelpButton.tsx'
-              - 'src/hooks/use-clarity.ts'
-              - 'src/hooks/use-gtm.ts'
+              # GATE SOMENTE POR PÁGINAS ESPECÍFICAS DA LP2
+              - 'src/pages/ProjectA/LP2.tsx'
+              - 'src/pages/ProjectB/LP2.tsx'
               - '.github/workflows/deploy-lp2.yml'
 
   build-and-deploy-lp2:
