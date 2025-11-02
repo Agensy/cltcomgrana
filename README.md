@@ -1,22 +1,16 @@
-# Welcome to your Lovable project
+# CLT Com Grana — Projeto
 
-## Project info
+## Informações do Projeto
 
-**URL**: https://lovable.dev/projects/78d48789-03c5-47af-873a-6448750b856c
+**URL (produção)**: https://cltcomgrana.com.br
 
-## How can I edit this code?
+## Como editar este código?
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/78d48789-03c5-47af-873a-6448750b856c) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
+Você pode editar sua aplicação de diversas formas.
 
 **Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+If you want to work locally using your own IDE, you can clone this repo and push changes. As alterações serão publicadas para https://cltcomgrana.com.br via workflow de deploy.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -38,17 +32,9 @@ npm run dev
 
 **Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Navegue até o(s) arquivo(s) desejado(s).
+- Clique no botão "Edit" (ícone de lápis) no topo direito da visualização do arquivo.
+- Faça suas alterações e realize o commit.
 
 ## What technologies are used for this project?
 
@@ -60,15 +46,7 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Como fazer deploy?
 
-Simply open [Lovable](https://lovable.dev/projects/78d48789-03c5-47af-873a-6448750b856c) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+O deploy é realizado publicando o conteúdo de `dist/` via workflow/FTP conforme os arquivos em `.github/workflows/*.yml` e os checklists em `DEPLOY_CHECKLIST.md` e `DEPLOY_TARGETS.md`. O domínio de produção é `https://cltcomgrana.com.br`.
 # Deploy forçado para sincronizar HTML
