@@ -30,6 +30,23 @@ Fluxo para criar novo alvo (ex.: LP2)
   - segredos `LP2_*` e `vars.LP2_REMOTE_DIR`.
   - commit override `[lp2]` na mensagem quando quiser forçar deploy sem mudanças capturadas.
 
+Detalhes específicos LP2
+- Workflow criado: `.github/workflows/deploy-lp2.yml`
+- Build: inclui `public/.htaccess` em `dist/.htaccess`
+- Secrets necessários:
+  - `LP2_FTP_SERVER` (fallback para `FTP_SERVER` se ausente)
+  - `LP2_FTP_USERNAME`
+  - `LP2_FTP_PASSWORD`
+  - Opcional: `LP2_GA_ID`, `LP2_CLARITY_ID` para popular `.env.production`
+- Variáveis (Repository Variables):
+  - `LP2_REMOTE_DIR` (ex.: `./` se o usuário FTP inicia em `public_html/lp2`; ou `public_html/lp2/` se o usuário inicia na raiz)
+- Fallback de diretório:
+  - Se `LP2_REMOTE_DIR` não estiver definido, o deploy envia para `./` e, em seguida, tenta `./lp2/`
+- Acionamento:
+  - Push no `main` com mudanças em paths filtrados ou mensagem contendo `[lp2]`
+- Pós-deploy:
+  - Garanta que `lp2.cltcomgrana.com.br` aponta para o docroot configurado em `LP2_REMOTE_DIR`
+
 Pontos de checagem
 - Após deploy, garantir que o docroot contém `index.html`, `.htaccess` e pastas estáticas.
 - Permissões: diretórios `755`, arquivos `644`.
