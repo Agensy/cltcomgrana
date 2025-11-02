@@ -16,14 +16,15 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [QSA,L]
 
-# Optional: Force HTTPS (descomente se quiser forçar HTTPS)
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Security: enable HSTS for HTTPS (compat)
+# Security: enable HSTS and upgrade insecure requests
 <IfModule mod_headers.c>
-    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-    # Tempório: header de diagnóstico para confirmar mod_headers ativo
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set Content-Security-Policy "upgrade-insecure-requests"
+    # Temporário: header de diagnóstico para confirmar mod_headers ativo
     Header set X-HSTS-Test "1"
 </IfModule>
 
