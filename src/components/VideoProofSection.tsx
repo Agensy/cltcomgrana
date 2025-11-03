@@ -45,8 +45,8 @@ const VideoProofSection: React.FC = () => {
           <div className="max-w-4xl mx-auto mb-12">
             <div style={{ position: 'relative', paddingTop: '56.25%' }}>
               <iframe
-                id="panda-19e01d8d-e7d3-4a75-89b5-a22a53f24d1c"
-                src="https://player-vz-1e7e0b7e-27c.tv.pandavideo.com.br/embed/?v=19e01d8d-e7d3-4a75-89b5-a22a53f24d1c"
+                id="panda-cb55e144-797f-41e5-9b4f-d4deb0676802"
+                src="https://player-vz-1e7e0b7e-27c.tv.pandavideo.com.br/embed/?v=cb55e144-797f-41e5-9b4f-d4deb0676802"
                 style={{ border: 'none', position: 'absolute', top: 0, left: 0 }}
                 allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
                 allowFullScreen={true}
