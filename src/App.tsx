@@ -30,6 +30,7 @@ const ProjectA_ThankYou = lazy(() => import("./pages/ProjectA/ThankYou"));
 const ProjectB_LP1 = lazy(() => import("./pages/ProjectB/LP1"));
 const ProjectB_LP2 = lazy(() => import("./pages/ProjectB/LP2"));
 const ProjectB_LP3 = lazy(() => import("./pages/ProjectB/LP3"));
+const ProjectB_PreLP1 = lazy(() => import("./pages/ProjectB/PreLP1"));
 const ProjectB_ThankYou = lazy(() => import("./pages/ProjectB/ThankYou"));
 
 // Leads Dashboard
@@ -120,9 +121,10 @@ const App = () => (
             <Route path="/a/obrigado" element={<ProjectA_ThankYou />} />
             
             {/* Project B Routes */}
-            <Route path="/b/lp1" element={<ProjectB_LP1 />} />
-            <Route path="/b/lp2" element={<ProjectB_LP2 />} />
-            <Route path="/b/lp3" element={<ProjectB_LP3 />} />
+          <Route path="/b/lp1" element={<ProjectB_LP1 />} />
+          <Route path="/b/lp2" element={<ProjectB_LP2 />} />
+          <Route path="/b/lp3" element={<ProjectB_LP3 />} />
+          <Route path="/b/pre-lp1" element={<ProjectB_PreLP1 />} />
             <Route path="/b/obrigado" element={<ProjectB_ThankYou />} />
             {/* Alias para Thank You dentro do subdomínio LP1 */}
             <Route path="/obrigado" element={<ProjectB_ThankYou />} />
