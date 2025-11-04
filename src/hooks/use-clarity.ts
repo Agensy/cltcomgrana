@@ -16,7 +16,40 @@ export const useClarity = () => {
     const projectId = subdomainId || (import.meta as any)?.env?.VITE_CLARITY_PROJECT_ID;
     if (initedRef.current) return;
 
-    try {
+    const waitForStylesReady = async () => {
+      try {
+        // Aguardar DOM pronto
+        if (document.readyState === 'loading') {
+          await new Promise<void>((resolve) => {
+            document.addEventListener('DOMContentLoaded', () => resolve(), { once: true });
+          });
+        }
+        // Aguardar fontes (quando disponível)
+        const fontsAny = (document as any).fonts;
+        if (fontsAny?.ready && typeof fontsAny.ready.then === 'function') {
+          await fontsAny.ready;
+        }
+        // Poll de variáveis CSS críticas para reduzir risco de captura sem estilo
+        await new Promise<void>((resolve) => {
+          let attempts = 0;
+          const check = () => {
+            attempts++;
+            try {
+              const root = getComputedStyle(document.documentElement);
+              const bg = root.getPropertyValue('--background').trim();
+              const fg = root.getPropertyValue('--foreground').trim();
+              if (bg || fg) return resolve();
+            } catch {}
+            if (attempts < 40) setTimeout(check, 50);
+            else resolve();
+          };
+          check();
+        });
+      } catch {}
+    };
+
+    const run = async () => {
+      await waitForStylesReady();
       // Suporte híbrido: se já houver snippet inline (window.clarity), não chamar init novamente
       const hasGlobalClarity = typeof (window as any)?.clarity === 'function';
       console.log('[Clarity] verificação inicial', {
@@ -33,11 +66,15 @@ export const useClarity = () => {
         initedRef.current = true;
       }
       // Tag inicial de rota
-      Clarity.setTag('route', location.pathname);
-      console.log('[Clarity] tag de rota definida (init):', location.pathname);
-    } catch (err) {
+      try {
+        Clarity.setTag('route', location.pathname);
+        console.log('[Clarity] tag de rota definida (init):', location.pathname);
+      } catch {}
+    };
+
+    run().catch((err) => {
       console.error('Falha ao inicializar Microsoft Clarity:', err);
-    }
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

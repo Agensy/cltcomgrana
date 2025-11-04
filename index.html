@@ -23,12 +23,19 @@
     
     <!-- CSS crítico inline para melhorar LCP -->
     <style>
+      /* Fallback de cores/base para evitar flash sem estilo e melhorar gravação Clarity */
+      :root {
+        color-scheme: dark;
+        background-color: #0a0a0a; /* aprox do --background */
+      }
       /* Fontes de fallback para evitar FOUT (Flash of Unstyled Text) */
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         margin: 0;
         padding: 0;
         line-height: 1.5;
+        background-color: #0a0a0a;
+        color: #e5e5e5;
       }
       
       /* CSS crítico para o carregamento inicial */
