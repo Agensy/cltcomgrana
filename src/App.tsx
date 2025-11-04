@@ -126,6 +126,8 @@ const App = () => (
           <Route path="/b/lp2" element={<ProjectB_LP2 />} />
           <Route path="/b/lp3" element={<ProjectB_LP3 />} />
           <Route path="/b/pre-lp1" element={<ProjectB_PreLP1 />} />
+            {/* Alias para Pre-LP1 dentro do subdomínio LP1 (e geral) */}
+            <Route path="/pre-lp1" element={<ProjectB_PreLP1 />} />
             <Route path="/b/obrigado" element={<ProjectB_ThankYou />} />
             {/* Alias para Thank You dentro do subdomínio LP1 */}
             <Route path="/obrigado" element={<ProjectB_ThankYou />} />
