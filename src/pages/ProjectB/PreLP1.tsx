@@ -197,6 +197,16 @@ const PreLP1 = () => {
                 // @ts-ignore
                 fetchpriority="high"
               />
+              {/* Disclaimer IA */}
+              <div
+                className="absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 sm:left-1/2 sm:-translate-x-1/2 transform max-w-[70%] bg-black/50 text-white rounded-md px-2 py-1.5 backdrop-blur-md shadow-md border border-white/20 text-center"
+                role="note"
+                aria-label="Aviso de conteúdo gerado por IA"
+              >
+                <p className="text-[10px] sm:text-[11px] leading-snug">
+                  Tudo é preenchido automaticamente pela IA. Sem formulários nem trabalho manual.
+                </p>
+              </div>
             </div>
             <div className="mt-2 px-1" aria-hidden="true">
               <div className="h-1.5 bg-zinc-700/50 rounded-full overflow-hidden">
