@@ -1,6 +1,5 @@
 import { Shield, Clock, Users, TrendingUp, Sparkles, Zap } from "lucide-react";
 import GlowButton from "@/components/ui/GlowButton";
-import DynamicCheckoutDialog from "@/components/DynamicCheckoutDialog";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -18,7 +17,6 @@ const DynamicFinalOfferSection = ({ config }: DynamicFinalOfferSectionProps) => 
   });
 
   const [spots, setSpots] = useState(47);
-  const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,6 +24,31 @@ const DynamicFinalOfferSection = ({ config }: DynamicFinalOfferSectionProps) => 
     }, 8000);
     return () => clearInterval(interval);
   }, []);
+
+  const buildCheckoutUrl = () => {
+    try {
+      const url = new URL(config.checkout.checkoutUrl);
+      const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'] as const;
+      const hasWindow = typeof window !== 'undefined';
+      const searchParams = hasWindow ? new URLSearchParams(window.location.search) : null;
+      keys.forEach((key) => {
+        const fromQuery = searchParams?.get(key);
+        const fallback = (config.checkout.utmParams as any)?.[key];
+        const value = fromQuery || fallback;
+        if (value) url.searchParams.set(key, value);
+      });
+      return url.toString();
+    } catch {
+      return config.checkout.checkoutUrl;
+    }
+  };
+
+  const handleGoToCheckout = () => {
+    const target = buildCheckoutUrl();
+    if (typeof window !== 'undefined') {
+      window.location.href = target;
+    }
+  };
 
   const benefits = [
     { icon: Zap, text: "Curso completo CLT com Grana" },
@@ -136,7 +159,7 @@ const DynamicFinalOfferSection = ({ config }: DynamicFinalOfferSectionProps) => 
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.9 }}
             >
-              <GlowButton onClick={() => setDialogOpen(true)}>
+              <GlowButton onClick={handleGoToCheckout}>
                 GARANTIR MINHA VAGA AGORA
               </GlowButton>
               
@@ -174,11 +197,6 @@ const DynamicFinalOfferSection = ({ config }: DynamicFinalOfferSectionProps) => 
         </div>
       </div>
 
-      <DynamicCheckoutDialog 
-        open={dialogOpen} 
-        onOpenChange={setDialogOpen} 
-        config={config}
-      />
     </section>
   );
 };
