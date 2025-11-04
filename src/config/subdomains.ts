@@ -12,7 +12,7 @@ const SUBDOMAINS: SubdomainConfig[] = [
   {
     key: 'lp1',
     hostPattern: /(^|\.)lp1\.cltcomgrana\.com\.br$/i,
-    home: 'b/lp1',
+    home: 'b/pre-lp1',
     blockGlobalScripts: true,
     gtmContainer: 'GTM-K8BN9FDK',
     clarityProjectId: 'tyuidayuzy'

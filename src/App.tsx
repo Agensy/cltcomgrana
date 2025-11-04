@@ -106,6 +106,7 @@ const App = () => (
                   case 'b/lp1': return <ProjectB_LP1 />;
                   case 'b/lp2': return <ProjectB_LP2 />;
                   case 'b/lp3': return <ProjectB_LP3 />;
+                  case 'b/pre-lp1': return <ProjectB_PreLP1 />;
                   default: return <ProjectA_LP1 />;
                 }
               };
