@@ -58,7 +58,7 @@ const PreLP1 = () => {
     if (!v) return;
     const setupVideoProps = () => {
       v.autoplay = true;
-      v.controls = false; // retirar barra de controle nativa
+      v.controls = true; // liberar controles nativos (pause/play)
       v.muted = false;
       (v as any).playsInline = true;
       v.preload = 'auto';
@@ -199,7 +199,7 @@ const PreLP1 = () => {
               />
               {/* Disclaimer IA */}
               <div
-                className="absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 sm:left-1/2 sm:-translate-x-1/2 transform max-w-[70%] bg-black/50 text-white rounded-md px-2 py-1.5 backdrop-blur-md shadow-md border border-white/20 text-center"
+                className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 sm:left-1/2 sm:-translate-x-1/2 transform max-w-[70%] bg-black/50 text-white rounded-md px-2 py-1.5 backdrop-blur-md shadow-md border border-white/20 text-center"
                 role="note"
                 aria-label="Aviso de conteúdo gerado por IA"
               >
