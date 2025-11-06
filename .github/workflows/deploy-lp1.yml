@@ -31,6 +31,12 @@ jobs:
               - 'src/pages/ProjectA/LP1.tsx'
               - 'src/pages/ProjectB/LP1.tsx'
               - '.github/workflows/deploy-lp1.yml'
+              # Também disparar quando componentes críticos da LP1 mudarem
+              - 'src/components/HeroSection.tsx'
+              # Configurações de variações podem afetar LP1
+              - 'src/config/variations.ts'
+              # Garantir cópia de .htaccess em produção
+              - 'public/.htaccess'
 
   build-and-deploy-lp1:
     needs: changes
