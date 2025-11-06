@@ -84,9 +84,9 @@ const LP1 = () => {
         <ForWhoSection />
         <HowItWorksSection />
         <BonusSection />
+        <TestimonialsSection />
         <DynamicFinalOfferSection config={config} />
         <BenefitsSection />
-        <TestimonialsSection />
         <FAQSection />
         <GuaranteeSection />
       </BackgroundWrapper>
