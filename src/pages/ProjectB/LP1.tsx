@@ -4,7 +4,6 @@ import StorySection from "@/components/StorySection";
 import SolutionSection from "@/components/SolutionSection";
 import VideoProofSection from "@/components/VideoProofSection";
 import BenefitsSection from "@/components/BenefitsSection";
-import ForWhoSection from "@/components/ForWhoSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import BonusSection from "@/components/BonusSection";
@@ -81,7 +80,6 @@ const LP1 = () => {
         <ProblemSection />
         <StorySection />
         <SolutionSection />
-        <ForWhoSection />
         <HowItWorksSection />
         <BonusSection />
         <TestimonialsSection />
