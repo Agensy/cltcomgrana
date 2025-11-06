@@ -61,11 +61,7 @@ const HeroSection = React.memo(() => {
               Seu primeiro site vendido em 07 dias ou seu dinheiro de volta.
             </p>
 
-            <div>
-              <GlowButton onClick={scrollToOffer}>
-                GARANTIR MINHA VAGA AGORA
-              </GlowButton>
-            </div>
+            {/* CTA removido conforme solicitação */}
           </div>
         </div>
       </div>
