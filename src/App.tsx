@@ -31,6 +31,7 @@ const ProjectB_LP1 = lazy(() => import("./pages/ProjectB/LP1"));
 const ProjectB_LP2 = lazy(() => import("./pages/ProjectB/LP2"));
 const ProjectB_LP3 = lazy(() => import("./pages/ProjectB/LP3"));
 const ProjectB_PreLP1 = lazy(() => import("./pages/ProjectB/PreLP1"));
+const ProjectB_PreLP2 = lazy(() => import("./pages/ProjectB/PreLP2"));
 const ProjectB_ThankYou = lazy(() => import("./pages/ProjectB/ThankYou"));
 
 // Leads Dashboard
@@ -107,6 +108,7 @@ const App = () => (
                   case 'b/lp2': return <ProjectB_LP2 />;
                   case 'b/lp3': return <ProjectB_LP3 />;
                   case 'b/pre-lp1': return <ProjectB_PreLP1 />;
+                  case 'b/pre-lp2': return <ProjectB_PreLP2 />;
                   default: return <ProjectA_LP1 />;
                 }
               };
@@ -126,8 +128,10 @@ const App = () => (
           <Route path="/b/lp2" element={<ProjectB_LP2 />} />
           <Route path="/b/lp3" element={<ProjectB_LP3 />} />
           <Route path="/b/pre-lp1" element={<ProjectB_PreLP1 />} />
+          <Route path="/b/pre-lp2" element={<ProjectB_PreLP2 />} />
             {/* Alias para Pre-LP1 dentro do subdomínio LP1 (e geral) */}
             <Route path="/pre-lp1" element={<ProjectB_PreLP1 />} />
+            <Route path="/pre-lp2" element={<ProjectB_PreLP2 />} />
             <Route path="/b/obrigado" element={<ProjectB_ThankYou />} />
             {/* Alias para Thank You dentro do subdomínio LP1 */}
             <Route path="/obrigado" element={<ProjectB_ThankYou />} />

@@ -16,6 +16,12 @@ const SUBDOMAINS: SubdomainConfig[] = [
     blockGlobalScripts: true,
     gtmContainer: 'GTM-K8BN9FDK',
     clarityProjectId: 'tyuidayuzy'
+  },
+  {
+    key: 'lp2',
+    hostPattern: /(^|\.)lp2\.cltcomgrana\.com\.br$/i,
+    home: 'b/pre-lp2',
+    blockGlobalScripts: true
   }
 ];
 
