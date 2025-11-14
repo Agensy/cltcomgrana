@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import GlowButton from "@/components/ui/GlowButton";
+import { Sparkles } from "lucide-react";
+import { useClarityInline } from "@/hooks/use-clarity-inline";
 
 const PreLP2 = () => {
   const navigate = useNavigate();
@@ -10,6 +12,7 @@ const PreLP2 = () => {
   const startedRef = useRef(false);
   const timerRef = useRef<number | null>(null);
   const [simProgress, setSimProgress] = useState(0);
+  useClarityInline('tx61eiszrq');
 
   const hlsUrl = "https://b-vz-1e7e0b7e-27c.tv.pandavideo.com.br/cb55e144-797f-41e5-9b4f-d4deb0676802/playlist.m3u8";
 
@@ -94,6 +97,18 @@ const PreLP2 = () => {
     navigate("/b/lp2" + (location.search || ""));
   };
 
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const onEnded = () => {
+      navigate("/b/lp2" + (location.search || ""));
+    };
+    v.addEventListener("ended", onEnded);
+    return () => {
+      v.removeEventListener("ended", onEnded);
+    };
+  }, [navigate, location.search]);
+
   return (
     <main className="min-h-screen bg-background">
       <section className="relative overflow-hidden px-4 pt-8 sm:pt-10">
@@ -117,13 +132,14 @@ const PreLP2 = () => {
                 fetchpriority="high"
               />
               <div
-                className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 sm:left-1/2 sm:-translate-x-1/2 transform max-w-[70%] bg-black/50 text-white rounded-md px-2 py-1.5 backdrop-blur-md shadow-md border border-white/20 text-center"
+                className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 md:bottom-4 transform max-w-[88%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] bg-black/60 text-white rounded-md sm:rounded-lg px-3 py-2 sm:px-3 sm:py-2 md:px-4 md:py-2.5 backdrop-blur-sm sm:backdrop-blur-md shadow-[0_0_30px_rgba(255,159,74,0.35)] border border-primary/30 text-center"
                 role="note"
                 aria-label="Aviso de conteúdo gerado por IA"
               >
-                <p className="text-[10px] sm:text-[11px] leading-snug">
+                <span className="inline-flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base leading-snug font-medium tracking-tight">
+                  <Sparkles className="w-4 h-4 text-primary" aria-hidden="true" />
                   Tudo é preenchido automaticamente pela IA. Sem formulários nem trabalho manual.
-                </p>
+                </span>
               </div>
             </div>
             <div className="mt-2 px-1" aria-hidden="true">
@@ -149,4 +165,3 @@ const PreLP2 = () => {
 };
 
 export default PreLP2;
-

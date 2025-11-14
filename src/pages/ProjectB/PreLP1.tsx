@@ -4,6 +4,7 @@ import { Check, Sparkles, Shield, ArrowRight, Play, Volume2 } from "lucide-react
 import GlowButton from "@/components/ui/GlowButton";
 import { getVariationConfig } from "@/config/variations";
 import Clarity from "@microsoft/clarity";
+import { useClarityInline } from "@/hooks/use-clarity-inline";
 
 const PreLP1 = () => {
   const config = getVariationConfig('b', 'lp1');
@@ -12,6 +13,7 @@ const PreLP1 = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const gestureHandledRef = useRef(false);
   const [simProgress, setSimProgress] = useState(0);
+  useClarityInline('tyuidayuzy');
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -199,13 +201,13 @@ const PreLP1 = () => {
               />
               {/* Disclaimer IA */}
               <div
-                className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 sm:left-1/2 sm:-translate-x-1/2 transform max-w-[70%] bg-black/50 text-white rounded-md px-2 py-1.5 backdrop-blur-md shadow-md border border-white/20 text-center"
+                className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 md:bottom-4 transform max-w-[88%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] bg-black/60 text-white rounded-md sm:rounded-lg px-3 py-2 sm:px-3 sm:py-2 md:px-4 md:py-2.5 backdrop-blur-sm sm:backdrop-blur-md shadow-[0_0_30px_rgba(255,159,74,0.35)] border border-primary/30 text-center"
                 role="note"
                 aria-label="Aviso de conteúdo gerado por IA"
               >
-                <p className="text-[10px] sm:text-[11px] leading-snug">
+                <span className="inline-flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base leading-snug font-medium tracking-tight">
                   Tudo é preenchido automaticamente pela IA. Sem formulários nem trabalho manual.
-                </p>
+                </span>
               </div>
             </div>
             <div className="mt-2 px-1" aria-hidden="true">

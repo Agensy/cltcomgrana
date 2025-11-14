@@ -17,6 +17,7 @@ import WhatsAppHelpButton from "@/components/WhatsAppHelpButton";
 import { getVariationConfig } from "@/config/variations";
 import { useFacebookPixel } from "@/hooks/use-facebook-pixel";
 import { useLazyScripts } from "@/hooks/use-lazy-scripts";
+import { useClarityInline } from "@/hooks/use-clarity-inline";
 
 const LP2 = () => {
   const config = getVariationConfig('b', 'lp2');
@@ -25,6 +26,7 @@ const LP2 = () => {
   const fbEnv = (import.meta as any)?.env || {};
   const fbPixelIds = fbEnv.VITE_FACEBOOK_PIXEL_B_LP2 || fbEnv.VITE_FACEBOOK_PIXEL_IDS;
   useFacebookPixel(heroLoaded, fbPixelIds);
+  useClarityInline('tx61eiszrq');
   
   if (!config) {
     return <div>Configuração não encontrada</div>;

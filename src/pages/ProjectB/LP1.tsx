@@ -19,9 +19,11 @@ import { getVariationConfig } from "@/config/variations";
 import { useClarity } from "@/hooks/use-clarity";
 import { useGTM } from "@/hooks/use-gtm";
 import { useEffect } from "react";
+import { useClarityInline } from "@/hooks/use-clarity-inline";
 
 const LP1 = () => {
   const config = getVariationConfig('b', 'lp1');
+  useClarityInline('tyuidayuzy');
   
   // Inicializa o Clarity
   useClarity();
