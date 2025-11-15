@@ -8,7 +8,7 @@ const LP2 = () => {
     return <div>Configuração não encontrada</div>;
   }
 
-  return <BaseLandingPage config={config} />;
+  return <BaseLandingPage config={config} showVideo={false} showProblem={false} />;
 };
 
 export default LP2;

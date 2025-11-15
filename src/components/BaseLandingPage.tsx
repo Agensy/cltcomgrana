@@ -21,9 +21,11 @@ import WhatsAppHelpButton from "@/components/WhatsAppHelpButton";
 
 interface BaseLandingPageProps {
   config: VariationConfig;
+  showVideo?: boolean;
+  showProblem?: boolean;
 }
 
-const BaseLandingPage = ({ config }: BaseLandingPageProps) => {
+const BaseLandingPage = ({ config, showVideo = true, showProblem = true }: BaseLandingPageProps) => {
   // Detecta quando a HeroSection foi carregada
   const { heroLoaded } = useLazyScripts();
   
@@ -41,9 +43,9 @@ const BaseLandingPage = ({ config }: BaseLandingPageProps) => {
   return (
     <main className="min-h-screen bg-background">
       <HeroSection />
-      <VideoProofSection />
+      {showVideo && <VideoProofSection />}
       <BackgroundWrapper>
-        <ProblemSection />
+        {showProblem && <ProblemSection />}
         <StorySection />
         <SolutionSection />
         <ForWhoSection />

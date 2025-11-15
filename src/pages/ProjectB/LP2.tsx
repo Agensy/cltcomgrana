@@ -1,8 +1,6 @@
 import HeroSection from "@/components/HeroSection";
-import ProblemSection from "@/components/ProblemSection";
 import StorySection from "@/components/StorySection";
 import SolutionSection from "@/components/SolutionSection";
-import VideoProofSection from "@/components/VideoProofSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import ForWhoSection from "@/components/ForWhoSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
@@ -35,9 +33,7 @@ const LP2 = () => {
   return (
     <main className="min-h-screen bg-background">
       <HeroSection />
-      <VideoProofSection />
       <BackgroundWrapper>
-        <ProblemSection />
         <StorySection />
         <SolutionSection />
         <ForWhoSection />

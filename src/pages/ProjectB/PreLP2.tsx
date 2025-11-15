@@ -17,19 +17,30 @@ const PreLP2 = () => {
   const disclaimerTimerRef = useRef<number | null>(null);
   const gestureHandledRef = useRef(false);
   const [simProgress, setSimProgress] = useState(0);
-  const [useIframe, setUseIframe] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   useClarityInline('tx61eiszrq');
 
   useEffect(() => {
     try {
-      const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
-      setUseIframe(isMobile);
+      const mq = typeof window !== 'undefined' ? window.matchMedia('(max-width: 640px)') : null;
+      const apply = () => setIsMobile(!!mq && mq.matches);
+      apply();
+      if (mq) {
+        if (typeof mq.addEventListener === 'function') mq.addEventListener('change', apply);
+        else if (typeof mq.addListener === 'function') mq.addListener(apply);
+      }
+      return () => {
+        if (mq) {
+          if (typeof mq.removeEventListener === 'function') mq.removeEventListener('change', apply);
+          else if (typeof mq.removeListener === 'function') mq.removeListener(apply);
+        }
+      };
     } catch {}
   }, []);
 
   const mobileId = "3c4a4d7f-bd19-45aa-81e2-18113c350d32";
   const desktopId = "cb55e144-797f-41e5-9b4f-d4deb0676802";
-  const selectedId = useIframe ? mobileId : desktopId;
+  const selectedId = isMobile ? mobileId : desktopId;
   const hlsUrl = `https://b-vz-1e7e0b7e-27c.tv.pandavideo.com.br/${selectedId}/playlist.m3u8`;
 
   useEffect(() => {
@@ -62,10 +73,6 @@ const PreLP2 = () => {
       });
     };
     const canNative = v.canPlayType("application/vnd.apple.mpegURL");
-    if (useIframe) {
-      // Em modo iframe, não configurar HLS no elemento visível; manter somente ref escondido para timers/eventos
-      return;
-    }
     if (canNative) {
       v.src = hlsUrl;
       tryPlay();
@@ -95,7 +102,7 @@ const PreLP2 = () => {
         try { document.head.removeChild(script); } catch {}
       };
     }
-  }, [useIframe, hlsUrl]);
+  }, [isMobile, hlsUrl]);
 
   useEffect(() => {
     const handler = () => {
@@ -174,46 +181,28 @@ const PreLP2 = () => {
             Como um aluno criou um site completo em <span className="text-primary">20 minutos</span> usando apenas <span className="text-primary">1 prompt</span> e vendeu por <span className="text-primary">900 reais</span> em <span className="text-primary">menos de 7 dias</span>.
           </h1>
           <p className="text-center text-zinc-300 text-base sm:text-lg max-w-3xl mx-auto mb-8 opacity-90">
-            “Assista ao vídeo e veja exatamente como ele fez. Se ele conseguiu, você também consegue.”
+            Assista ao vídeo e veja exatamente como ele fez. Se ele conseguiu, você também consegue.
           </p>
           
 
           <div className="rounded-2xl ring-1 ring-white/10 border border-white/10 overflow-hidden shadow-[0_10px_50px_rgba(0,0,0,0.5)] bg-black/30">
-            <div style={{ position: "relative", paddingTop: "56.25%", overflow: "hidden" }}>
-              {useIframe ? (
-                <iframe
-                  id={`panda-${mobileId}`}
-                  src={`https://player-vz-1e7e0b7e-27c.tv.pandavideo.com.br/embed/?v=${mobileId}`}
-                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
-                  allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
-                  allowFullScreen
-                  fetchpriority="high"
-                />
-              ) : (
-                <video
-                  ref={videoRef}
-                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.1)", transformOrigin: "center" }}
-                  playsInline
-                  // @ts-ignore
-                  fetchpriority="high"
-                />
-              )}
-              {useIframe && (
-                <video
-                  ref={videoRef}
-                  style={{ position: 'absolute', left: -99999, width: 1, height: 1, opacity: 0, pointerEvents: 'none' }}
-                  playsInline
-                />
-              )}
+            <div style={{ position: "relative", paddingTop: isMobile ? "177.78%" : "56.25%", overflow: "hidden" }}>
+              <video
+                ref={videoRef}
+                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.08)", transformOrigin: "center" }}
+                playsInline
+                // @ts-ignore
+                fetchpriority="high"
+              />
               {disclaimerVisible && (
                 <div
-                  className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 md:bottom-4 transform max-w-[70%] sm:max-w-[60%] md:max-w-[50%] lg:max-w-[45%] text-center"
+                  className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 md:bottom-4 transform max-w-[100%] text-center"
                   role="note"
                   aria-label="Aviso de conteúdo gerado por IA"
                 >
-                  <div className="liquid-glass-orange inline-flex items-center justify-center gap-2 px-2.5 py-1.5 rounded-full">
+                  <div className="liquid-glass-orange inline-flex items-center justify-center gap-2 px-2.5 py-1.5 rounded-full whitespace-nowrap">
                     <Sparkles className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
-                    <span className="text-[11px] sm:text-[12px] leading-snug font-medium text-zinc-100">
+                    <span className="text-[11px] sm:text-[12px] leading-snug font-medium text-zinc-100 whitespace-nowrap">
                       Tudo é preenchido automaticamente pela IA. Sem formulários nem trabalho manual.
                     </span>
                   </div>
