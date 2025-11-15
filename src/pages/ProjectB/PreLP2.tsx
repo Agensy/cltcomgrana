@@ -189,7 +189,7 @@ const PreLP2 = () => {
           )}
           
 
-          <div className="rounded-2xl ring-1 ring-white/10 border border-white/10 overflow-hidden shadow-[0_10px_50px_rgba(0,0,0,0.5)] bg-black/30">
+          <div className="rounded-2xl ring-1 ring-white/10 border border-white/10 overflow-hidden shadow-[0_10px_50px_rgba(0,0,0,0.5)]">
             <div style={{ position: "relative", ...(isMobile ? { height: 1350 } : { paddingTop: "56.25%" }), overflow: "hidden" }}>
               <video
                 ref={videoRef}
