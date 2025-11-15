@@ -60,7 +60,7 @@ const VideoProofSection: React.FC = () => {
 
           {/* Video Container (embed simples Panda, sem formatações) */}
           <div className="max-w-4xl mx-auto mb-12">
-            <div style={{ position: 'relative', paddingTop: '56.25%' }}>
+            <div style={{ position: 'relative', paddingTop: isMobile ? '177.78%' : '56.25%' }}>
               <iframe
                 id={`panda-${selectedId}`}
                 src={`https://player-vz-1e7e0b7e-27c.tv.pandavideo.com.br/embed/?v=${selectedId}`}

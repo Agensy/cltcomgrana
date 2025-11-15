@@ -194,7 +194,7 @@ const PreLP2 = () => {
                 // @ts-ignore
                 fetchpriority="high"
               />
-              {disclaimerVisible && (
+              {!isMobile && disclaimerVisible && (
                 <div
                   className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 md:bottom-4 transform max-w-[100%] text-center"
                   role="note"
@@ -214,6 +214,16 @@ const PreLP2 = () => {
                 <div className="h-full bg-primary transition-[width] duration-500" style={{ width: `${simProgress}%` }} />
               </div>
             </div>
+            {isMobile && disclaimerVisible && (
+              <div className="mt-3 flex justify-center" role="note" aria-label="Aviso de conteúdo gerado por IA">
+                <div className="liquid-glass-orange inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-full">
+                  <Sparkles className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
+                  <span className="text-[12px] leading-snug font-medium text-zinc-100">
+                    Tudo é preenchido automaticamente pela IA. Sem formulários nem trabalho manual.
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
