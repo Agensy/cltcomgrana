@@ -16,6 +16,7 @@ import testimonial2 from "@/assets/testimonial-2-optimized.jpg";
 import testimonial3 from "@/assets/testimonial-3-optimized.jpg";
 import testimonial4 from "@/assets/testimonial-4-optimized.jpg";
 import testimonial5 from "@/assets/testimonial-5-optimized.jpg";
+import MobilePrintsCarousel from "@/components/MobilePrintsCarousel";
 
 const testimonials = [
   { 
@@ -70,7 +71,9 @@ const testimonials = [
   },
 ];
 
-const TestimonialsSection = React.memo(() => {
+interface TestimonialsProps { variant?: "rich" | "mobilePrints" }
+
+const TestimonialsSection = React.memo(({ variant = "rich" }: TestimonialsProps) => {
   const [api, setApi] = useState<any>();
   const [current, setCurrent] = useState(0);
   const { ref, inView } = useInView({
@@ -87,6 +90,22 @@ const TestimonialsSection = React.memo(() => {
       setCurrent(api.selectedScrollSnap());
     });
   });
+
+  if (variant === "mobilePrints") {
+    return (
+      <MobilePrintsCarousel
+        images={[testimonial1, testimonial2, testimonial3, testimonial4, testimonial5]}
+        titleNode={
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
+            Veja o que nossos
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500 block">
+              alunos estão dizendo
+            </span>
+          </h2>
+        }
+      />
+    );
+  }
 
   return (
     <section className="relative py-20 px-4 overflow-hidden">

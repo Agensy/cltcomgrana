@@ -36,9 +36,6 @@ const ForWhoSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-5xl mb-4 leading-tight font-bold">
-            Descubra se o <span className="text-gradient-orange-glow">CLT com Grana</span> é para você
-          </h2>
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
             Seja honesto consigo mesmo. Este método funciona, mas não é para todo mundo.
           </p>
@@ -112,16 +109,7 @@ const ForWhoSection = () => {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-12 text-center"
-        >
-          <p className="text-lg text-zinc-300 max-w-3xl mx-auto bg-secondary/10 border border-secondary/30 rounded-lg p-6">
-            <span className="text-secondary font-bold">Se você se encaixa no lado esquerdo,</span> o CLT com Grana foi feito para você. É hora de transformar sua vida financeira.
-          </p>
-        </motion.div>
+        
       </div>
     </section>
   );

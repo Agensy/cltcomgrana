@@ -8,7 +8,7 @@ const LP2 = () => {
     return <div>Configuração não encontrada</div>;
   }
 
-  return <BaseLandingPage config={config} showVideo={false} showProblem={false} />;
+  return <BaseLandingPage config={config} showVideo={false} showProblem={false} solutionVariant="concise" testimonialsVariant="mobilePrints" showBonus={false} ctaClassName="lp2-green" />;
 };
 
 export default LP2;

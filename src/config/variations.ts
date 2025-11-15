@@ -128,8 +128,7 @@ export const variationsConfig: Record<string, VariationConfig> = {
     project: 'B',
     slug: 'lp2',
     pricing: {
-      // Copiado da LP1 para manter os mesmos valores
-      originalPrice: 'R$ 2.799',
+      originalPrice: 'R$ 499',
       installmentPrice: 'R$ 9,45',
       installmentCount: 12,
       cashPrice: 'R$ 97',

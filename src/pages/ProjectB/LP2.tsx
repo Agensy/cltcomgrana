@@ -5,7 +5,6 @@ import BenefitsSection from "@/components/BenefitsSection";
 import ForWhoSection from "@/components/ForWhoSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import BonusSection from "@/components/BonusSection";
 import FAQSection from "@/components/FAQSection";
 import GuaranteeSection from "@/components/GuaranteeSection";
 import DynamicFinalOfferSection from "@/components/DynamicFinalOfferSection";
@@ -35,13 +34,12 @@ const LP2 = () => {
       <HeroSection />
       <BackgroundWrapper>
         <StorySection />
-        <SolutionSection />
-        <ForWhoSection />
+        <SolutionSection variant="concise" />
+        <TestimonialsSection variant="mobilePrints" />
         <HowItWorksSection />
-        <BonusSection />
-        <DynamicFinalOfferSection config={config} />
+        <DynamicFinalOfferSection config={config} ctaClassName="lp2-green" />
         <BenefitsSection />
-        <TestimonialsSection />
+        <ForWhoSection />
         <FAQSection />
         <GuaranteeSection />
       </BackgroundWrapper>

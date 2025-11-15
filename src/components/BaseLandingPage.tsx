@@ -23,9 +23,13 @@ interface BaseLandingPageProps {
   config: VariationConfig;
   showVideo?: boolean;
   showProblem?: boolean;
+  solutionVariant?: "default" | "concise";
+  testimonialsVariant?: "rich" | "mobilePrints";
+  showBonus?: boolean;
+  ctaClassName?: string;
 }
 
-const BaseLandingPage = ({ config, showVideo = true, showProblem = true }: BaseLandingPageProps) => {
+const BaseLandingPage = ({ config, showVideo = true, showProblem = true, solutionVariant = "default", testimonialsVariant = "rich", showBonus = true, ctaClassName }: BaseLandingPageProps) => {
   // Detecta quando a HeroSection foi carregada
   const { heroLoaded } = useLazyScripts();
   
@@ -47,13 +51,13 @@ const BaseLandingPage = ({ config, showVideo = true, showProblem = true }: BaseL
       <BackgroundWrapper>
         {showProblem && <ProblemSection />}
         <StorySection />
-        <SolutionSection />
-        <ForWhoSection />
+        <SolutionSection variant={solutionVariant} />
+        <TestimonialsSection variant={testimonialsVariant} />
         <HowItWorksSection />
-        <BonusSection />
-        <DynamicFinalOfferSection config={config} />
+        {showBonus && <BonusSection />}
+        <DynamicFinalOfferSection config={config} ctaClassName={ctaClassName} />
         <BenefitsSection />
-        <TestimonialsSection />
+        <ForWhoSection />
         <FAQSection />
         <GuaranteeSection />
       </BackgroundWrapper>
