@@ -230,31 +230,29 @@ const PreLP2 = () => {
             </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <Badge className="liquid-glass inline-flex items-center gap-2 justify-center sm:justify-start text-zinc-200 text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2">
-              <Check className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
-              <span>Não precisa saber mexer com tecnologia</span>
-            </Badge>
-            <Badge className="liquid-glass inline-flex items-center gap-2 justify-center sm:justify-start text-zinc-200 text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2">
-              <Check className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
-              <span>Não precisa ser designer ou programador</span>
-            </Badge>
-            <Badge className="liquid-glass inline-flex items-center gap-2 justify-center sm:justify-start text-zinc-200 text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2">
-              <Check className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
-              <span>A IA faz praticamente tudo por você</span>
-            </Badge>
-          </div>
-
-          <div className="mt-6 border-t border-white/10" />
-
-          <div className="mt-6 text-center">
+          <div className="mt-6">
             {ctaVisible ? (
-              <div className="animate-fade-in inline-block">
+              <div className="text-center animate-fade-in">
                 <GlowButton onClick={handleCTA} className="mx-auto">
                   <span className="inline-flex items-center gap-2">Quero Conhecer o Treinamento</span>
                 </GlowButton>
               </div>
-            ) : null}
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <Badge className="liquid-glass inline-flex items-center gap-2 justify-center sm:justify-start text-zinc-200 text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
+                  <span>Não precisa saber mexer com tecnologia</span>
+                </Badge>
+                <Badge className="liquid-glass inline-flex items-center gap-2 justify-center sm:justify-start text-zinc-200 text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
+                  <span>Não precisa ser designer ou programador</span>
+                </Badge>
+                <Badge className="liquid-glass inline-flex items-center gap-2 justify-center sm:justify-start text-zinc-200 text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
+                  <span>A IA faz praticamente tudo por você</span>
+                </Badge>
+              </div>
+            )}
           </div>
         </div>
       </section>
