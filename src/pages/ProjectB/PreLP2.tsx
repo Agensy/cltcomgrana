@@ -38,6 +38,15 @@ const PreLP2 = () => {
     } catch {}
   }, []);
 
+  useEffect(() => {
+    try {
+      const l = document.createElement('link');
+      l.rel = 'preconnect';
+      l.href = 'https://b-vz-1e7e0b7e-27c.tv.pandavideo.com.br';
+      document.head.appendChild(l);
+    } catch {}
+  }, []);
+
   const mobileId = "3c4a4d7f-bd19-45aa-81e2-18113c350d32";
   const desktopId = "cb55e144-797f-41e5-9b4f-d4deb0676802";
   const selectedId = isMobile ? mobileId : desktopId;
@@ -186,11 +195,12 @@ const PreLP2 = () => {
           
 
           <div className="rounded-2xl ring-1 ring-white/10 border border-white/10 overflow-hidden shadow-[0_10px_50px_rgba(0,0,0,0.5)]">
-            <div style={{ position: "relative", ...(isMobile ? { height: 'min(70vh, 600px)' } : { paddingTop: "56.25%" }), overflow: "hidden" }}>
+            <div className="relative overflow-hidden h-[70vh] max-h-[600px] md:h-auto md:pt-[56.25%]">
               <video
                 ref={videoRef}
                 style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.08)", transformOrigin: "center" }}
                 playsInline
+                poster="/placeholder.svg"
                 // @ts-ignore
                 fetchpriority="high"
               />
