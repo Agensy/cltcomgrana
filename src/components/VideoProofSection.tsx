@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CheckCircle, Zap } from 'lucide-react';
 
 const VideoProofSection: React.FC = () => {
 
+  const mobileId = "3c4a4d7f-bd19-45aa-81e2-18113c350d32";
+  const desktopId = "cb55e144-797f-41e5-9b4f-d4deb0676802";
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    try {
+      const mq = window.matchMedia('(max-width: 640px)');
+      const apply = () => setIsMobile(mq.matches);
+      apply();
+      if (typeof mq.addEventListener === 'function') mq.addEventListener('change', apply);
+      else if (typeof mq.addListener === 'function') mq.addListener(apply);
+      return () => {
+        if (typeof mq.removeEventListener === 'function') mq.removeEventListener('change', apply);
+        else if (typeof mq.removeListener === 'function') mq.removeListener(apply);
+      };
+    } catch {}
+  }, []);
+  const selectedId = isMobile ? mobileId : desktopId;
   return (
     <section className="relative py-8 md:py-[75px] bg-background">
       {/* Grid Overlay */}
@@ -45,8 +62,8 @@ const VideoProofSection: React.FC = () => {
           <div className="max-w-4xl mx-auto mb-12">
             <div style={{ position: 'relative', paddingTop: '56.25%' }}>
               <iframe
-                id="panda-cb55e144-797f-41e5-9b4f-d4deb0676802"
-                src="https://player-vz-1e7e0b7e-27c.tv.pandavideo.com.br/embed/?v=cb55e144-797f-41e5-9b4f-d4deb0676802"
+                id={`panda-${selectedId}`}
+                src={`https://player-vz-1e7e0b7e-27c.tv.pandavideo.com.br/embed/?v=${selectedId}`}
                 style={{ border: 'none', position: 'absolute', top: 0, left: 0 }}
                 allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
                 allowFullScreen={true}
