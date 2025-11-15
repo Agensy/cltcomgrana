@@ -177,20 +177,16 @@ const PreLP2 = () => {
     <main className="min-h-screen bg-background">
       <section className="relative overflow-hidden px-4 pt-12 sm:pt-16 pb-12 bg-gradient-to-b from-neutral-950 via-neutral-900 to-background">
         <div className="max-w-5xl mx-auto">
-          {!isMobile && (
-            <>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white mb-4 leading-tight">
-                Como um aluno criou um site completo em <span className="text-primary">20 minutos</span> usando apenas <span className="text-primary">1 prompt</span> e vendeu por <span className="text-primary">900 reais</span> em <span className="text-primary">menos de 7 dias</span>.
-              </h1>
-              <p className="text-center text-zinc-300 text-base sm:text-lg max-w-3xl mx-auto mb-8 opacity-90">
-                Assista ao vídeo e veja exatamente como ele fez. Se ele conseguiu, você também consegue.
-              </p>
-            </>
-          )}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white mb-3 leading-tight">
+            Como um aluno criou um site completo em <span className="text-primary">20 minutos</span> usando apenas <span className="text-primary">1 prompt</span> e vendeu por <span className="text-primary">900 reais</span> em <span className="text-primary">menos de 7 dias</span>.
+          </h1>
+          <p className="text-center text-zinc-300 text-sm sm:text-base max-w-3xl mx-auto mb-5 opacity-90">
+            Assista ao vídeo e veja exatamente como ele fez. Se ele conseguiu, você também consegue.
+          </p>
           
 
           <div className="rounded-2xl ring-1 ring-white/10 border border-white/10 overflow-hidden shadow-[0_10px_50px_rgba(0,0,0,0.5)]">
-            <div style={{ position: "relative", ...(isMobile ? { height: 1350 } : { paddingTop: "56.25%" }), overflow: "hidden" }}>
+            <div style={{ position: "relative", ...(isMobile ? { height: 'min(70vh, 600px)' } : { paddingTop: "56.25%" }), overflow: "hidden" }}>
               <video
                 ref={videoRef}
                 style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.08)", transformOrigin: "center" }}
@@ -198,16 +194,6 @@ const PreLP2 = () => {
                 // @ts-ignore
                 fetchpriority="high"
               />
-              {isMobile && (
-                <div className="absolute top-0 left-0 right-0 px-4 pt-6 text-center">
-                  <h1 className="text-2xl font-bold text-white leading-tight">
-                    Como um aluno criou um site completo em <span className="text-primary">20 minutos</span> usando apenas <span className="text-primary">1 prompt</span> e vendeu por <span className="text-primary">900 reais</span> em <span className="text-primary">menos de 7 dias</span>.
-                  </h1>
-                  <p className="mt-3 text-zinc-300 text-base max-w-3xl mx-auto opacity-90">
-                    Assista ao vídeo e veja exatamente como ele fez. Se ele conseguiu, você também consegue.
-                  </p>
-                </div>
-              )}
               {disclaimerVisible && (
                 <div
                   className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 md:bottom-4 transform max-w-[100%] text-center"
@@ -223,7 +209,7 @@ const PreLP2 = () => {
                 </div>
               )}
             </div>
-            <div className="mt-2 px-1" aria-hidden="true">
+            <div className="mt-2 px-2" aria-hidden="true">
               <div className="h-1.5 bg-zinc-700/50 rounded-full overflow-hidden">
                 <div className="h-full bg-primary transition-[width] duration-500" style={{ width: `${simProgress}%` }} />
               </div>
@@ -232,8 +218,8 @@ const PreLP2 = () => {
 
           <div className="mt-6">
             {ctaVisible ? (
-              <div className="text-center animate-fade-in">
-                <GlowButton onClick={handleCTA} className="mx-auto">
+              <div className="flex justify-center animate-fade-in">
+                <GlowButton onClick={handleCTA}>
                   <span className="inline-flex items-center gap-2">Quero Conhecer o Treinamento</span>
                 </GlowButton>
               </div>
