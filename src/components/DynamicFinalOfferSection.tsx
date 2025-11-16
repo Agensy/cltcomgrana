@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect } from "react";
 import { VariationConfig } from "@/config/variations";
+import BlackFridayCountdown from "@/components/BlackFridayCountdown";
 
 interface DynamicFinalOfferSectionProps {
   config: VariationConfig;
@@ -18,12 +19,22 @@ const DynamicFinalOfferSection = ({ config, ctaClassName }: DynamicFinalOfferSec
   });
 
   const [spots, setSpots] = useState(47);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setSpots(prev => Math.max(12, prev - Math.floor(Math.random() * 2)));
     }, 8000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
   }, []);
 
   const buildCheckoutUrl = () => {
@@ -56,19 +67,43 @@ const DynamicFinalOfferSection = ({ config, ctaClassName }: DynamicFinalOfferSec
     { icon: Sparkles, text: "Ferramenta exclusiva de I.A" },
     { icon: TrendingUp, text: "Todos os bônus inclusos" },
     { icon: Users, text: "Suporte direto no WhatsApp" },
-    { icon: Clock, text: "Atualizações gratuitas" },
-    { icon: Shield, text: "Garantia incondicional de 7 dias" }
+    { icon: Clock, text: "Atualizações gratuitas" }
   ];
 
   const bonuses = [
     { title: "Propostas prontas pra fechar cliente", value: "R$ 197", icon: ClipboardCheck },
     { title: "Agente de Vendas treinado pra você copiar", value: "R$ 297", icon: Megaphone },
-    { title: "Modelo de Contrato simples e direto", value: "R$ 147", icon: FileText },
-    { title: "Aula ao vivo tira-dúvidas", value: "R$ 267", icon: Video }
+    { title: "Modelo de Contrato simples e direto", value: "R$ 147", icon: FileText }
+  ];
+
+  const trainingItems = [
+    { icon: Zap, text: "Curso CLT com Grana passo a passo" },
+    { icon: Sparkles, text: "Ferramenta exclusiva de I.A para criar sites em minutos" },
+    { icon: Video, text: "Aula ao vivo tira-dúvidas" }
+  ];
+  const supportItems = benefits
+    .filter(b => [
+      "Suporte direto no WhatsApp",
+      "Atualizações gratuitas"
+    ].includes(b.text))
+    .map(b => ({ icon: b.icon, text: b.text }));
+  const allItems = [
+    ...bonuses.map(b => ({ icon: b.icon, text: b.title })),
+    ...trainingItems,
+    ...supportItems
   ];
 
   const installmentValue = config.pricing.installmentPrice.replace(/^R\$\s*/, "");
   const [installWhole, installCents] = installmentValue.split(",");
+  const installmentNumber = parseFloat(`${installWhole}.${installCents}`);
+  const totalInstallment = (installmentNumber * config.pricing.installmentCount).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const original = parseFloat(config.pricing.originalPrice.replace(/[^0-9,.-]/g, '').replace(/\./g, '').replace(',', '.')) || 0;
+  const cash = parseFloat(config.pricing.cashPrice.replace(/[^0-9,.-]/g, '').replace(/\./g, '').replace(',', '.')) || 0;
+  const savings = Math.max(original - cash, 0);
+  const savingsBRL = savings.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const discountPct = original ? Math.round((savings / original) * 100) : 0;
+  const perDay = (installmentNumber * config.pricing.installmentCount) / 365;
+  const perDayBRL = perDay.toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   return (
     <section id="final-offer" className="relative overflow-hidden">
@@ -78,201 +113,186 @@ const DynamicFinalOfferSection = ({ config, ctaClassName }: DynamicFinalOfferSec
 
       <div className="container relative z-10 mx-auto px-4 md:px-8 py-12 md:py-[100px]" ref={ref}>
         <div className="w-full max-w-4xl mx-auto">
-          
           {/* Header */}
           <motion.div 
-            className="text-center mb-8"
+            className="text-center mb-5 md:mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Badge className="bg-error/20 border-error/50 text-error px-4 py-2">
-                <Clock className="w-4 h-4 mr-2" />
+            <div className="flex items-center justify-center gap-2 mb-3 md:mb-4">
+              <Badge className="bg-error/20 border-error/50 text-error px-3 py-1.5">
+                <Clock className="w-4 h-4 mr-2" aria-hidden="true" focusable="false" />
                 OFERTA ESPECIAL — ÚLTIMAS VAGAS DISPONÍVEIS
               </Badge>
             </div>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight font-bold">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl mb-3 md:mb-4 leading-snug md:leading-tight tracking-tight font-bold">
               Crie e venda <span className="text-gradient-orange-glow">sites com I.A</span><br className="hidden md:block" />
               <span className="text-zinc-300"> ainda HOJE!</span>
             </h2>
 
-            <p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto">Mesmo começando do zero.</p>
-            <p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto">Mesmo sem experiência.</p>
-            <p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto">Mesmo sem ser “da tecnologia”.</p>
-            <p className="text-base md:text-lg text-zinc-400 max-w-2xl mx-auto mt-2">A I.A faz praticamente tudo por você. Você só segue o passo a passo e entrega para o cliente.</p>
+            <p className="text-sm md:text-xl text-zinc-300 max-w-2xl mx-auto">Mesmo começando do zero, sem experiência e sem ser "da tecnologia".</p>
+            <p className="hidden md:block text-base md:text-lg text-zinc-400 max-w-2xl mx-auto mt-2">A I.A faz praticamente tudo por você. Você só segue o passo a passo e entrega para o cliente.</p>
           </motion.div>
 
           {/* Main Offer Card */}
           <motion.div 
-            className="relative bg-white/95 border-2 border-zinc-200 rounded-2xl p-6 md:p-10 mb-6 shadow-[0_10px_40px_rgba(0,0,0,0.08)]"
+            className="relative bg-white/95 border-2 border-zinc-200 rounded-lg md:rounded-xl p-2 md:p-4 mb-2 shadow-[0_10px_40px_rgba(0,0,0,0.08)]"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {/* Popular Badge */}
             <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-              <Badge className="bg-gradient-to-r from-primary via-orange-500 to-primary border-2 border-background px-6 py-2 text-base shadow-lg">
-                <Sparkles className="w-4 h-4 mr-2" />
-                MAIS ESCOLHIDO
+              <Badge className="bg-gradient-to-r from-primary via-orange-500 to-primary border-2 border-background px-3 sm:px-4 md:px-5 py-1 sm:py-1.5 md:py-2 text-xs sm:text-sm md:text-base shadow-lg rounded-xl md:rounded-2xl">
+                <Sparkles className="w-4 h-4 mr-2" aria-hidden="true" focusable="false" />
+                Tudo o que você vai receber hoje.
               </Badge>
             </div>
 
-            <div className="text-center mb-6 pt-4">
-              <p className="text-lg md:text-xl text-zinc-900 font-semibold">Tudo o que você vai receber hoje</p>
-            </div>
+            <div className="text-center mb-2 pt-1"></div>
 
-            <motion.div
-              className="mb-3"
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <p className="text-sm text-[#2A2A2A] font-medium mb-4 border-b border-black/10 pb-2">Ferramentas prontas para vender</p>
-              <div className="grid sm:grid-cols-2 gap-y-4 gap-x-3">
-                {bonuses.map((b, i) => {
-                  const Icon = b.icon;
-                  return (
-                    <motion.div
-                      key={i}
-                      className="flex items-center gap-4 bg-white/90 border border-orange-500/30 rounded-2xl px-8 py-3 hover:border-orange-400/40 shadow-sm transition-all duration-300"
-                      initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                    >
-                      <div className="bg-orange-500/5 rounded-full p-2.5 flex-shrink-0">
-                        <Icon className="w-6 h-6 icon-gradient-orange" strokeWidth={2.25} />
-                      </div>
-                      <span className="text-sm text-zinc-900 leading-relaxed">{b.title}</span>
-                    </motion.div>
-                  );
-                })}
+            <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-3 lg:gap-4 items-stretch max-w-5xl mx-auto">
+              {/* Left Column - Content */}
+              <div className="lg:col-span-1 order-1 flex flex-col">
+                <motion.div
+                  className="flex-1"
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                >
+                  <h3 className="text-lg md:text-xl text-gray-800 font-semibold mb-2">Conteúdo incluído</h3>
+                  <div className="space-y-1">
+                    {allItems.map((item, i) => {
+                      const Icon = item.icon as any;
+                      return (
+                        <motion.div
+                          key={i}
+                          className="flex items-center gap-2 bg-white border border-gray-100 rounded p-1.5 shadow-sm hover:shadow-md hover:border-orange-200 transition-all duration-200"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={inView ? { opacity: 1, y: 0 } : {}}
+                          transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
+                        >
+                          <div className="bg-orange-50 rounded-full p-1 flex-shrink-0">
+                            <Icon className="w-3 h-3 text-orange-500" strokeWidth={2} aria-hidden="true" focusable="false" />
+                          </div>
+                          <span className="text-sm text-gray-700 leading-tight">{item.text}</span>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
 
-            <motion.div
-              className="mb-6"
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.65 }}
-            >
-              <p className="text-sm text-[#2A2A2A] font-medium mb-4 border-b border-black/10 pb-2">Treinamento completo</p>
-              <div className="grid sm:grid-cols-2 gap-y-4 gap-x-3">
-                {[
-                  { icon: Zap, text: "Curso CLT com Grana passo a passo" },
-                  { icon: Sparkles, text: "Ferramenta exclusiva de I.A para criar sites em minutos" },
-                  { icon: Video, text: "Aula ao vivo tira-dúvidas" }
-                ].map((item, idx) => {
-                  const Icon = item.icon as any;
-                  return (
-                    <motion.div
-                      key={idx}
-                      className="flex items-center gap-4 bg-white/90 border border-orange-500/30 rounded-2xl px-8 py-3 hover:border-orange-400/40 shadow-sm transition-all duration-300"
-                      initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.35 + idx * 0.1 }}
-                    >
-                      <div className="bg-orange-500/5 rounded-full p-2.5 flex-shrink-0">
-                        <Icon className="w-6 h-6 icon-gradient-orange" strokeWidth={2.25} />
-                      </div>
-                      <span className="text-sm text-zinc-900 leading-relaxed">{item.text}</span>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </motion.div>
+              <div role="separator" aria-orientation="horizontal" className="mx-auto my-2 w-full max-w-3xl h-px bg-gradient-to-r from-transparent via-black/10 to-transparent md:hidden" />
 
-            
-
-            {/* Benefits Grid */}
-            <p className="text-sm text-[#2A2A2A] font-medium mb-4 border-b border-black/10 pb-2">Suporte e segurança</p>
-            <div className="grid sm:grid-cols-2 gap-y-4 gap-x-3 mb-8">
-              {benefits.filter(b => [
-                "Suporte direto no WhatsApp",
-                "Atualizações gratuitas",
-                "Garantia incondicional de 7 dias"
-              ].includes(b.text)).map((benefit, index) => {
-                const Icon = benefit.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    className="flex items-center gap-4 bg-white/90 border border-orange-500/30 rounded-2xl px-8 py-3 hover:border-orange-400/40 shadow-sm transition-all duration-300"
-                    initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+              {/* Right Column - Offer */}
+              <div className="lg:col-span-1 order-2 flex flex-col">
+                <div className="flex-1">
+                  {/* Offer Card - Optimized with CTA inside */}
+                  <motion.div 
+                    className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-3 shadow-xl border-2 border-orange-200 relative overflow-hidden h-full flex flex-col justify-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.7 }}
                   >
-                    <div className="bg-orange-500/5 rounded-full p-2.5 flex-shrink-0">
-                      <Icon className="w-6 h-6 icon-gradient-orange" strokeWidth={2.25} />
+                    {/* Glow effect wrapper */}
+                    <div className={`glowbox glowbox-active absolute inset-0`}>
+                      {!reducedMotion && (
+                        <div className="glowbox-animations">
+                          <div className="glowbox-glow"></div>
+                          <div className="glowbox-stars-masker">
+                            <div className="glowbox-stars"></div>
+                          </div>
+                        </div>
+                      )}
+                      <div className="glowbox-borders-masker">
+                        <div className="glowbox-borders"></div>
+                      </div>
                     </div>
-                    <span className="text-sm text-zinc-900 leading-relaxed">{benefit.text}</span>
+                    
+                    <div className="relative z-10 text-center space-y-0.5">
+                      <div className="mb-0.5">
+                        <h3 className="text-gray-800 text-lg font-bold mb-0">Oferta de Hoje</h3>
+                        <p className="text-sm text-gray-600 font-medium">Investimento</p>
+                      </div>
+                      
+                      <div className="mb-0.5">
+                        <p className="text-base text-gray-400 line-through">{config.pricing.originalPrice}</p>
+                      </div>
+                      
+                      <div className="flex items-center justify-center gap-1.5 mb-0.5">
+                        <Badge className="bg-black text-white border-black px-2 py-0 rounded-full text-sm">BLACK FRIDAY</Badge>
+                        <span className="text-sm font-semibold text-gray-700">Termina hoje • <BlackFridayCountdown /></span>
+                      </div>
+                      
+                      <div className="mb-0.5">
+                        <div className="relative inline-flex items-center justify-center gap-1 mb-0">
+                          <span className="text-base font-semibold text-gray-500" aria-hidden="true">
+                            {config.pricing.installmentCount}x R$
+                          </span>
+                          <span className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500" aria-hidden="true">
+                            {installWhole}
+                          </span>
+                          <span className="text-xl md:text-2xl font-bold text-orange-400" aria-hidden="true">,
+                          </span>
+                          <span className="text-xl md:text-2xl font-bold text-orange-400" aria-hidden="true">{installCents}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-500 font-medium">{perDayBRL}/dia</p>
+                      </div>
+                      
+                      <div className="pt-0.5 border-t border-gray-100 mb-0.5">
+                        <p className="text-sm text-gray-600 font-semibold">ou {config.pricing.cashPrice} à vista</p>
+                      </div>
+
+                      {/* CTA Button - Now Inside Offer Card */}
+                      <div className="space-y-0.5">
+                        <GlowButton onClick={handleGoToCheckout} className={`w-full max-w-xs text-base ${ctaClassName ?? ""}`} aria-describedby="payment-safe">
+                          GARANTIR MINHA VAGA AGORA
+                        </GlowButton>
+                        
+                        <div className="flex items-center justify-center gap-1 text-sm text-gray-500">
+                          <Shield className="w-3 h-3 flex-shrink-0" aria-hidden="true" focusable="false" />
+                          <span id="payment-safe">Pagamento 100% seguro e criptografado</span>
+                        </div>
+                      </div>
+                    </div>
                   </motion.div>
-                );
-              })}
-            </div>
-
-            <div className="text-center mb-6">
-              <div className="inline-block bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] rounded-[28px] px-10 py-8">
-                <p className="text-[#2A2A2A] text-sm mb-2">Investimento</p>
-                <p className="text-xs text-[#C6C6C6] line-through mb-3">{config.pricing.originalPrice}</p>
-                <div className="relative inline-flex items-center justify-center gap-1 mb-3">
-                  <span className="text-base md:text-lg font-semibold text-zinc-300">
-                    {config.pricing.installmentCount}x R$
-                  </span>
-                  <span className="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">
-                    {installWhole},
-                  </span>
-                  <span className="text-2xl md:text-3xl font-bold text-emerald-400">
-                    {installCents}
-                  </span>
                 </div>
-                <p className="text-xl md:text-2xl text-zinc-400">ou {config.pricing.cashPrice} à vista</p>
               </div>
             </div>
-
-            {/* CTA Button */}
-            <motion.div
-              className="flex flex-col items-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.9 }}
-            >
-              <GlowButton onClick={handleGoToCheckout} className={ctaClassName ?? ""}>
-                GARANTIR MINHA VAGA AGORA
-              </GlowButton>
-              
-              <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-zinc-500 mt-4">
-                <Shield className="w-4 h-4 flex-shrink-0" />
-                <span>Pagamento 100% seguro e criptografado</span>
-              </div>
-            </motion.div>
           </motion.div>
 
-          {/* Guarantee Section */}
+          {/* Guarantee Section - Footer */}
           <motion.div 
-            className="bg-gradient-to-r from-primary/15 via-primary/20 to-primary/15 border-2 border-primary/40 rounded-xl p-6 md:p-8 text-center shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
+            className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-4 md:p-6 text-center shadow-lg border border-orange-100 mt-3 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 1.1 }}
           >
-            <div className="flex items-center justify-center mb-3">
-              <div className="bg-primary/20 rounded-full p-4">
-                <Shield className="w-8 h-8 text-primary" />
+            <div className="flex items-center justify-center mb-3 md:mb-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-white rounded-full p-2 md:p-3 shadow-sm">
+                  <Shield className="w-5 md:w-6 h-5 md:h-6 text-orange-500" aria-hidden="true" focusable="false" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800">
+                  Garantia Blindada de 7 Dias
+                </h3>
               </div>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-gradient-orange-glow mb-3">
-              Garantia Blindada de 7 Dias
-            </h3>
-            <p className="text-base md:text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed">
-              Se você não vender seu primeiro site em <span className="text-secondary font-semibold">7 dias</span> seguindo o método, 
-              devolvemos <span className="text-secondary font-semibold">100% do seu investimento</span>. Sem perguntas. Sem burocracia.
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-2 md:mb-3">
+              Se você não vender seu primeiro site em <span className="text-orange-600 font-semibold">7 dias</span> seguindo o método, 
+              devolvemos <span className="text-orange-600 font-semibold">100% do seu investimento</span>.
             </p>
-            <p className="text-sm text-zinc-500 mt-3">— Não vendeu seu primeiro site? Devolvemos 100%.</p>
+            <div className="inline-flex items-center gap-2 bg-white px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-orange-200 mt-2 md:mt-3">
+              <Shield className="w-3 md:w-4 h-3 md:h-4 text-orange-500" aria-hidden="true" />
+              <span className="text-sm md:text-base font-medium text-orange-700">Não vendeu? Devolvemos 100%.</span>
+            </div>
           </motion.div>
-
         </div>
       </div>
-
     </section>
   );
 };

@@ -309,3 +309,18 @@
     width: 14px;
   }
 }
+.glowbox.lp2-green .btn-cta,
+.glowbox.lp2-green .btn-cta-box,
+.glowbox.lp2-green .glowbox-glow,
+.glowbox.lp2-green .glowbox-stars,
+.glowbox.lp2-green .glowbox-borders {
+  will-change: transform, opacity, background-position, box-shadow;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glowbox.lp2-green .btn-cta-box,
+  .glowbox.lp2-green .btn-cta,
+  .glowbox.lp2-green .btn-cta::after {
+    animation: none !important;
+  }
+}
