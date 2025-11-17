@@ -22,6 +22,87 @@ const PreLP2 = () => {
 
   useEffect(() => {
     try {
+      const plt = document.createElement('script');
+      plt.text = "!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);";
+      plt.setAttribute('data-vturb', 'plt');
+      if (!document.querySelector('script[data-vturb="plt"]')) document.head.appendChild(plt);
+      const preloadPlayer = document.createElement('link');
+      preloadPlayer.rel = 'preload';
+      preloadPlayer.as = 'script';
+      preloadPlayer.href = 'https://scripts.converteai.net/a9fb935f-36e0-4753-9a43-7758a0aa0378/players/6919b9c4f65a4dcdb5b21eaa/v4/player.js';
+      if (!document.querySelector('link[href="https://scripts.converteai.net/a9fb935f-36e0-4753-9a43-7758a0aa0378/players/6919b9c4f65a4dcdb5b21eaa/v4/player.js"]')) document.head.appendChild(preloadPlayer);
+      const preloadWC = document.createElement('link');
+      preloadWC.rel = 'preload';
+      preloadWC.as = 'script';
+      preloadWC.href = 'https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js';
+      if (!document.querySelector('link[href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js"]')) document.head.appendChild(preloadWC);
+      const preloadHls = document.createElement('link');
+      preloadHls.rel = 'preload';
+      preloadHls.as = 'fetch';
+      preloadHls.href = 'https://cdn.converteai.net/a9fb935f-36e0-4753-9a43-7758a0aa0378/6919b9b7b788ee53b44922e7/main.m3u8';
+      if (!document.querySelector('link[href="https://cdn.converteai.net/a9fb935f-36e0-4753-9a43-7758a0aa0378/6919b9b7b788ee53b44922e7/main.m3u8"]')) document.head.appendChild(preloadHls);
+      const dns1 = document.createElement('link');
+      dns1.rel = 'dns-prefetch';
+      dns1.href = 'https://cdn.converteai.net';
+      if (!document.querySelector('link[rel="dns-prefetch"][href="https://cdn.converteai.net"]')) document.head.appendChild(dns1);
+      const dns2 = document.createElement('link');
+      dns2.rel = 'dns-prefetch';
+      dns2.href = 'https://scripts.converteai.net';
+      if (!document.querySelector('link[rel="dns-prefetch"][href="https://scripts.converteai.net"]')) document.head.appendChild(dns2);
+      const dns3 = document.createElement('link');
+      dns3.rel = 'dns-prefetch';
+      dns3.href = 'https://images.converteai.net';
+      if (!document.querySelector('link[rel="dns-prefetch"][href="https://images.converteai.net"]')) document.head.appendChild(dns3);
+      const dns4 = document.createElement('link');
+      dns4.rel = 'dns-prefetch';
+      dns4.href = 'https://api.vturb.com.br';
+      if (!document.querySelector('link[rel="dns-prefetch"][href="https://api.vturb.com.br"]')) document.head.appendChild(dns4);
+      const wc = document.createElement('script');
+      wc.src = 'https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js';
+      wc.id = 'vturb-smartplayer-js';
+      wc.async = true;
+      if (!document.getElementById('vturb-smartplayer-js')) document.head.appendChild(wc);
+      const sp = document.createElement('script');
+      sp.src = 'https://scripts.converteai.net/a9fb935f-36e0-4753-9a43-7758a0aa0378/players/6919b9c4f65a4dcdb5b21eaa/v4/player.js';
+      sp.async = true;
+      sp.setAttribute('data-vturb', 'player');
+      if (!document.querySelector('script[data-vturb="player"]')) document.head.appendChild(sp);
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    let started = false;
+    let t1: number | null = null;
+    let t2: number | null = null;
+    const startTimers = () => {
+      if (started) return;
+      started = true;
+      t1 = window.setTimeout(() => setCtaVisible(true), 60000);
+      t2 = window.setTimeout(() => setDisclaimerVisible(true), 38000);
+    };
+    const el = document.getElementById('vid-6919b9c4f65a4dcdb5b21eaa');
+    if (el) {
+      el.addEventListener('click', startTimers, { once: true });
+      el.addEventListener('touchstart', startTimers, { once: true });
+    } else {
+      document.addEventListener('click', startTimers, { once: true });
+      document.addEventListener('touchstart', startTimers, { once: true });
+    }
+    return () => {
+      if (el) {
+        el.removeEventListener('click', startTimers as any);
+        el.removeEventListener('touchstart', startTimers as any);
+      } else {
+        document.removeEventListener('click', startTimers as any);
+        document.removeEventListener('touchstart', startTimers as any);
+      }
+      if (t1) window.clearTimeout(t1);
+      if (t2) window.clearTimeout(t2);
+    };
+  }, []);
+
+  useEffect(() => {
+    try {
       const mq = typeof window !== 'undefined' ? window.matchMedia('(max-width: 640px)') : null;
       const apply = () => setIsMobile(!!mq && mq.matches);
       apply();
@@ -196,14 +277,15 @@ const PreLP2 = () => {
 
           <div className="rounded-2xl ring-1 ring-white/10 border border-white/10 overflow-hidden shadow-[0_10px_50px_rgba(0,0,0,0.5)]">
             <div className="relative overflow-hidden h-[70vh] max-h-[600px] md:h-auto md:pt-[56.25%]">
-              <video
-                ref={videoRef}
-                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.08)", transformOrigin: "center" }}
-                playsInline
-                poster="/placeholder.svg"
-                // @ts-ignore
-                fetchpriority="high"
-              />
+              {(() => {
+                const VTurbPlayer = 'vturb-smartplayer' as any;
+                return (
+                  <VTurbPlayer
+                    id="vid-6919b9c4f65a4dcdb5b21eaa"
+                    style={{ display: 'block', margin: '0 auto', width: '100%', position: 'absolute', top: 0, left: 0, height: '100%' }}
+                  />
+                );
+              })()}
               {disclaimerVisible && (
                 <div
                   className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 sm:bottom-3 md:bottom-4 transform max-w-[100%] text-center"

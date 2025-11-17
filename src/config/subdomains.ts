@@ -20,7 +20,7 @@ const SUBDOMAINS: SubdomainConfig[] = [
   {
     key: 'lp2',
     hostPattern: /(^|\.)lp2\.cltcomgrana\.com\.br$/i,
-    home: 'b/pre-lp2',
+    home: 'b/lp2',
     blockGlobalScripts: true
   }
 ];
