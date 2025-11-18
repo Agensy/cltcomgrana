@@ -11,6 +11,7 @@ import DynamicFinalOfferSection from "@/components/DynamicFinalOfferSection";
 import BackgroundWrapper from "@/components/BackgroundWrapper";
 import Footer from "@/components/Footer";
 import WhatsAppHelpButton from "@/components/WhatsAppHelpButton";
+import Lp2VTurbVideo from "@/components/Lp2VTurbVideo";
 import { getVariationConfig } from "@/config/variations";
 import { useFacebookPixel } from "@/hooks/use-facebook-pixel";
 import { useLazyScripts } from "@/hooks/use-lazy-scripts";
@@ -32,6 +33,7 @@ const LP2 = () => {
   return (
     <main className="min-h-screen bg-background">
       <HeroSection />
+      <Lp2VTurbVideo />
       <BackgroundWrapper>
         <StorySection />
         <SolutionSection variant="concise" />

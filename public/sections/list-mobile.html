@@ -1,0 +1,119 @@
+<section class="lp2-included-list">
+  <style>
+    .lp2-included-list{
+      --il-color-orange-50:#fff7ed;
+      --il-color-orange-200:#fed7aa;
+      --il-color-orange-500:#f97316;
+      --il-color-title:#1f2937;
+      --il-color-text:#374151;
+      --il-color-card:#fff;
+      --il-color-border:#f3f4f6;
+      --il-radius:10px;
+      --il-gap:10px;
+      --il-pad:12px;
+      --il-title-size:1.15rem;
+      --il-label-size:.95rem;
+      --il-icon-size:14px;
+    }
+    .lp2-included-list,.lp2-included-list *{box-sizing:border-box}
+    .lp2-included-list .lp2-included-list__container{max-width:62rem;margin:0 auto;padding:0 12px}
+    .lp2-included-list .lp2-included-list__title{text-align:center;font-weight:700;color:var(--il-color-title);font-size:var(--il-title-size);margin-bottom:12px}
+    @media(min-width:768px){.lp2-included-list .lp2-included-list__title{font-size:calc(var(--il-title-size) + .1rem)}}
+    .lp2-included-list .lp2-included-list__list{display:flex;flex-direction:column;gap:var(--il-gap)}
+    .lp2-included-list .lp2-included-list__item{display:flex;align-items:center;gap:12px;background:var(--il-color-card);border:1px solid var(--il-color-border);border-radius:var(--il-radius);padding:var(--il-pad);box-shadow:0 1px 4px rgba(0,0,0,.04);transition:border-color .18s,box-shadow .18s,transform .18s,opacity .18s}
+    .lp2-included-list .lp2-included-list__item:hover{border-color:var(--il-color-orange-200);box-shadow:0 6px 14px rgba(0,0,0,.08);transform:translateY(-1px)}
+    .lp2-included-list .lp2-included-list__icon{background:var(--il-color-orange-50);border-radius:9999px;padding:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .lp2-included-list .lp2-included-list__icon svg{width:var(--il-icon-size);height:var(--il-icon-size);color:var(--il-color-orange-500)}
+    .lp2-included-list .lp2-included-list__label{font-size:var(--il-label-size);color:var(--il-color-text);line-height:1.25}
+    .lp2-included-list .lp2-included-list__item{opacity:0;transform:translateY(6px)}
+    .lp2-included-list .lp2-included-list__item.visible{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){.lp2-included-list .lp2-included-list__item{transition:none}}
+    @media(max-width:768px){.lp2-included-list .lp2-included-list__item{opacity:1;transform:none}}
+  </style>
+
+  <div class="lp2-included-list__container">
+
+    <div class="lp2-included-list__list">
+      <div class="lp2-included-list__item">
+        <div class="lp2-included-list__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="m9 14 2 2 4-4"></path></svg>
+        </div>
+        <span class="lp2-included-list__label">Propostas prontas pra fechar cliente</span>
+      </div>
+
+      <div class="lp2-included-list__item">
+        <div class="lp2-included-list__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>
+        </div>
+        <span class="lp2-included-list__label">Agente de Vendas treinado pra você copiar</span>
+      </div>
+
+      <div class="lp2-included-list__item">
+        <div class="lp2-included-list__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+        </div>
+        <span class="lp2-included-list__label">Modelo de Contrato simples e direto</span>
+      </div>
+
+      <div class="lp2-included-list__item">
+        <div class="lp2-included-list__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+        </div>
+        <span class="lp2-included-list__label">Curso CLT com Grana passo a passo</span>
+      </div>
+
+      <div class="lp2-included-list__item">
+        <div class="lp2-included-list__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
+        </div>
+        <span class="lp2-included-list__label">Ferramenta exclusiva de I.A para criar sites em minutos</span>
+      </div>
+
+      <div class="lp2-included-list__item">
+        <div class="lp2-included-list__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg>
+        </div>
+        <span class="lp2-included-list__label">Aula ao vivo tira-dúvidas</span>
+      </div>
+
+      <div class="lp2-included-list__item">
+        <div class="lp2-included-list__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <span class="lp2-included-list__label">Suporte direto no WhatsApp</span>
+      </div>
+
+      <div class="lp2-included-list__item">
+        <div class="lp2-included-list__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <span class="lp2-included-list__label">Atualizações gratuitas</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      var roots=document.querySelectorAll('.lp2-included-list');
+      if(!roots.length)return;
+      var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var supportsIO=('IntersectionObserver' in window);
+      roots.forEach(function(root){
+        var items=root.querySelectorAll('.lp2-included-list__item');
+        if(reduce || !supportsIO){
+          items.forEach(function(el){el.classList.add('visible')});
+          return;
+        }
+        var io=new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){
+              entry.target.classList.add('visible');
+              io.unobserve(entry.target);
+            }
+          });
+        },{rootMargin:'0px 0px -10% 0px',threshold:0.1});
+        items.forEach(function(el){io.observe(el)});
+      });
+    })();
+  </script>
+</section>
