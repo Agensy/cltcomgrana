@@ -1,5 +1,10 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  
+  # Redireciona a homepage do subdomínio LP2 para /b/lp2
+  RewriteCond %{HTTP_HOST} ^lp2\.cltcomgrana\.com\.br$ [NC]
+  RewriteCond %{REQUEST_URI} ^/?$
+  RewriteRule ^$ /b/lp2 [R=302,L]
   RewriteBase /
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
