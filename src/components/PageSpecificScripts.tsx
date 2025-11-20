@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGTM } from '@/hooks/use-gtm';
 import { useCustomScript } from '@/hooks/use-custom-script';
 import { useFacebookPixel } from '@/hooks/use-facebook-pixel';
 import { useUtmifyPixel } from '@/hooks/use-utmify-pixel';
+import { useDelayedScript } from '@/hooks/use-delayed-script';
 
 interface PageSpecificScriptsProps {
   page: string;
@@ -17,28 +18,32 @@ const PageSpecificScripts: React.FC<PageSpecificScriptsProps> = ({
   variation,
   shouldLoad = true
 }) => {
+  // Estado para controlar carregamento lazy de scripts não-críticos
+  const [loadHotjar, setLoadHotjar] = useState(false);
+  const [loadLinkedIn, setLoadLinkedIn] = useState(false);
+
   // Configuração dinâmica baseada na página
   const getScriptConfig = () => {
     const env = (import.meta as any)?.env || {};
-    
+
     // Chaves específicas por página/projeto/variação
     const pageKey = page.toUpperCase().replace(/[^A-Z0-9]/g, '_');
     const projectKey = project ? `_${project}` : '';
     const variationKey = variation ? `_${variation.toUpperCase()}` : '';
-    
+
     return {
-      gtmContainer: env[`VITE_GTM_CONTAINER${projectKey}${variationKey}_${pageKey}`] || 
-                   env[`VITE_GTM_CONTAINER${projectKey}`] || 
-                   env.VITE_GTM_CONTAINER_DEFAULT,
-      
-      facebookPixel: env[`VITE_FACEBOOK_PIXEL${projectKey}${variationKey}_${pageKey}`] || 
-                    env[`VITE_FACEBOOK_PIXEL${projectKey}${variationKey}`] || 
-                    env.VITE_FACEBOOK_PIXEL_IDS,
-      
-      utmifyPixel: env[`VITE_UTMIFY_PIXEL${projectKey}${variationKey}_${pageKey}`] || 
-                  env[`VITE_UTMIFY_PIXEL${projectKey}${variationKey}`] || 
-                  env.VITE_UTMIFY_PIXEL_DEFAULT,
-      
+      gtmContainer: env[`VITE_GTM_CONTAINER${projectKey}${variationKey}_${pageKey}`] ||
+        env[`VITE_GTM_CONTAINER${projectKey}`] ||
+        env.VITE_GTM_CONTAINER_DEFAULT,
+
+      facebookPixel: env[`VITE_FACEBOOK_PIXEL${projectKey}${variationKey}_${pageKey}`] ||
+        env[`VITE_FACEBOOK_PIXEL${projectKey}${variationKey}`] ||
+        env.VITE_FACEBOOK_PIXEL_IDS,
+
+      utmifyPixel: env[`VITE_UTMIFY_PIXEL${projectKey}${variationKey}_${pageKey}`] ||
+        env[`VITE_UTMIFY_PIXEL${projectKey}${variationKey}`] ||
+        env.VITE_UTMIFY_PIXEL_DEFAULT,
+
       customScript: env[`VITE_CUSTOM_SCRIPT${projectKey}${variationKey}_${pageKey}`],
       hotjarId: env[`VITE_HOTJAR_ID${projectKey}${variationKey}_${pageKey}`],
       linkedinPixel: env[`VITE_LINKEDIN_PIXEL${projectKey}${variationKey}_${pageKey}`]
@@ -47,17 +52,35 @@ const PageSpecificScripts: React.FC<PageSpecificScriptsProps> = ({
 
   const config = getScriptConfig();
 
-  // GTM
+  // GTM - Crítico, carregar imediatamente
   const { pushEvent: gtmPushEvent } = useGTM(shouldLoad && !!config.gtmContainer, config.gtmContainer);
 
-  // Facebook Pixel
+  // Facebook Pixel - Crítico para conversões, carregar imediatamente
   const { trackEvent: fbTrackEvent } = useFacebookPixel(shouldLoad && !!config.facebookPixel, config.facebookPixel);
 
-  // UTMify
+  // UTMify - Crítico para tracking, carregar imediatamente
   useUtmifyPixel(shouldLoad && !!config.utmifyPixel, config.utmifyPixel);
 
-  // Hotjar (exemplo de script customizado)
-  useCustomScript(shouldLoad && !!config.hotjarId, {
+  // Hotjar - Não-crítico, carregar após interação do usuário
+  useDelayedScript(
+    () => setLoadHotjar(true),
+    {
+      enabled: shouldLoad && !!config.hotjarId,
+      onUserInteraction: true
+    }
+  );
+
+  // LinkedIn - Não-crítico, carregar após 3 segundos
+  useDelayedScript(
+    () => setLoadLinkedIn(true),
+    {
+      enabled: shouldLoad && !!config.linkedinPixel,
+      delay: 3000
+    }
+  );
+
+  // Hotjar (carrega apenas quando loadHotjar = true)
+  useCustomScript(loadHotjar && !!config.hotjarId, {
     innerHTML: `
       (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -71,8 +94,8 @@ const PageSpecificScripts: React.FC<PageSpecificScriptsProps> = ({
     id: `hotjar-${config.hotjarId}`
   });
 
-  // LinkedIn Pixel (exemplo)
-  useCustomScript(shouldLoad && !!config.linkedinPixel, {
+  // LinkedIn Pixel (carrega apenas quando loadLinkedIn = true)
+  useCustomScript(loadLinkedIn && !!config.linkedinPixel, {
     innerHTML: `
       _linkedin_partner_id = "${config.linkedinPixel}";
       window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
@@ -81,7 +104,7 @@ const PageSpecificScripts: React.FC<PageSpecificScriptsProps> = ({
     id: `linkedin-${config.linkedinPixel}`
   });
 
-  useCustomScript(shouldLoad && !!config.linkedinPixel, {
+  useCustomScript(loadLinkedIn && !!config.linkedinPixel, {
     src: 'https://snap.licdn.com/li.lms-analytics/insight.min.js',
     id: 'linkedin-insight'
   });

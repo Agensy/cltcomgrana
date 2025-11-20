@@ -2,8 +2,8 @@ import LeadsService from '@/services/leadsService';
 
 declare global {
   interface Window {
-    fbq: any;
-    _fbq: any;
+    fbq: (action: string, event: string, params?: Record<string, unknown>, options?: Record<string, unknown>) => void;
+    _fbq: unknown;
     __fbq_initialized_ids?: Set<string>;
   }
 }
@@ -39,7 +39,9 @@ const getFbCookies = (): { fbp?: string; fbc?: string } => {
 };
 
 const generateEventId = (): string => {
-  if ((crypto as any)?.randomUUID) return (crypto as any).randomUUID();
+  if (crypto && 'randomUUID' in crypto && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
   return `evt_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 };
 
@@ -48,7 +50,7 @@ const getCheckoutLead = () => {
   try {
     const raw = localStorage.getItem('checkoutData');
     if (raw) leadId = JSON.parse(raw)?.leadId || null;
-  } catch {}
+  } catch { }
   const leads = LeadsService.getAllLeads();
   if (leadId) return leads.find(l => l.id === leadId) || null;
   return leads.length ? leads[leads.length - 1] : null;
@@ -66,7 +68,7 @@ export const sendMetaPurchase = async (): Promise<void> => {
     if (window.fbq) {
       window.fbq('track', 'Purchase', { value, currency }, { eventID: eventId });
     }
-  } catch {}
+  } catch { }
 
   // Hash de PII no cliente (opcional)
   let emHashed: string | undefined;
@@ -74,11 +76,32 @@ export const sendMetaPurchase = async (): Promise<void> => {
   try {
     if (lead?.email) emHashed = await sha256Hex(lead.email);
     if (lead?.phone) phHashed = await sha256Hex(normalizePhone(lead.phone));
-  } catch {}
+  } catch { }
 
   const { fbp, fbc } = getFbCookies();
 
-  const payload: any = {
+  interface MetaCapiPayload {
+    event_name: string;
+    event_id: string;
+    value: number;
+    currency: string;
+    action_source: string;
+    event_source_url: string;
+    fbp?: string;
+    fbc?: string;
+    user_data: {
+      em?: string;
+      ph?: string;
+    };
+    order_id?: string;
+    contents: Array<{
+      id: string;
+      quantity: number;
+      item_price: number;
+    }>;
+  }
+
+  const payload: MetaCapiPayload = {
     event_name: 'Purchase',
     event_id: eventId,
     value,

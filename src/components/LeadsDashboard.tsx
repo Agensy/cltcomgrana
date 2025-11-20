@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import LeadsService, { LeadData, LeadSummary } from '../services/leadsService';
-import WebhookService from '../services/webhookService';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
-import { Download, Eye, Users, TrendingUp, DollarSign, Award, LogOut, TestTube } from 'lucide-react';
+import { Download, Users, TrendingUp, DollarSign, Award, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 const LeadsDashboard = () => {
@@ -39,60 +38,7 @@ const LeadsDashboard = () => {
     document.body.removeChild(link);
   };
 
-  const handleTestWebhook = async () => {
-    console.log('🧪 Iniciando teste completo da integração com webhook...');
-    
-    try {
-      // Primeiro, testa a conectividade
-      console.log('🔍 Passo 1: Testando conectividade...');
-      const connectivityTest = await WebhookService.testConnectivity();
-      
-      if (!connectivityTest.success) {
-        console.error('❌ Falha no teste de conectividade:', connectivityTest);
-        alert(`❌ Erro de Conectividade:\n\n${connectivityTest.message}\n\n🔧 Verifique:\n• Webhook está acessível?\n• URL está correta?\n• Servidor está funcionando?\n\nVeja o console (F12) para mais detalhes.`);
-        return;
-      }
 
-      console.log('✅ Conectividade OK! Prosseguindo com teste de dados...');
-
-      // Se conectividade OK, testa envio de dados
-      console.log('📊 Passo 2: Testando envio de lead...');
-      const testLead: LeadData = {
-        id: `test_${Date.now()}`,
-        timestamp: new Date().toISOString(),
-        name: 'Teste de Integração',
-        email: 'teste@cltcomgrana.com',
-        phone: '(11) 99999-9999',
-        pageUrl: window.location.href,
-        pageName: 'Dashboard - Teste',
-        project: 'A',
-        variation: 'teste',
-        originalPrice: 'R$ 997,00',
-        installmentPrice: 'R$ 97,00',
-        installmentCount: 12,
-        cashPrice: 'R$ 697,00',
-        discountPercentage: '30%',
-        bonusValue: 'R$ 300,00',
-        popupType: 'checkout',
-        popupTrigger: 'teste_manual',
-        sessionId: 'test_session',
-        userAgent: navigator.userAgent,
-        referrer: document.referrer,
-        status: 'captured'
-      };
-
-      const success = await WebhookService.sendLeadToWebhook(testLead);
-      
-      if (success) {
-        alert('🎉 TESTE COMPLETO REALIZADO COM SUCESSO!\n\n✅ Conectividade: OK\n✅ Envio de dados: OK\n\n📊 O lead de teste foi enviado para o webhook com sucesso!\n\n🔗 URL do webhook: ' + WebhookService.getWebhookUrl());
-      } else {
-        alert('❌ Erro no envio de dados.\n\n✅ Conectividade: OK\n❌ Envio de dados: FALHOU\n\nVerifique o console (F12) para mais detalhes sobre o erro.');
-      }
-    } catch (error) {
-      console.error('❌ Erro inesperado no teste:', error);
-      alert('❌ Erro inesperado durante o teste.\n\nVerifique o console (F12) para mais detalhes.');
-    }
-  };
 
   const getStatusBadge = (status: LeadData['status']) => {
     const variants = {
@@ -152,16 +98,8 @@ const LeadsDashboard = () => {
             <p className="text-gray-600 mt-1">Acompanhe e gerencie seus leads capturados</p>
           </div>
           <div className="flex items-center gap-4">
-            <Button 
-              onClick={handleTestWebhook} 
-              className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground"
-              variant="default"
-            >
-              <TestTube className="h-4 w-4" />
-              Testar Webhook
-            </Button>
-            <Button 
-              onClick={handleExportCSV} 
+            <Button
+              onClick={handleExportCSV}
               className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white"
               variant="default"
             >
@@ -171,9 +109,9 @@ const LeadsDashboard = () => {
             <span className="text-sm text-gray-700">
               Logado como: <strong className="text-gray-900">{user?.email}</strong>
             </span>
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               onClick={handleLogout}
               className="flex items-center gap-2 border-gray-300 text-gray-700 hover:bg-gray-100"
             >
@@ -231,7 +169,7 @@ const LeadsDashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-gray-900">
-                {Object.entries(summary.leadsByVariation).sort(([,a], [,b]) => b - a)[0]?.[0] || 'N/A'}
+                {Object.entries(summary.leadsByVariation).sort(([, a], [, b]) => b - a)[0]?.[0] || 'N/A'}
               </div>
               <p className="text-xs text-gray-600">
                 Mais leads capturados
@@ -307,15 +245,15 @@ const LeadsDashboard = () => {
             <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto border border-gray-200">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-gray-900">Detalhes do Lead</h2>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => setSelectedLead(null)}
                   className="border-gray-300 text-gray-700 hover:bg-gray-100"
                 >
                   Fechar
                 </Button>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <h3 className="font-semibold mb-2 text-gray-900">Informações Pessoais</h3>
@@ -323,7 +261,7 @@ const LeadsDashboard = () => {
                   <p className="text-gray-700"><strong className="text-gray-900">Email:</strong> {selectedLead.email}</p>
                   <p className="text-gray-700"><strong className="text-gray-900">Telefone:</strong> {selectedLead.phone}</p>
                 </div>
-                
+
                 <div>
                   <h3 className="font-semibold mb-2 text-gray-900">Informações da Página</h3>
                   <p className="text-gray-700"><strong className="text-gray-900">Projeto:</strong> {selectedLead.project}</p>
@@ -331,7 +269,7 @@ const LeadsDashboard = () => {
                   <p className="text-gray-700"><strong className="text-gray-900">Página:</strong> {selectedLead.pageName}</p>
                   <p className="text-gray-700 break-all"><strong className="text-gray-900">URL:</strong> {selectedLead.pageUrl}</p>
                 </div>
-                
+
                 <div>
                   <h3 className="font-semibold mb-2 text-gray-900">Informações de Preço</h3>
                   <p className="text-gray-700"><strong className="text-gray-900">Preço Original:</strong> {selectedLead.originalPrice}</p>
@@ -340,7 +278,7 @@ const LeadsDashboard = () => {
                   <p className="text-gray-700"><strong className="text-gray-900">À Vista:</strong> {selectedLead.cashPrice}</p>
                   <p className="text-gray-700"><strong className="text-gray-900">Desconto:</strong> {selectedLead.discountPercentage}</p>
                 </div>
-                
+
                 <div>
                   <h3 className="font-semibold mb-2 text-gray-900">Informações do Popup</h3>
                   <p className="text-gray-700"><strong className="text-gray-900">Tipo:</strong> {selectedLead.popupType}</p>
@@ -348,7 +286,7 @@ const LeadsDashboard = () => {
                   <p className="text-gray-700"><strong className="text-gray-900">Status:</strong> {selectedLead.status}</p>
                   <p className="text-gray-700"><strong className="text-gray-900">Data:</strong> {formatDate(selectedLead.timestamp)}</p>
                 </div>
-                
+
                 {(selectedLead.utmSource || selectedLead.utmMedium || selectedLead.utmCampaign) && (
                   <div className="md:col-span-2">
                     <h3 className="font-semibold mb-2 text-gray-900">Informações UTM</h3>

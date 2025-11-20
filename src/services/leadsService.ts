@@ -1,4 +1,3 @@
-import WebhookService from './webhookService';
 import Clarity from '@microsoft/clarity';
 
 export interface LeadData {
@@ -8,13 +7,13 @@ export interface LeadData {
   name: string;
   email: string;
   phone: string;
-  
+
   // Informações da Página
   pageUrl: string;
   pageName: string;
   project: 'A' | 'B';
   variation: string;
-  
+
   // Informações de Preço
   originalPrice: string;
   installmentPrice: string;
@@ -22,23 +21,23 @@ export interface LeadData {
   cashPrice: string;
   discountPercentage: string;
   bonusValue: string;
-  
+
   // Informações de UTM
   utmSource?: string;
   utmMedium?: string;
   utmCampaign?: string;
   utmContent?: string;
   utmTerm?: string;
-  
+
   // Informações do Popup
   popupType: 'checkout' | 'exit-intent' | 'time-based' | 'scroll-based';
   popupTrigger: string;
-  
+
   // Informações de Sessão
   sessionId: string;
   userAgent: string;
   referrer: string;
-  
+
   // Status do Lead
   status: 'captured' | 'converted' | 'abandoned';
   conversionValue?: number;
@@ -109,33 +108,33 @@ class LeadsService {
       name: data.name,
       email: data.email,
       phone: data.phone,
-      
+
       pageUrl: window.location.href,
       pageName: this.getPageName(),
       project: data.project,
       variation: data.variation,
-      
+
       originalPrice: data.originalPrice,
       installmentPrice: data.installmentPrice,
       installmentCount: data.installmentCount,
       cashPrice: data.cashPrice,
       discountPercentage: data.discountPercentage,
       bonusValue: data.bonusValue,
-      
+
       ...this.getUtmParams(),
-      
+
       popupType: data.popupType,
       popupTrigger: data.popupTrigger,
-      
+
       sessionId: this.getSessionId(),
       userAgent: navigator.userAgent,
       referrer: document.referrer,
-      
+
       status: 'captured'
     };
 
     this.saveLead(lead);
-    
+
     // Eventos: Lead (GA4 e Clarity)
     try {
       const measurementId = (import.meta as any)?.env?.VITE_GA_MEASUREMENT_ID;
@@ -149,7 +148,9 @@ class LeadsService {
           send_to: measurementId,
         });
       }
-    } catch {}
+    } catch (error) {
+      console.error('Error sending Lead event to GA4:', error);
+    }
 
     // Sempre envia para o GTM via dataLayer
     try {
@@ -163,17 +164,18 @@ class LeadsService {
           page_url: lead.pageUrl,
         });
       }
-    } catch {}
+    } catch (error) {
+      console.error('Error sending Lead event to GTM dataLayer:', error);
+    }
 
     try {
       Clarity.setTag('project', lead.project);
       Clarity.setTag('variation', lead.variation);
       Clarity.event('Lead');
-    } catch {}
+    } catch (error) {
+      console.error('Error sending Lead event to Clarity:', error);
+    }
 
-    // Envia para webhook de forma assíncrona
-    this.sendToWebhook(lead);
-    
     return lead;
   }
 
@@ -194,7 +196,7 @@ class LeadsService {
   static updateLeadStatus(leadId: string, status: LeadData['status'], conversionValue?: number): void {
     const leads = this.getAllLeads();
     const leadIndex = leads.findIndex(lead => lead.id === leadId);
-    
+
     if (leadIndex !== -1) {
       leads[leadIndex].status = status;
       if (conversionValue) {
@@ -207,7 +209,7 @@ class LeadsService {
   // Gera resumo dos leads
   static getLeadsSummary(): LeadSummary {
     const leads = this.getAllLeads();
-    
+
     const summary: LeadSummary = {
       totalLeads: leads.length,
       leadsByProject: {
@@ -286,7 +288,7 @@ class LeadsService {
   // Obtém o nome da página atual
   private static getPageName(): string {
     const path = window.location.pathname;
-    
+
     if (path === '/') return 'Home';
     if (path.includes('/a/lp1')) return 'Projeto A - LP1';
     if (path.includes('/a/lp2')) return 'Projeto A - LP2';
@@ -296,23 +298,8 @@ class LeadsService {
     if (path.includes('/b/lp2')) return 'Projeto B - LP2';
     if (path.includes('/b/lp3')) return 'Projeto B - LP3';
     if (path.includes('/b/obrigado')) return 'Projeto B - Obrigado';
-    
-    return path;
-  }
 
-  // Envia lead para webhook
-  private static async sendToWebhook(lead: LeadData): Promise<void> {
-    try {
-      const success = await WebhookService.sendLeadToWebhook(lead);
-      if (success) {
-        console.log('Lead enviado para webhook com sucesso:', lead.id);
-      } else {
-        console.warn('Falha ao enviar lead para webhook:', lead.id);
-      }
-    } catch (error) {
-      console.error('Erro ao enviar lead para webhook:', error);
-      // Não interrompe o fluxo se houver erro no webhook
-    }
+    return path;
   }
 
   // Limpa todos os leads (para desenvolvimento)
