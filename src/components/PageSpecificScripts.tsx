@@ -7,7 +7,7 @@ import { useDelayedScript } from '@/hooks/use-delayed-script';
 
 interface PageSpecificScriptsProps {
   page: string;
-  project?: 'A' | 'B';
+  project?: 'A' | 'B' | 'C';
   variation?: string;
   shouldLoad?: boolean;
 }

@@ -11,7 +11,7 @@ export interface LeadData {
   // Informações da Página
   pageUrl: string;
   pageName: string;
-  project: 'A' | 'B';
+  project: 'A' | 'B' | 'C';
   variation: string;
 
   // Informações de Preço
@@ -48,6 +48,7 @@ export interface LeadSummary {
   leadsByProject: {
     A: number;
     B: number;
+    C: number;
   };
   leadsByVariation: Record<string, number>;
   leadsByPopupType: Record<string, number>;
@@ -91,7 +92,7 @@ class LeadsService {
     name: string;
     email: string;
     phone: string;
-    project: 'A' | 'B';
+    project: 'A' | 'B' | 'C';
     variation: string;
     originalPrice: string;
     installmentPrice: string;
@@ -215,6 +216,7 @@ class LeadsService {
       leadsByProject: {
         A: leads.filter(lead => lead.project === 'A').length,
         B: leads.filter(lead => lead.project === 'B').length,
+        C: leads.filter(lead => lead.project === 'C').length,
       },
       leadsByVariation: {},
       leadsByPopupType: {},
@@ -298,6 +300,11 @@ class LeadsService {
     if (path.includes('/b/lp2')) return 'Projeto B - LP2';
     if (path.includes('/b/lp3')) return 'Projeto B - LP3';
     if (path.includes('/b/obrigado')) return 'Projeto B - Obrigado';
+    if (path.includes('/c/lp')) return 'Projeto C - LP';
+    if (path.includes('/c/fabiano')) return 'Projeto C - Fabiano';
+    if (path.includes('/c/antonio')) return 'Projeto C - Antonio';
+    if (path.includes('/c/ricardo')) return 'Projeto C - Ricardo';
+    if (path.includes('/c/obrigado')) return 'Projeto C - Obrigado';
 
     return path;
   }

@@ -34,6 +34,12 @@ const ProjectB_PreLP1 = lazy(() => import("./pages/ProjectB/PreLP1"));
 const ProjectB_PreLP2 = lazy(() => import("./pages/ProjectB/PreLP2"));
 const ProjectB_ThankYou = lazy(() => import("./pages/ProjectB/ThankYou"));
 
+// Project C Pages - Lazy loading
+const ProjectC_LP = lazy(() => import("./pages/ProjectC/LP"));
+const ProjectC_Fabiano = lazy(() => import("./pages/ProjectC/Fabiano"));
+const ProjectC_Antonio = lazy(() => import("./pages/ProjectC/Antonio"));
+const ProjectC_Ricardo = lazy(() => import("./pages/ProjectC/Ricardo"));
+
 // Leads Dashboard
 const LeadsPage = lazy(() => import("./pages/LeadsPage"));
 
@@ -109,6 +115,10 @@ const App = () => (
                   case 'b/lp3': return <ProjectB_LP3 />;
                   case 'b/pre-lp1': return <ProjectB_PreLP1 />;
                   case 'b/pre-lp2': return <ProjectB_PreLP2 />;
+                  case 'c/lp': return <ProjectC_LP />;
+                  case 'c/fabiano': return <ProjectC_Fabiano />;
+                  case 'c/antonio': return <ProjectC_Antonio />;
+                  case 'c/ricardo': return <ProjectC_Ricardo />;
                   default: return <ProjectA_LP1 />;
                 }
               };
@@ -136,6 +146,12 @@ const App = () => (
             {/* Alias para Thank You dentro do subdomínio LP1 */}
             <Route path="/obrigado" element={<ProjectB_ThankYou />} />
             <Route path="/b/checkout" element={<CheckoutPage />} />
+            
+            {/* Project C Routes */}
+            <Route path="/c/lp" element={<ProjectC_LP />} />
+            <Route path="/c/fabiano" element={<ProjectC_Fabiano />} />
+            <Route path="/c/antonio" element={<ProjectC_Antonio />} />
+            <Route path="/c/ricardo" element={<ProjectC_Ricardo />} />
             
             <Route path="/termos-de-uso" element={<TermsOfService />} />
             <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />

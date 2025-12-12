@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect } from "react";
 import { VariationConfig } from "@/config/variations";
-import BlackFridayCountdown from "@/components/BlackFridayCountdown";
 
 interface DynamicFinalOfferSectionProps {
   config: VariationConfig;
@@ -162,22 +161,22 @@ const DynamicFinalOfferSection = ({ config, ctaClassName }: DynamicFinalOfferSec
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.6 }}
                 >
-                  <h3 className="text-lg md:text-xl text-gray-800 font-semibold mb-2">Conteúdo incluído</h3>
-                  <div className="space-y-1">
+                  <h3 className="text-lg md:text-xl text-gray-800 font-semibold mb-1.5">Conteúdo incluído</h3>
+                  <div className="space-y-[2px] md:space-y-1">
                     {allItems.map((item, i) => {
                       const Icon = item.icon as any;
                       return (
                         <motion.div
                           key={i}
-                          className="flex items-center gap-2 bg-white border border-gray-100 rounded p-1.5 shadow-sm hover:shadow-md hover:border-orange-200 transition-all duration-200"
+                          className="flex items-center gap-2 bg-white border border-gray-100 rounded px-2 py-1 md:px-2.5 md:py-1.5 shadow-sm hover:shadow-md hover:border-orange-200 transition-all duration-200"
                           initial={{ opacity: 0, y: 20 }}
                           animate={inView ? { opacity: 1, y: 0 } : {}}
                           transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
                         >
-                          <div className="bg-orange-50 rounded-full p-1 flex-shrink-0">
+                          <div className="bg-orange-50 rounded-full p-0.5 md:p-1 flex-shrink-0">
                             <Icon className="w-3 h-3 text-orange-500" strokeWidth={2} aria-hidden="true" focusable="false" />
                           </div>
-                          <span className="text-sm text-gray-700 leading-tight">{item.text}</span>
+                          <span className="text-[13px] md:text-sm text-gray-700 leading-snug">{item.text}</span>
                         </motion.div>
                       );
                     })}
@@ -192,7 +191,7 @@ const DynamicFinalOfferSection = ({ config, ctaClassName }: DynamicFinalOfferSec
                 <div className="flex-1">
                   {/* Offer Card - Optimized with CTA inside */}
                   <motion.div 
-                    className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-3 shadow-xl border-2 border-orange-200 relative overflow-hidden h-full flex flex-col justify-center"
+                    className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-4 md:p-6 shadow-xl border-2 border-orange-200 relative overflow-hidden h-full flex flex-col justify-center"
                     initial={{ opacity: 0, y: 20 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6, delay: 0.7 }}
@@ -212,39 +211,57 @@ const DynamicFinalOfferSection = ({ config, ctaClassName }: DynamicFinalOfferSec
                       </div>
                     </div>
                     
-                    <div className="relative z-10 text-center space-y-0.5">
-                      <div className="mb-0.5">
-                        <h3 className="text-gray-800 text-lg font-bold mb-0">Oferta de Hoje</h3>
-                        <p className="text-sm text-gray-600 font-medium">Investimento</p>
+                    <div className="relative z-10 text-center space-y-2">
+                      <div className="space-y-1">
+                        <h3 className="text-gray-800 text-xl md:text-2xl font-bold">Oferta de Hoje</h3>
+                        <p className="text-xs md:text-sm text-gray-600 font-medium">Investimento</p>
                       </div>
                       
-                      <div className="mb-0.5">
-                        <p className="text-base text-gray-400 line-through">{config.pricing.originalPrice}</p>
+                      {/* Discount Badge */}
+                      {discountPct > 0 && (
+                        <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-3 py-1 rounded-full shadow-md">
+                          <Sparkles className="w-3 h-3" aria-hidden="true" />
+                          <span className="text-xs md:text-sm font-bold">{discountPct}% OFF</span>
+                        </div>
+                      )}
+                      
+                      {/* Original Price */}
+                      <div className="mb-1">
+                        <p className="text-sm md:text-base text-gray-400 line-through">{config.pricing.originalPrice}</p>
                       </div>
                       
-                      <div className="flex items-center justify-center gap-1.5 mb-0.5">
-                        <Badge className="bg-black text-white border-black px-2 py-0 rounded-full text-sm">BLACK FRIDAY</Badge>
-                        <span className="text-sm font-semibold text-gray-700">Termina hoje • <BlackFridayCountdown /></span>
-                      </div>
-                      
-                      <div className="mb-0.5">
-                        <div className="relative inline-flex items-center justify-center gap-1 mb-0">
-                          <span className="text-base font-semibold text-gray-500" aria-hidden="true">
-                            {config.pricing.installmentCount}x R$
-                          </span>
-                          <span className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500" aria-hidden="true">
-                            {installWhole}
-                          </span>
-                          <span className="text-xl md:text-2xl font-bold text-orange-400" aria-hidden="true">,
-                          </span>
-                          <span className="text-xl md:text-2xl font-bold text-orange-400" aria-hidden="true">{installCents}
+                      {/* Urgency Badge */}
+                      <div className="flex items-center justify-center mb-2">
+                        <div className="flex items-center gap-1.5 bg-red-50 border border-red-200 rounded-full px-3 py-1">
+                          <Clock className="w-3.5 h-3.5 text-red-600" aria-hidden="true" />
+                          <span className="text-xs md:text-sm font-semibold text-red-700">
+                            Oferta por tempo limitado
                           </span>
                         </div>
-                        <p className="text-sm text-gray-500 font-medium">{perDayBRL}/dia</p>
                       </div>
                       
-                      <div className="pt-0.5 border-t border-gray-100 mb-0.5">
-                        <p className="text-sm text-gray-600 font-semibold">ou {config.pricing.cashPrice} à vista</p>
+                      {/* Price Display */}
+                      <div className="mb-2">
+                        <div className="relative inline-flex items-baseline justify-center gap-1 mb-1">
+                          <span className="text-sm md:text-base font-semibold text-gray-600" aria-hidden="true">
+                            {config.pricing.installmentCount}x de
+                          </span>
+                          <span className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-400 to-amber-500" aria-hidden="true">
+                            R$ {installWhole}
+                          </span>
+                          <span className="text-2xl md:text-3xl font-bold text-orange-500" aria-hidden="true">,
+                          </span>
+                          <span className="text-2xl md:text-3xl font-bold text-orange-500" aria-hidden="true">{installCents}
+                          </span>
+                        </div>
+                        <p className="text-xs md:text-sm text-gray-500 font-medium">Apenas {perDayBRL}/dia</p>
+                      </div>
+                      
+                      {/* Cash Price */}
+                      <div className="pt-2 border-t border-orange-200/50 mb-2">
+                        <p className="text-sm md:text-base text-gray-700 font-semibold">
+                          ou <span className="text-orange-600 font-bold">{config.pricing.cashPrice}</span> à vista
+                        </p>
                       </div>
 
                       {/* CTA Button - Now Inside Offer Card */}

@@ -1,6 +1,6 @@
 export interface VariationConfig {
   id: string;
-  project: 'A' | 'B';
+  project: 'A' | 'B' | 'C';
   slug: string;
   pricing: {
     originalPrice: string;
@@ -168,6 +168,108 @@ export const variationsConfig: Record<string, VariationConfig> = {
         utm_source: 'afiliado',
         utm_medium: 'referral',
         utm_campaign: 'projeto-b-lp3',
+        utm_content: 'final-offer'
+      }
+    }
+  },
+
+  // Projeto C
+  'c-lp': {
+    id: 'c-lp',
+    project: 'C',
+    slug: 'lp',
+    pricing: {
+      originalPrice: 'R$ 529,99',
+      installmentPrice: 'R$ 19,19',
+      installmentCount: 12,
+      cashPrice: 'R$ 197',
+      discountPercentage: '63%',
+      bonusValue: 'R$ 2.100'
+    },
+    checkout: {
+      // Opcionalmente, podemos manter títulos iguais à LP1
+      title: 'Só mais um passo pra liberar seu acesso completo.',
+      description: 'Preencha seus dados pra seguir direto pro checkout.',
+      checkoutUrl: 'https://pay.hotmart.com/K102191894H?checkoutMode=10',
+      utmParams: {
+        utm_source: 'afiliado',
+        utm_medium: 'referral',
+        utm_campaign: 'projeto-c-lp',
+        utm_content: 'final-offer'
+      }
+    }
+  },
+
+  'c-fabiano': {
+    id: 'c-fabiano',
+    project: 'C',
+    slug: 'fabiano',
+    pricing: {
+      originalPrice: 'R$ 529,99',
+      installmentPrice: 'R$ 19,19',
+      installmentCount: 12,
+      cashPrice: 'R$ 197',
+      discountPercentage: '63%',
+      bonusValue: 'R$ 2.100'
+    },
+    checkout: {
+      title: 'Só mais um passo pra liberar seu acesso completo.',
+      description: 'Preencha seus dados pra seguir direto pro checkout.',
+      checkoutUrl: 'https://go.hotmart.com/S103227535P?ap=b57c',
+      utmParams: {
+        utm_source: 'afiliado',
+        utm_medium: 'referral',
+        utm_campaign: 'projeto-c-fabiano',
+        utm_content: 'final-offer'
+      }
+    }
+  },
+
+  'c-antonio': {
+    id: 'c-antonio',
+    project: 'C',
+    slug: 'antonio',
+    pricing: {
+      originalPrice: 'R$ 529,99',
+      installmentPrice: 'R$ 19,19',
+      installmentCount: 12,
+      cashPrice: 'R$ 197',
+      discountPercentage: '63%',
+      bonusValue: 'R$ 2.100'
+    },
+    checkout: {
+      title: 'Só mais um passo pra liberar seu acesso completo.',
+      description: 'Preencha seus dados pra seguir direto pro checkout.',
+      checkoutUrl: 'https://go.hotmart.com/G103365579V?ap=b57c',
+      utmParams: {
+        utm_source: 'afiliado',
+        utm_medium: 'referral',
+        utm_campaign: 'projeto-c-antonio',
+        utm_content: 'final-offer'
+      }
+    }
+  },
+
+  'c-ricardo': {
+    id: 'c-ricardo',
+    project: 'C',
+    slug: 'ricardo',
+    pricing: {
+      originalPrice: 'R$ 529,99',
+      installmentPrice: 'R$ 19,19',
+      installmentCount: 12,
+      cashPrice: 'R$ 197',
+      discountPercentage: '63%',
+      bonusValue: 'R$ 2.100'
+    },
+    checkout: {
+      title: 'Só mais um passo pra liberar seu acesso completo.',
+      description: 'Preencha seus dados pra seguir direto pro checkout.',
+      checkoutUrl: 'https://go.hotmart.com/Q103317034P?ap=b57c',
+      utmParams: {
+        utm_source: 'afiliado',
+        utm_medium: 'referral',
+        utm_campaign: 'projeto-c-ricardo',
         utm_content: 'final-offer'
       }
     }
