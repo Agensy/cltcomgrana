@@ -30,11 +30,16 @@ jobs:
               # GATE SOMENTE POR PÁGINAS ESPECÍFICAS DA LP1
               - 'src/pages/ProjectA/LP1.tsx'
               - 'src/pages/ProjectB/LP1.tsx'
+              - 'src/pages/ProjectC/**'
               - '.github/workflows/deploy-lp1.yml'
               # Também disparar quando componentes críticos da LP1 mudarem
               - 'src/components/HeroSection.tsx'
+              - 'src/components/DynamicFinalOfferSection.tsx'
               # Configurações de variações podem afetar LP1
               - 'src/config/variations.ts'
+              # Rotas e serviços que afetam LP1
+              - 'src/App.tsx'
+              - 'src/services/leadsService.ts'
               # Garantir cópia de .htaccess em produção
               - 'public/.htaccess'
 
