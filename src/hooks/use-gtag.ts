@@ -1,12 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
-declare global {
-  interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
-  }
-}
+// Window interface with gtag is declared in vite-env.d.ts
 
 export const useGtag = () => {
   const location = useLocation();

@@ -2,13 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getActiveSubdomain } from '@/config/subdomains';
 
-declare global {
-  interface Window {
-    fbq: any;
-    _fbq: any;
-    __fbq_initialized_ids?: Set<string>;
-  }
-}
+// Window interface with fbq is declared in vite-env.d.ts
 
 export const useFacebookPixel = (shouldLoad: boolean = false, pixelIdsOverride?: string | string[]) => {
   const isLoadedRef = useRef(false);
