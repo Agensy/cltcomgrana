@@ -1,12 +1,6 @@
 import LeadsService from '@/services/leadsService';
 
-declare global {
-  interface Window {
-    fbq: (action: string, event: string, params?: Record<string, unknown>, options?: Record<string, unknown>) => void;
-    _fbq: unknown;
-    __fbq_initialized_ids?: Set<string>;
-  }
-}
+// Window interface with fbq is already declared in use-facebook-pixel.tsx
 
 const parseBRLToNumber = (s: string): number => {
   if (!s) return 0;

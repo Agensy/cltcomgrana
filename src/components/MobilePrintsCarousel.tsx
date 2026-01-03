@@ -42,7 +42,7 @@ const MobilePrintsCarousel: React.FC<MobilePrintsCarouselProps> = ({ images, tit
                     className="w-64 sm:w-72 h-auto rounded-xl border border-zinc-700 shadow-md"
                     loading="lazy"
                     decoding="async"
-                    fetchpriority="low"
+                    fetchPriority="low"
                   />
                 </div>
               </CarouselItem>
